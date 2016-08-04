@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 /**
- * Created by benjarmanalili on 31/07/2016.
+ * Edited by girard_Eugenio on 05/08/2016.
  */
 public class SplashScreen extends Activity{
     @Override
