@@ -65,7 +65,8 @@
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignTop="@+id/passwordEditText"
         android:layout_toRightOf="@+id/passwordEditText"
-        android:layout_toEndOf="@+id/passwordEditText" />
+        android:layout_toEndOf="@+id/passwordEditText"
+        android:visibility="invisible" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

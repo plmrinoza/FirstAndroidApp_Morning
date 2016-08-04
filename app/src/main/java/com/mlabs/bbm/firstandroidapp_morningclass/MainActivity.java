@@ -3,7 +3,9 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
                 password.getText().toString().equals("mark04herson29")){
                     Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
-                    sendMessage(login);
+                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                    startActivity(intent);
 
                 }else if(isValidEmail(email.getText().toString())==false || password.getText().toString().length()<8){
                     if(isValidEmail(email.getText().toString())==false){
@@ -60,15 +63,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length()>0){
+                    show.setVisibility(View.VISIBLE);
+                }else{
+                    show.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         show.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
               if(showPassword){
                   password.setTransformationMethod(null);
+                  show.setText("Hide");
                   showPassword=false;
               }else{
                   password.setTransformationMethod(new PasswordTransformationMethod());
+                  show.setText("Show");
                   showPassword=true;
               }
             }
@@ -81,11 +107,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
-    }
-
-    public void sendMessage(View view)
-    {
-        Intent intent = new Intent(this, Main2Activity.class);
-        startActivity(intent);
     }
 }
