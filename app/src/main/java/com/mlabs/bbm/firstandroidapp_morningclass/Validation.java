@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.util.Log;
 import android.widget.TextView;
 
 /**
@@ -15,52 +16,42 @@ public class Validation {
         this.passwordTxtView = passwordTxtView;
     }
 
-    public boolean ifCorrectEmailFormat(CharSequence email){
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailTxtView.setText("Invalid email");
-            return false;
-        }else{
-            return true;
+    public boolean validateLogin(String email, String password){
+        boolean isEmailValid = false, isPasswordCorrect = false;
+        String myemail = "john_aparejado@yahoo.com";
+        String mypassword = "aaaaaaaa";
+        email = email.replace(" ","");
+
+        if(!email.equals(myemail)){
+            emailTxtView.setText(String.format("%s","Email is not existing"));
+
+            if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                emailTxtView.setText(String.format("%s","Invalid email format"));
+            }
+            isEmailValid = false;
         }
-    }
-
-    public boolean ifEmailMatched(String email){
-        String eemail = "john_aparejado@yahoo.com";
-
-        if(email.equals(eemail))
-            return true;
-        else {
-            emailTxtView.setText("Email is not existing");
-            return false;
+        else{
+            isEmailValid = true;
         }
-    }
 
-    public boolean ifPLengthIsSufficient(String password, boolean isEmailValid){
-        if(password.length() >= 8)
-            return true;
+        if(password.length() >= 8 && password.equals(mypassword))
+            isPasswordCorrect = true;
         else if(password.length() == 0) {
-            passwordTxtView.setText("Please enter password");
-            return false;
+            passwordTxtView.setText(String.format("%s","Please enter password"));
+            isPasswordCorrect = false;
         }else{
             if(isEmailValid) {
-                passwordTxtView.setText("Password is incorrect");
+                passwordTxtView.setText(String.format("%s","Password is incorrect"));
             }
             else if(!isEmailValid) {
-                passwordTxtView.setText("Password length must be more than 7");
+                passwordTxtView.setText(String.format("%s","Password length must be more than 7"));
             }
-            return false;
+            isPasswordCorrect = false;
         }
 
-    }
-
-    public boolean ifPasswordMatched(String password){
-        String epassword = "aaaaaaaa";
-
-        if(password.equals(epassword))
+        if(isEmailValid && isPasswordCorrect)
             return true;
-        else{
-            passwordTxtView.setText("Password is incorrect");
+        else
             return false;
-        }
     }
 }

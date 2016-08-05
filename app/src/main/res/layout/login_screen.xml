@@ -25,12 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text=""
         android:id="@+id/emailTextView"
-        android:layout_below="@+id/emailEditTxt"
         android:layout_alignLeft="@+id/emailEditTxt"
         android:layout_alignStart="@+id/emailEditTxt"
-        android:textColor="#fe0202" />
+        android:textColor="#fe0202"
+        android:layout_below="@+id/emailEditTxt" />
 
     <EditText
         android:layout_width="match_parent"

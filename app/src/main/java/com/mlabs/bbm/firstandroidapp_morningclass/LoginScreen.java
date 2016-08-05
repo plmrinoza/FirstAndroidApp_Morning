@@ -45,25 +45,11 @@ public class LoginScreen extends Activity{
         public void onClick(View v){
 
             if(v.equals(loginBtn)){
-                boolean isEmailValid = false;
-                boolean isPasswordCorrect = false;
-                String email = emailEdtTxt.getText().toString();
-                email = email.replace(" ","");
-                String password = passwordEdtTxt.getText().toString();
+                boolean isLoginValid = false;
 
-                if(validation.ifCorrectEmailFormat(email)) {
-                    if (validation.ifEmailMatched(email)) {
-                        isEmailValid = true;
-                    }
-                }
+                isLoginValid = validation.validateLogin(emailEdtTxt.getText().toString(), passwordEdtTxt.getText().toString());
 
-                if(validation.ifPLengthIsSufficient(password, isEmailValid)){
-                    if(validation.ifPasswordMatched(password)){
-                        isPasswordCorrect = true;
-                    }
-                }
-
-                if(isEmailValid && isPasswordCorrect){
+                if(isLoginValid){
                     Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                     startActivity(intent);
                 }
