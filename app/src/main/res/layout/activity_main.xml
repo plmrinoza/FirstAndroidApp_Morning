@@ -7,10 +7,74 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
+    tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity"
+    android:background="@color/accent_material_light">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/etxtEmailAdd"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:background="@android:color/white" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/etxtPword"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignRight="@+id/etxtEmailAdd"
+        android:layout_alignEnd="@+id/etxtEmailAdd"
+        android:textSize="20dp"
+        android:background="@android:color/white" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Put Your login screen here:!" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="e-Diary"
+        android:id="@+id/textView"
+        android:textSize="50dp"
+        android:layout_above="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Address:"
+        android:id="@+id/textView2"
+        android:textSize="20dp"
+        android:layout_above="@+id/etxtEmailAdd"
+        android:layout_alignLeft="@+id/etxtEmailAdd"
+        android:layout_alignStart="@+id/etxtEmailAdd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        android:id="@+id/textView3"
+        android:textSize="20dp"
+        android:layout_below="@+id/etxtEmailAdd"
+        android:layout_alignLeft="@+id/etxtEmailAdd"
+        android:layout_alignStart="@+id/etxtEmailAdd" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:id="@+id/btnLogin"
+        android:layout_below="@+id/etxtPword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
+
 </RelativeLayout>
