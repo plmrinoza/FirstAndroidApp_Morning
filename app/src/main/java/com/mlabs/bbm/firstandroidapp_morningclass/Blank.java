@@ -10,5 +10,4 @@ public class Blank extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blank_layout);
     }
-
 };

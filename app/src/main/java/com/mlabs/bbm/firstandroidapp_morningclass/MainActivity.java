@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Boolean validate(String email, String pw)
     {   Matcher m;
         m = emailP.matcher(email);
-        if (m.matches()&&pw.length()<8&&pw.length()!=0){
+        if (m.matches()&&pw.length()>=8&&pw.length()!=0){
             return true;
         }
         else
