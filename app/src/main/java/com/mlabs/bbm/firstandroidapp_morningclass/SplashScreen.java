@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 /**
- * Created by benjarmanalili on 31/07/2016.
+ * Created by lauren barredo on 05/08/2016.
  */
 public class SplashScreen extends Activity{
     @Override
@@ -28,6 +28,7 @@ public class SplashScreen extends Activity{
                 }
                 finally{
                     Intent intent = new Intent(SplashScreen.this,MainActivity.class );
+
                     startActivity(intent);
                 }
             }
