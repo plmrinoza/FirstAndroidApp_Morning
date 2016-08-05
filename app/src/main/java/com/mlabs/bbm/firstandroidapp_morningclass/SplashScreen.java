@@ -7,21 +7,30 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 
 /**
  * Created by benjarmanalili on 31/07/2016.
  */
 public class SplashScreen extends Activity{
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.splash);
-
+        final ImageView sai = (ImageView) this.findViewById(R.id.ikot);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.ikotikot);
+        sai.startAnimation(animation);
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(3000);
+
+                    sleep(6000);
+
                 }
                 catch(InterruptedException e){
                     e.printStackTrace();
@@ -29,6 +38,7 @@ public class SplashScreen extends Activity{
                 finally{
                     Intent intent = new Intent(SplashScreen.this,MainActivity.class );
                     startActivity(intent);
+
                 }
             }
         };
@@ -40,4 +50,7 @@ public class SplashScreen extends Activity{
         super.onPause();
         finish();
     }
+
+
+
 }
