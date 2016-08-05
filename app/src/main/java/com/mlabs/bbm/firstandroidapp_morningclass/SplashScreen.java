@@ -7,32 +7,44 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
+import android.os.Handler;
 
-/**
- * Created by benjarmanalili on 31/07/2016.
- */
-public class SplashScreen extends Activity{
+
+
+public class SplashScreen extends MainActivity{
+    private ProgressBar mProgress;
+    private int mProgressStatus = 0;
+
+    private Handler mHandler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.splash);
 
-        Thread timerThread = new Thread(){
-            public void run(){
-                try{
-                    sleep(3000);
+
+        mProgress = (ProgressBar) findViewById(R.id.progressBar);
+
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (mProgressStatus < 100) {
+                    mProgressStatus = mProgressStatus + 10;
+
+
+                    mHandler.post(new Runnable() {
+                        public void run() {
+                            mProgress.setProgress(mProgressStatus);
+                        }
+
+                    });
                 }
-                catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-                finally{
-                    Intent intent = new Intent(SplashScreen.this,MainActivity.class );
-                    startActivity(intent);
-                }
+                Intent i = new Intent(SplashScreen.this,MainActivity.class);
+                startActivity(i);
             }
-        };
-        timerThread.start();
+        }).start();
+
     }
 
     @Override
