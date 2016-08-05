@@ -27,37 +27,34 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailValidate.getText().toString();
-                String e = "priam.alcala@gmail.com";1
-                String password = passwordFormat.getText().toString();
-                String p = "alcala342";
+               final String email = emailValidate.getText().toString();
+                final String password = passwordFormat.getText().toString();
                 // onClick of button perform this simplest code.
-                if (email.equals(e) && password.equals(p)) {
+                if (validate(email) && password.length() >= 8) {
                     Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                    send(button);
                     Intent intent = new Intent(MainActivity.this, blank.class);
                     startActivity(intent);
-                } else if (validate(email)==false || passwordFormat.getText().length() < 8) {
-                    if(validate(email)==false){
+                }
+                if (!validate(email) || password.length() < 8) {
+                    if(!validate(email)){
                         Toast.makeText(getApplicationContext(), "Invalid E-mail Address!", Toast.LENGTH_SHORT).show();
                     }
                     if(password.length()<8){
                         Toast.makeText(getApplicationContext(), "Invalid Password!", Toast.LENGTH_SHORT).show();
                     }
-                } else if (validate(email)==false && passwordFormat.getText().length() < 8)
+                }
+                if (!validate(email) && password.length() < 8)
                     Toast.makeText(getApplicationContext(), "Invalid E-Mail or Password!", Toast.LENGTH_SHORT).show();
             }
         });
     }
-    public final static boolean validate(CharSequence target){
-        String emialPattern = "[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-                               "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-                Pattern pattern = Pattern.compile(emaillPattern);
-               Matcher matcher = pattern.matcher(email);
-               return matcher.matches();
-    }
-    public void send(View v){
-        Intent intent = new Intent(this, blank.class);
-        startActivity(intent);
+    private boolean validate(String email){
+
+        return Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
 }

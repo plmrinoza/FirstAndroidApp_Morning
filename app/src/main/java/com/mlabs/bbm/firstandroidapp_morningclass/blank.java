@@ -12,5 +12,4 @@ public class blank extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blank);
     }
-    Intent intent = getIntent();
 }
