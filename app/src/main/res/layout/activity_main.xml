@@ -7,10 +7,84 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
+    tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity"
+    android:background="@color/highlighted_text_material_light"
+    android:clickable="true">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:id="@+id/button"
+        android:layout_marginBottom="77dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:editable="true"
+        android:clickable="true"
+        android:layout_marginBottom="46dp"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:password="true"
+        android:clickable="true"
+        android:editable="true"
+        android:layout_above="@+id/button"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Put Your login screen here:!" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="USERNAME"
+        android:id="@+id/textView1"
+        android:textStyle="bold"
+        android:layout_above="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="PASSWORD"
+        android:id="@+id/textView"
+        android:layout_above="@+id/editText2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="ALIEN ONLY! "
+        android:id="@+id/textView2"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/textView"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        android:layout_toLeftOf="@+id/textView"
+        android:textColor="@color/abc_btn_colored_borderless_text_material"
+        android:textColorHighlight="#ffffff" />
+
 </RelativeLayout>
