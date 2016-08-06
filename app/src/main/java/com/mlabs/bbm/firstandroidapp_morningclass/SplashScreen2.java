@@ -34,12 +34,13 @@ public class SplashScreen2 extends Activity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.splash2);
+
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
         Thread timerThread = new Thread(){
             public void run(){
                     insertMethodHere();
                     startApp();
-                    onPause();
+                  //onPause();
             }
         };
         timerThread.start();
