@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
                                                         @Override
                                                 public void onClick(View view) {
 
-                                                                if (Username.getText().toString().equals("reytio20@gmail.com") &&
-                                                                        Password.getText().toString().equals("reytio123")) {
+                                                                if (Username.getText().toString().endsWith(".com") &&
+                                                                        Password.getText().toString().length()>=8) {
                                                                 Toast.makeText(MainActivity.this,"User and Password is Correct",
                                                                                 Toast.LENGTH_SHORT).show();
                                                                 Intent intent = new Intent(MainActivity.this,blank.class);
