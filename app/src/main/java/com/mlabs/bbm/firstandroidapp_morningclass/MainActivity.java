@@ -3,11 +3,9 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,13 +34,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-        boolean isValidEmail(String x, String y) {
-            if (android.util.Patterns.EMAIL_ADDRESS.matcher(x).matches() && y.length()<8 && y.length()!=0){
-                return true;
-            }
-            else
-                return false;
-
-
+    boolean isValidEmail(String x, String y) {
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(x).matches() && y.length() >= 8 && y.length() != 0) {
+            return true;
         }
+        else
+            return false;
+
     }
+
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        finish();
+    }
+}
