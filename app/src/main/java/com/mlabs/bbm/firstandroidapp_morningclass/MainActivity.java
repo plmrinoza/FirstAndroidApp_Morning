@@ -108,4 +108,9 @@ public class MainActivity extends AppCompatActivity {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
+
+    protected  void onPause(){
+        super.onPause();
+        finish();
+    }
 }
