@@ -76,12 +76,19 @@ public class MainActivity extends AppCompatActivity {
                     return false;
                 } else {
                     return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+
                 }
             }
 
+
+            protected  void onPause(){
+                super.onPause();
+               finish();
+           }
+
             public void sendMessage(View view)
             {
-                       Intent intent = new Intent(this,MainActivity.class);
+                       Intent intent = new Intent(this,Main3Activity.class);
                         startActivity(intent);
             }
 }
