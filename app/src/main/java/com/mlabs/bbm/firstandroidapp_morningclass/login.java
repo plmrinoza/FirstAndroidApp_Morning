@@ -20,7 +20,7 @@ public class login extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
 
         emailEditText = (EditText) findViewById(R.id.editText_email);
         passEditText = (EditText) findViewById(R.id.editText_password);
