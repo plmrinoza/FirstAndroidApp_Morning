@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
 
                 if (isValidEmail (email) && isValidPassword (pass))
                 {
-                    Intent intent= new Intent(MainActivity.this,validated.class);
+                    Intent intent = new Intent(MainActivity.this,Main2Activity.class);
                     startActivity(intent);
                 }
 
@@ -72,5 +72,10 @@ public class MainActivity extends AppCompatActivity
         }
         return false;
 
+    }
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        finish();
     }
 }
