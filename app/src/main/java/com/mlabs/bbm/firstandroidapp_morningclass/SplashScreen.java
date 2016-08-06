@@ -12,44 +12,35 @@ import android.os.Handler;
 
 
 
-public class SplashScreen extends MainActivity{
-    private ProgressBar mProgress;
-    private int mProgressStatus = 0;
+public class SplashScreen extends MainActivity {
 
-    private Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.splash);
 
 
-        mProgress = (ProgressBar) findViewById(R.id.progressBar);
-
-
-        new Thread(new Runnable() {
+        Thread timerThread = new Thread() {
             public void run() {
-                while (mProgressStatus < 100) {
-                    mProgressStatus = mProgressStatus + 10;
 
-
-                    mHandler.post(new Runnable() {
-                        public void run() {
-                            mProgress.setProgress(mProgressStatus);
-                        }
-
-                    });
+                try {
+                    sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    Intent loginIntent = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(loginIntent);
                 }
-                Intent i = new Intent(SplashScreen.this,MainActivity.class);
-                startActivity(i);
             }
-        }).start();
+        };
+        timerThread.start();
 
     }
-
-    @Override
-    protected  void onPause(){
-        super.onPause();
-        finish();
+        @Override
+        protected void onPause(){
+            super.onPause();
+            finish();
+        }
     }
-}
+

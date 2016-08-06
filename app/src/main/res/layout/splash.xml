@@ -22,15 +22,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="71dp" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="87dp"
-            android:indeterminate="false" />
     </RelativeLayout>
 </LinearLayout>
 

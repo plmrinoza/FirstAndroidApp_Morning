@@ -3,7 +3,7 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
-                        Intent loginIntent = new Intent(MainActivity.this, blank.class);
+                        Intent loginIntent = new Intent(MainActivity.this, MAIN.class);
                         startActivity(loginIntent);
                     }
                 }
@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        finish();
     }
 }
 
