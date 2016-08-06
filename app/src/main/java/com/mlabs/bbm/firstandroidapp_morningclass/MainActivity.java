@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
     private static EditText username;
     private static EditText password;
     private static Button login_btn;
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        if (username.getText().toString().equals("drevstar@yahoo.com") &&
-                                password.getText().toString().equals("12345678")) {
+                        if (username.getText().toString().endsWith("@yahoo.com") &&
+                                password.getText().toString().length()>=8) {
                             Toast.makeText(MainActivity.this,"User and Password is Correct",
                                     Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent("com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.user");
