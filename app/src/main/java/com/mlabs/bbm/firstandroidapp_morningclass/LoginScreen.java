@@ -52,6 +52,7 @@ public class LoginScreen extends Activity{
                 if(isLoginValid){
                     Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         }

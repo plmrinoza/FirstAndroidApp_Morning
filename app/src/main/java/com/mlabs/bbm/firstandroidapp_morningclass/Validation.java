@@ -34,19 +34,14 @@ public class Validation {
             isEmailValid = true;
         }
 
-        if(password.length() >= 8 && password.equals(mypassword))
+        if(isEmailValid && password.equals(mypassword))
             isPasswordCorrect = true;
         else if(password.length() == 0) {
             passwordTxtView.setText(String.format("%s","Please enter password"));
-            isPasswordCorrect = false;
-        }else{
-            if(isEmailValid) {
-                passwordTxtView.setText(String.format("%s","Password is incorrect"));
-            }
-            else if(!isEmailValid) {
-                passwordTxtView.setText(String.format("%s","Password length must be more than 7"));
-            }
-            isPasswordCorrect = false;
+        }else if(!isEmailValid && password.length() < 8){
+            passwordTxtView.setText(String.format("%s","Password length must be more than 7"));
+        }else if(isEmailValid && !password.equals(mypassword)){
+            passwordTxtView.setText(String.format("%s", "Password is incorrect"));
         }
 
         if(isEmailValid && isPasswordCorrect)
