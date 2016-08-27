@@ -53,5 +53,17 @@
         android:text="Login"
         android:id="@+id/Blogin"
         android:layout_below="@+id/TFpassword"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Tshow"
+        android:layout_below="@+id/TFpassword"
+        android:layout_alignBottom="@+id/Blogin"
+        android:textSize="@dimen/abc_action_bar_content_inset_material" />
+
 </RelativeLayout>

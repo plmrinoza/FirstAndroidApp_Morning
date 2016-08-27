@@ -19,17 +19,20 @@ public class Main2Activity extends AppCompatActivity {
         import android.text.TextUtils;
         import android.text.TextWatcher;
         import android.text.method.PasswordTransformationMethod;
+        import android.view.MotionEvent;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
     Button login;
     EditText email, password;
     Boolean showPassword=true;
-
+    TextView show;
 
 
     @Override
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         login=(Button)findViewById(R.id.Blogin);
         email=(EditText)findViewById(R.id.TFusername);
         password=(EditText)findViewById(R.id.TFpassword);
+        show = (TextView)findViewById(R.id.Tshow);
 
 
         login.setOnClickListener(new View.OnClickListener(){
@@ -73,11 +77,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        show.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                switch(event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        password.setTransformationMethod(null);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        return false;
+                }
+                return false;
+            }
+
+        });
+
+}
 
 
 
-
-    }
 
     public final static boolean isValidEmail(CharSequence target) {
         if (TextUtils.isEmpty(target)) {
@@ -86,4 +105,8 @@ public class MainActivity extends AppCompatActivity {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
+        protected void onPause(){
+            super.onPause();
+            finish();
+        }
 }
