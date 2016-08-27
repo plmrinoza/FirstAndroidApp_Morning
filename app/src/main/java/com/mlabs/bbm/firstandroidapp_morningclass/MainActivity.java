@@ -7,10 +7,13 @@ import java.util.regex.Pattern;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final EditText email = (EditText) findViewById(R.id.email);
+        final TextView show = (TextView) findViewById(R.id.show);
         final EditText password = (EditText) findViewById(R.id.password);
         Button validate = (Button) findViewById(R.id.validate);
 
@@ -40,6 +44,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        show.setOnTouchListener(new View.OnTouchListener(){
+                       @Override
+                       public boolean onTouch(View v, MotionEvent event){
+                               switch ( event.getAction() ) {
+
+                                              case MotionEvent.ACTION_DOWN:
+                                               EditText pText=(EditText)findViewById(R.id.password);
+                                               pText.setInputType(InputType.TYPE_CLASS_TEXT);break;
+                                      case MotionEvent.ACTION_UP:
+                                               EditText aText=(EditText)findViewById(R.id.password);
+                                                aText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                                                break;
+                                  }
+                                return true;
+                            }
+
+                            });
+
     }
 
     //Return true if password is valid and false if password is invalid
