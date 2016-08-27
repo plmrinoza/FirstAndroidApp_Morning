@@ -53,24 +53,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Attempts:"
-        android:id="@+id/tvAttempt"
+        android:text="Show"
+        android:id="@+id/tvshow"
+        android:textSize="20dp"
+        android:textColor="#ffff"
         android:layout_below="@+id/bLog"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#ffff"
-        android:textSize="25dp"/>
+        android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvNumattempt"
-        android:layout_below="@+id/bLog"
-        android:layout_toRightOf="@+id/tvAttempt"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="#ffff"
-        android:textSize="25dp"/>
 </RelativeLayout>
