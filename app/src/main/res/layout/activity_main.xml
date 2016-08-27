@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity"
-    android:background="#1E1E1E">
+    android:background="@drawable/splash_image">
 
     <EditText
         android:layout_width="wrap_content"
@@ -17,12 +17,13 @@
         android:id="@+id/editText"
         android:textColor="#0B8CF1"
         android:ems="10"
-        android:layout_below="@+id/imageView"
+        android:backgroundTint="@color/abc_background_cache_hint_selector_material_light"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/editText2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="67dp"
-        android:backgroundTint="@color/abc_color_highlight_material" />
+        android:hint="Email" />
 
-    <ImageView
+    ImageView
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:id="@+id/imageView"
@@ -38,20 +39,31 @@
         android:id="@+id/editText2"
         android:textColor="#0B8CF1"
         android:ems="10"
-        android:backgroundTint="@color/abc_color_highlight_material"
-        android:layout_below="@+id/editText"
+        android:backgroundTint="@color/abc_background_cache_hint_selector_material_light"
+        android:password="true"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText"
-        android:password="true" />
+        android:hint="Password" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/logIn"
-        android:layout_below="@+id/editText2"
+        android:enabled="true"
+        android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:enabled="true"/>
+        android:layout_alignStart="@+id/editText2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/textView"
+        android:textColor="#fefefe"
+        android:layout_below="@+id/editText2"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
 
 </RelativeLayout>

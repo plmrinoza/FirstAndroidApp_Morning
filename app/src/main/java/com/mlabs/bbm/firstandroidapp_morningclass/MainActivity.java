@@ -3,7 +3,9 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText emailValidate = (EditText) findViewById(R.id.editText);
         final EditText passwordFormat = (EditText) findViewById(R.id.editText2);
         final Button button = (Button) findViewById(R.id.logIn);
-
+        final TextView showBtn = (TextView) findViewById(R.id.textView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +49,24 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Invalid E-Mail or Password!", Toast.LENGTH_SHORT).show();
             }
         });
+        showBtn.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                switch ( event.getAction() ) {
+
+                    case MotionEvent.ACTION_DOWN:
+                        EditText pText=(EditText)findViewById(R.id.editText2);
+                        pText.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        EditText aText=(EditText)findViewById(R.id.editText2);
+                        aText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+
+        });
     }
     private boolean validate(String email){
 
@@ -57,4 +77,5 @@ public class MainActivity extends AppCompatActivity {
                 + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
+
 }
