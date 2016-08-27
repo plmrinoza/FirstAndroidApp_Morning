@@ -6,14 +6,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /*import android.app.Activity;*/
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.util.Log;
 
 
 public class Login extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passEditText;
+    private TextView showText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,7 @@ public class Login extends AppCompatActivity {
 
         emailEditText = (EditText) findViewById(R.id.Emailtxt);
         passEditText = (EditText) findViewById(R.id.Passwordtxt);
+        showText = (TextView) findViewById(R.id.show);
 
         findViewById(R.id.button).setOnClickListener(new OnClickListener() {
             @Override
@@ -40,8 +46,26 @@ public class Login extends AppCompatActivity {
                 {
                     Intent intent = new Intent(Login.this,After_Login.class);
                     startActivity(intent);
+                    finish();
                 }
 
+            }
+        });
+        showText.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        passEditText.setTransformationMethod(null);
+                        passEditText.setSelection(passEditText.getText().length());
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        passEditText.setTransformationMethod(new PasswordTransformationMethod());
+                        passEditText.setSelection(passEditText.getText().length());
+                        return false;
+                }
+                return false;
             }
         });
     }

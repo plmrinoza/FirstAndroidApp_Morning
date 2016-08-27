@@ -18,8 +18,8 @@
         android:background="@drawable/android_button"
         style="?android:attr/borderlessButtonStyle"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/Emailtxt"
@@ -29,9 +29,9 @@
         android:background="@drawable/android_edittxt"
         android:inputType="textEmailAddress"
         android:hint="Email"
+        android:layout_marginTop="29dp"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/Passwordtxt"
@@ -41,10 +41,10 @@
         android:background="@drawable/android_edittxt"
         android:inputType="textPassword"
         android:hint="Password"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/Emailtxt"
         android:layout_alignLeft="@+id/Emailtxt"
-        android:layout_alignStart="@+id/Emailtxt"
-        android:layout_marginTop="30dp" />
+        android:layout_alignStart="@+id/Emailtxt" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -55,5 +55,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/show"
+        android:textSize="50dp"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignRight="@+id/Passwordtxt"
+        android:layout_alignEnd="@+id/Passwordtxt" />
 
 </RelativeLayout>

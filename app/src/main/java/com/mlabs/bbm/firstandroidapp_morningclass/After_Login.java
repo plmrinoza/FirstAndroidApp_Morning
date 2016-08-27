@@ -13,4 +13,9 @@ public class After_Login extends Activity {
 
         setContentView(R.layout.layoutt);
     }
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        finish();
+    }
 }
