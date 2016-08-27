@@ -41,8 +41,6 @@
         android:layout_height="100px"
         android:id="@+id/editText"
         android:layout_above="@+id/button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginBottom="62dp"
         android:layout_alignParentLeft="true"
         android:hint="Email"
@@ -51,7 +49,9 @@
         android:backgroundTint="#ffff"
 
         android:textColor="@color/abc_primary_text_disable_only_material_dark"
-        android:textColorHint="@color/abc_primary_text_disable_only_material_dark" />
+        android:textColorHint="@color/abc_primary_text_disable_only_material_dark"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -66,9 +66,21 @@
         android:textColor="@color/abc_primary_text_disable_only_material_dark"
         android:textColorHint="@color/abc_primary_text_disable_only_material_dark"
         android:layout_above="@+id/textView"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="@string/abc_action_mode_done"
+        android:layout_toLeftOf="@+id/show"
+        android:layout_toStartOf="@+id/show" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/show"
+        android:text="Show"
+        android:backgroundTint="#ffff"
+        android:textColor="@color/abc_primary_text_disable_only_material_dark"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
