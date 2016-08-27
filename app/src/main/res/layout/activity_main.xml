@@ -58,4 +58,14 @@ tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/Show"
+        android:layout_alignBottom="@+id/pass"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
