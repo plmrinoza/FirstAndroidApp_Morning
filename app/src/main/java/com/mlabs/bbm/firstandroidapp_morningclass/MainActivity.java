@@ -58,9 +58,11 @@ public class MainActivity extends AppCompatActivity
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         pasEditText.setTransformationMethod(null);
+                        pasEditText.setSelection(pasEditText.getText().length());
                         return true;
                     case MotionEvent.ACTION_UP:
                         pasEditText.setTransformationMethod(new PasswordTransformationMethod());
+                        pasEditText.setSelection(pasEditText.getText().length());
                         return false;
 
                 }
