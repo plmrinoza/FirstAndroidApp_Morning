@@ -1,6 +1,5 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
-import android.util.Log;
 import android.widget.TextView;
 
 /**
