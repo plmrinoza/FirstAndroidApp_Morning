@@ -7,9 +7,11 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(email.getText().toString().equals("markhersonhuelgas@gmail.com") &&
 
-                password.getText().toString().equals("mark04herson29")){
+                        password.getText().toString().equals("mark04herson29")){
                     Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                     startActivity(intent);
@@ -84,20 +86,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        show.setOnClickListener(new View.OnClickListener(){
+//        show.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//              if(showPassword){
+//                  password.setTransformationMethod(null);
+//                  show.setText("Hide");
+//                  showPassword=false;
+//              }else{
+//                  password.setTransformationMethod(new PasswordTransformationMethod());
+//                  show.setText("Show");
+//                  showPassword=true;
+//              }
+//            }
+//        });
+
+        show.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
-            public void onClick(View view) {
-              if(showPassword){
-                  password.setTransformationMethod(null);
-                  show.setText("Hide");
-                  showPassword=false;
-              }else{
-                  password.setTransformationMethod(new PasswordTransformationMethod());
-                  show.setText("Show");
-                  showPassword=true;
-              }
+            public boolean onTouch(View view, MotionEvent event){
+                switch(event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        password.setTransformationMethod(null);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        return false;
+                    case MotionEvent.ACTION_CANCEL:
+                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        return false;
+                    default:
+                        return false;
+                }
             }
+
         });
     }
 
