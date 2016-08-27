@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
+import android.util.Log;
 
 /**
  * Created by Fatima Gargar on 8/4/2016.
@@ -16,6 +20,7 @@ import android.widget.EditText;
 public class login extends Activity {
     private EditText emailEditText;
     private EditText passEditText;
+    private TextView show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,7 @@ public class login extends Activity {
 
         emailEditText = (EditText) findViewById(R.id.editText_email);
         passEditText = (EditText) findViewById(R.id.editText_password);
+        show = (TextView) findViewById(R.id.show);
 
         findViewById(R.id.btn_signup).setOnClickListener(new OnClickListener() {
 
@@ -45,6 +51,28 @@ public class login extends Activity {
                 }
 
             }
+        });
+        show.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent){
+                int event = motionEvent.getAction();
+               // if (event == motionEvent.ACTION_DOWN){
+                 //   Log.d("onTouchListener", "ACTION_DOWN was pressed");
+                 //   passEditText.setTransformationMethod(new PasswordTransformationMethod());
+                //}
+                switch(motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        passEditText.setTransformationMethod(null);
+                        passEditText.setSelection(passEditText.getText().length());
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        passEditText.setTransformationMethod(new PasswordTransformationMethod());
+                        passEditText.setSelection(passEditText.getText().length());
+                        return false;
+                }
+                return false;
+            }
+
         });
     }
 
