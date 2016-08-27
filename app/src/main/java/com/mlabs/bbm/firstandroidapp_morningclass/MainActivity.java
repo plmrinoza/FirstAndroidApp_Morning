@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
@@ -57,18 +59,18 @@ public class MainActivity extends AppCompatActivity {
                                     }
                             });
 
-                        show.setOnClickListener(new View.OnClickListener(){
-            @Override
-                    public void onClick(View view) {
-            if(showPassword){
-                password.setTransformationMethod(null);
-                                 showPassword=false;
-                              }else{
-                                  password.setTransformationMethod(new PasswordTransformationMethod());
-                                  showPassword=true;
-                              }
-                        }
-                });
+//        show.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//                    public void onClick(View view) {
+//            if(showPassword){
+//                password.setTransformationMethod(null);
+//                                 showPassword=false;
+//                              }else{
+//                                  password.setTransformationMethod(new PasswordTransformationMethod());
+//                                  showPassword=true;
+//                              }
+//                        }
+//                });
         }
 
             public final static boolean isValidEmail(CharSequence target) {
@@ -83,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
             protected  void onPause(){
                 super.onPause();
-               finish();
+                getActivity().finish();
+                System.exit(0);
+
            }
 
             public void sendMessage(View view)
@@ -91,5 +95,40 @@ public class MainActivity extends AppCompatActivity {
                        Intent intent = new Intent(this,Main3Activity.class);
                         startActivity(intent);
             }
+
+//     show.OnTouchListener(new View.OnTouchListener(){
+//        @Override
+//        public boolean onTouchEvent(View view, MotionEvent motionEvent){
+//            switch(motionEvent.getAction()){
+//                case MotionEvent.ACTION_DOWN:
+//                    password.setTransformationMethod(null);
+//                    return true;
+//                case MotionEvent.ACTION_UP:
+//                    password.setTransformationMethod(new PasswordTransformationMethod());
+//                    return false;
+//                case MotionEvent.ACTION_CANCEL:
+//                    password.setTransformationMethod(new PasswordTransformationMethod());
+//                    return false;
+//
+//            }
+//        }
+//    });
+        show.OnTouchListener(new View.OnTouchListener(){
+       @Override
+               public boolean onTouchEvent(View view, MotionEvent motionEvent){
+                    switch (motionEvent.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            password.setTransformationMethod(null);
+                            return true;
+                        case MotionEvent.ACTION_UP:
+                            password.setTransformationMethod(new PasswordTransformationMethod());
+                            return false;
+                        case MotionEvent.ACTION_CANCEL:
+                            password.setTransformationMethod(new PasswordTransformationMethod());
+                            return false;
+                    }
+        }
+    });
 }
+
 
