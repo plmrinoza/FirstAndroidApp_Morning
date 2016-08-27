@@ -1,48 +1,41 @@
-package com.mlabs.bbm.firstandroidapp_morningclass;
+package com.example.androidstudio.abonallasplash;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.mlabs.bbm.firstandroidapp_morningclass.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class MainActivity extends AppCompatActivity {
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText email = (EditText) findViewById(R.id.Username);
-        final EditText password = (EditText) findViewById(R.id.Password);
+        final EditText email = (EditText) findViewById(R.id.editText2);
+        final EditText password = (EditText) findViewById(R.id.editText);
         Button validate = (Button) findViewById(R.id.button);
-        final TextView show = (TextView) findViewById(R.id.textView);
 
-        show.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
+        validate.setOnClickListener(new View.OnClickListener() {
 
-                switch ( event.getAction() ) {
-                    case MotionEvent.ACTION_DOWN:
-                        password.setInputType(InputType.TYPE_CLASS_TEXT);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        break;
+            @Override
+            public void onClick(View v) {
+                if(!validateEmail(email.getText().toString())) {
+                    email.setError("Invalid Email");
+                    email.requestFocus();
+                } else if (!validatePassword(password.getText().toString())) {
+                    password.setError("Invalid Password");
+                    password.requestFocus();
+                } else {
+                    Toast.makeText(MainActivity.this, "Input Validation Success", Toast.LENGTH_LONG).show();
+                    setContentView(R.layout.blank);
                 }
-                return true;
+
             }
         });
     }
