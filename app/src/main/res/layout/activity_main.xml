@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity"
-    android:background="@drawable/bgsplashlowreso">
+    android:background="@drawable/bgsplashlowreso"
+    android:id="@+id/mnbvcxzZa">
 
     <ImageView
         android:layout_width="fill_parent"
@@ -48,7 +49,8 @@
         android:textColorHint="#efefef"
         android:textStyle="italic"
         android:textIsSelectable="false"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:password="false" />
 
     <Button
         android:layout_width="wrap_content"
@@ -61,4 +63,15 @@
         android:textColor="#ffffff"
         android:shadowColor="#000000"
         android:background="@color/button_material_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/textViewShowPassword"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/editTextPass"
+        android:layout_alignBottom="@+id/editTextPass"
+        android:layout_toRightOf="@+id/editTextEmail"
+        android:layout_toEndOf="@+id/editTextEmail" />
 </RelativeLayout>

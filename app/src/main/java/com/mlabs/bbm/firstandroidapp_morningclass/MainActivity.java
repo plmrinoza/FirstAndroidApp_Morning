@@ -10,14 +10,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
-
+import android.widget.TextView;
+import android.text.InputType;
 import android.widget.Toast;
-
+import android.util.Log;
 import android.text.TextWatcher;
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText loginEmail = (EditText) findViewById(R.id.editTextEmail);
         final EditText loginPassword = (EditText) findViewById(R.id.editTextPass);
+        final TextView show = (TextView) findViewById(R.id.textViewShowPassword);
         Button loginwithregex = (Button) findViewById(R.id.loginButton);
 
         loginwithregex.setOnClickListener(new OnClickListener() {
@@ -46,6 +49,42 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+//        show.setOnClickListener(OnClickListener((view) {
+//            if showpass
+//
+//        });
+
+        show.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+//                int event = motionEvent.getAction();
+//                if(event == motionEvent.ACTION_DOWN) {
+//                    Log.d("onTouchListener", "ACTION_DOWN was pressed.");
+//                    //loginPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//                    loginPassword.setTransformationMethod(null);
+//                    return true;
+//                } else {
+//                    Log.d("onTouchListener", "ACTION_DOWN was released.");
+//                    //loginPassword.setInputType(129);
+//                    loginPassword.setTransformationMethod(new PasswordTransformationMethod());
+//                    return true;
+//                }
+
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        loginPassword.setTransformationMethod(null);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        loginPassword.setTransformationMethod(new PasswordTransformationMethod());
+                        return false;
+                }
+                    return false;
+        }
+
+        });
+
     }
 //Return true if password is valid and false if password is invalid
         protected boolean validatePassword(String password) {
