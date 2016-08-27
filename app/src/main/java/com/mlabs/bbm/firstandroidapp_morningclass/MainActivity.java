@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     Button login;
@@ -108,17 +109,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent event){
                 switch(event.getAction()){
                     case MotionEvent.ACTION_DOWN:
+                        Log.d("event", "up");
                         password.setTransformationMethod(null);
                         return true;
                     case MotionEvent.ACTION_UP:
+                        Log.d("event", "down");
                         password.setTransformationMethod(new PasswordTransformationMethod());
                         return false;
-                    case MotionEvent.ACTION_CANCEL:
-                        password.setTransformationMethod(new PasswordTransformationMethod());
-                        return false;
-                    default:
-                        return false;
-                }
+                }return false;
             }
 
         });
