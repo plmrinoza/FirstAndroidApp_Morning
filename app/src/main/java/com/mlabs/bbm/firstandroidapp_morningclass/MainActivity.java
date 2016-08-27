@@ -5,10 +5,13 @@ import java.util.regex.Pattern;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.view.MotionEvent;
 
 
 
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText email = (EditText) findViewById(R.id.etEmail);
         final EditText password = (EditText) findViewById(R.id.etPassword);
         final Button btnNext = (Button) findViewById(R.id.btnNext);
+        final Button btnShow= (Button) findViewById(R.id.btnShow);
         btnNext.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -42,6 +46,41 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+
+             btnShow.setOnTouchListener(new View.OnTouchListener(){
+                     @Override
+                 public boolean onTouch(View view, MotionEvent motionEvent){
+
+//                         if(event == motionEvent.ACTION_DOWN){
+//                             Log.d("onTouchListener", "ACTION_DOWN was pressed");
+//                             password.setTransformationMethod(null);
+//                             return true;
+//
+//                         }
+//                         else{
+//                             Log.d("onTouchListener", "ACTION_DOWN was released");
+//                             password.setTransformationMethod(new PasswordTransformationMethod());
+//                             return false;
+//                         }
+//
+                         switch(motionEvent.getAction()){
+                             case MotionEvent.ACTION_DOWN:
+                                 password.setTransformationMethod(null);
+                                 password.setSelection(password.getText().length());
+                                 return true;
+                             case MotionEvent.ACTION_UP:
+                                 password.setTransformationMethod(new PasswordTransformationMethod());
+                                 password.setSelection(password.getText().length());
+                                 return false;
+                         }
+                         return true;
+
+
+                     }
+
+
+                     });
+
         }
         private boolean isValidEmail(String email) {
             String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
