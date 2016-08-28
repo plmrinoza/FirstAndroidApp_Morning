@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity"
-    android:background="@color/accent_material_dark">
+    android:background="@color/accent_material_light">
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,18 +36,18 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/TFuname"
+        android:id="@+id/Uname"
         android:layout_alignBottom="@+id/textView_username"
         android:layout_toRightOf="@+id/textView_username"
-        android:layout_alignRight="@+id/TFpassword"
-        android:layout_alignEnd="@+id/TFpassword" />
+        android:layout_alignRight="@+id/Pword"
+        android:layout_alignEnd="@+id/Pword" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/TFpassword"
+        android:id="@+id/Pword"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/textView_password"
         android:layout_toEndOf="@+id/textView_password" />
@@ -57,12 +57,12 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/BLogin"
-        android:layout_below="@+id/TFpassword"
+        android:layout_below="@+id/Pword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="60dp"
-        android:layout_alignRight="@+id/TFpassword"
-        android:layout_alignEnd="@+id/TFpassword" />
+        android:layout_alignRight="@+id/Pword"
+        android:layout_alignEnd="@+id/Pword" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,5 +71,14 @@
         android:id="@+id/StatMsg"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/show"
+        android:text="Show"
+        android:layout_above="@+id/BLogin"
+        android:layout_alignRight="@+id/Pword"
+        android:layout_alignEnd="@+id/Pword" />
 
 </RelativeLayout>
