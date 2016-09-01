@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         LoginButton();
     }
-
     public void LoginButton() {
         username = (EditText) findViewById(R.id.editText_user);
         password = (EditText) findViewById(R.id.editText2_password);
@@ -43,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "User and Password is Incorrect",
                                     Toast.LENGTH_SHORT).show();
                         }
-
                     }
-
                 }
         );
     }
@@ -64,6 +61,4 @@ public class MainActivity extends AppCompatActivity {
                 return false;
         }
     }
-
-
 }
