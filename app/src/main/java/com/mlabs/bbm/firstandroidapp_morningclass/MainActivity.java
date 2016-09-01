@@ -3,6 +3,8 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,25 +22,25 @@ public class MainActivity extends AppCompatActivity {
         LoginButton();
     }
 
-    public void LoginButton(){
-        username = (EditText) findViewById(R.id. editText_user);
-        password = (EditText) findViewById(R.id. editText2_password);
+    public void LoginButton() {
+        username = (EditText) findViewById(R.id.editText_user);
+        password = (EditText) findViewById(R.id.editText2_password);
         login_btn = (Button) findViewById(R.id.buttonSubmit);
 
         login_btn.setOnClickListener(
-                new OnClickListener(){
+                new OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
 
-                        if (username.getText().toString().equals("drevstar@yahoo.com") &&
-                                password.getText().toString().equals("12345678")) {
-                            Toast.makeText(MainActivity.this,"User and Password is Correct",
+                        if (username.getText().toString().endsWith(".com") &&
+                                password.getText().toString().length() >= 8) {
+                            Toast.makeText(MainActivity.this, "User and Password is Correct",
                                     Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent("com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.user");
                             startActivity(intent);
                         } else {
-                            Toast.makeText(MainActivity.this,"User and Password is Incorrect",
+                            Toast.makeText(MainActivity.this, "User and Password is Incorrect",
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -47,4 +49,21 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
+    public boolean onTouch(View view, MotionEvent event){
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                password.setTransformationMethod(null);
+                return true;
+            case MotionEvent.ACTION_UP:
+                password.setTransformationMethod(new PasswordTransformationMethod());
+                return false;
+            case MotionEvent.ACTION_CANCEL:
+                password.setTransformationMethod(new PasswordTransformationMethod());
+                return false;
+            default:
+                return false;
+        }
+    }
+
+
 }
