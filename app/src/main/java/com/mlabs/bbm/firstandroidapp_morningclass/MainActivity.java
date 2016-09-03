@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 String username = String.valueOf(l1.getText());
                 String password = String.valueOf(l2.getText());
 
-                if (username.equals("jpeg_26@yahoo.com") && password.equals("122692")) {
+                if (username.equals("1") && password.equals("1")) {
                     stm.setText("Access Granted!");
                     Intent intent = new Intent(MainActivity.this,Main2Activity.class);
                     startActivity(intent);
