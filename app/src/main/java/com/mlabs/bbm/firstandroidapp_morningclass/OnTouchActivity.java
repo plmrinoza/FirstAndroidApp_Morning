@@ -35,13 +35,13 @@ public class OnTouchActivity extends AppCompatActivity {
                         finalY = motionEvent.getY();
                         if( initX<finalX){
                             mss = String.format("SWIPED LEFT TO RIGHT");
-                        }else if(initX > finalX){
+                        } if(initX > finalX){
                             mss = String.format("SWIPED RIGHT TO LEFT");
                         }
                         Toast.makeText(getApplicationContext(), ""+mss, Toast.LENGTH_SHORT).show();
                         if(initY < finalY){
                             mss = String.format("SWIPED UP TO DOWN");
-                        }else if(initY > finalY){
+                        } if(initY >finalY){
                             mss = String.format("SWIPED DOWN TO UP");
                         }
                         Toast.makeText(getApplicationContext(), ""+mss, Toast.LENGTH_SHORT).show();
