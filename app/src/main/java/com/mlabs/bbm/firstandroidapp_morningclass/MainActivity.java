@@ -3,6 +3,7 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button btn;
         final EditText emailAdd,passWord,Show;
-
+        final Button  btnMenu = (Button) findViewById(R.id.button2);
 
 
         Show = (EditText)findViewById(R.id.show);
@@ -86,9 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
              }
 
-
-
             });
+
+
+
+
 
 
         }
