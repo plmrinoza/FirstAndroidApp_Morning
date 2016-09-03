@@ -18,7 +18,8 @@ tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="105dp" />
+        android:layout_marginTop="105dp"
+        android:background="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,7 +28,8 @@ tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
         android:id="@+id/textView2"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/eml"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff" />
 
     <Button
         android:layout_width="wrap_content"
@@ -55,17 +57,18 @@ tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/pass"
+        android:layout_marginTop="49dp"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show"
         android:id="@+id/Show"
+        android:background="#ffffff"
         android:layout_alignBottom="@+id/pass"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toRightOf="@+id/pass"
+        android:layout_toEndOf="@+id/pass" />
 
 </RelativeLayout>

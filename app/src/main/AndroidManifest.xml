@@ -27,10 +27,12 @@
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="anroid.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="anroid.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".OnTouchActivity"></activity>
     </application>
 
 </manifest>

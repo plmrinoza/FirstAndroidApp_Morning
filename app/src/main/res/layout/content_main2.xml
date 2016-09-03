@@ -12,4 +12,12 @@
     tools:context="com.mlabs.bbm.firstandroidapp_morningclass.Main2Activity"
     tools:showIn="@layout/activity_main2">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_marginTop="58dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
