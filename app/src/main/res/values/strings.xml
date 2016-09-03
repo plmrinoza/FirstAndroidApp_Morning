@@ -5,4 +5,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
+    <string name="title_activity_blank" />
+    <string name="title_activity_activity_on_touch" />
 </resources>

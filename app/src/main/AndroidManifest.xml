@@ -25,11 +25,28 @@
         <activity
             android:name=".MainAct.user"
             android:label="@string/title_activity_user">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.user" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainAct.activityOnTouch"
+            android:label="@string/title_activity_activity_on_touch">
         <intent-filter>
-            <action android:name="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.user" />
+            <action android:name="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.activityOnTouch" />
 
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
+        </activity>
+        <activity android:name=".MainAct.blank"
+            android:label="@string/title_activity_blank">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.blank" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
