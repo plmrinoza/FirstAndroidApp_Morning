@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Pedro on 05/08/2016.
  */
 
-public class blank extends AppCompatActivity {
+public class LoggedIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.blank);
+        setContentView(R.layout.activity_loggedin);
     }
 }
