@@ -13,9 +13,18 @@ import android.widget.Button;
 public class MainMenu extends Activity {
 
     /** Called when the activity is first created. */
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+        final Button btnTouch = (Button)findViewById(R.id.btnOnTouch1);
 
+        btnTouch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), OnTouchActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
         }
     }
