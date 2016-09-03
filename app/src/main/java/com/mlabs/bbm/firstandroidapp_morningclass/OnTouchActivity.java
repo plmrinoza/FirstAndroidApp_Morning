@@ -15,7 +15,7 @@ public class OnTouchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout.activity_on_touch);
+        setContentView(R.layout.activity_on_touch);
 
         imgBG = (ImageView) findViewById(R.id.imgBG);
 
@@ -41,19 +41,22 @@ public class OnTouchActivity extends AppCompatActivity {
                             Log.d(getApplicationContext().toString(),"LEFT TO RIGHT SWIPE");
                             Toast.makeText(getApplicationContext(),"LEFT TO RIHGT SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
-                        if(initX > finalX){
+                        else if(initX > finalX){
                             Log.d(getApplicationContext().toString(),"RIGHT TO LEFT SWIPE");
                             Toast.makeText(getApplicationContext(),"RIGHT TO LEFT SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
-                        if(initY < finalY){
+                        if(initY > finalY){
                             Log.d(getApplicationContext().toString(),"DOWN TO UP SWIPE");
                             Toast.makeText(getApplicationContext(),"DOWN TO UP SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
-                        if(initY > finalY){
+                        else if(initY < finalY){
                             Log.d(getApplicationContext().toString(),"UP TO DOWN SWIPE");
                             Toast.makeText(getApplicationContext(),"UP TO DOWN SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
+
+                        return true;
                 }
+
                 return false;
             }
         });
