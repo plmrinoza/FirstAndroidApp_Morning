@@ -17,8 +17,8 @@ public class Validation {
 
     public boolean validateLogin(String email, String password){
         boolean isEmailValid = false, isPasswordCorrect = false;
-        String myemail = "john_aparejado@yahoo.com";
-        String mypassword = "aaaaaaaa";
+        String myemail = "";
+        String mypassword = "";
         email = email.replace(" ","");
 
         if(!email.equals(myemail)){
