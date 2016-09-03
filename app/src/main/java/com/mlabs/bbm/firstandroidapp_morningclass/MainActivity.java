@@ -3,7 +3,6 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isValidEmail(u.getText().toString(),p.getText().toString())){
-                    Intent intent = new Intent(MainActivity.this,blank.class );
+                    Intent intent = new Intent(MainActivity.this,LoggedIn.class );
                     startActivity(intent);
                 }
                 else
