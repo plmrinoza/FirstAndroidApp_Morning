@@ -1,0 +1,72 @@
+[33mcommit f23c0e8b0836cf33d2f3b14f47b600b5b18d6a0d[m
+Author: Huelgas Mark <Huelgas Mark>
+Date:   Fri Sep 9 21:08:07 2016 +0800
+
+    Swipe detection and location activity. Sorry sir for the late push. I was sick last wednesday up until this monday morning. I hope for your reconsideration. Thank you sir.
+
+[33mcommit bd8bad6325134e77f9333a658b2f3ebbabc37a5e[m
+Author: Mark Huelgas <markhersonhuelgas@gmail.com>
+Date:   Sat Aug 27 11:22:01 2016 +0800
+
+    tweaks on switch case of show/hide labelbutton.
+
+[33mcommit 5f4ce7df66c983b17d1ed19efd1b290af0047c97[m
+Author: Mark Huelgas <markhersonhuelgas@gmail.com>
+Date:   Sat Aug 27 11:09:59 2016 +0800
+
+    show/hide interface changed into onTouchListener.
+
+[33mcommit cded2ba14bbd5702189c42024cc0d483677043e1[m
+Author: Mark Huelgas <markhersonhuelgas@gmail.com>
+Date:   Sat Aug 6 11:10:03 2016 +0800
+
+    fixed double launcher problem.
+
+[33mcommit 2194e5a895237f855b19e37d1fd09d1367f26ea9[m
+Author: Huelgas Mark <Huelgas Mark>
+Date:   Thu Aug 4 23:37:56 2016 +0800
+
+    applied suggestion for switching to another activity. applied tweaks for show/hide button label. now, it only shows when there is input in password edittext and disappears again when the edittext is empty. changes the label's text to show and hide accordingly. code review. thanks!
+
+[33mcommit 2d91472c5a7a66b3829982373baf3355ebbbbe4c[m
+Author: Huelgas Mark <Huelgas Mark>
+Date:   Thu Aug 4 00:52:14 2016 +0800
+
+    splash screen activity and login activity working plus show/hide password label button working. code review please. thanks!=)
+
+[33mcommit 117b84ba4f16e9e8b669b18abdfc6235f6e1773a[m
+Author: Benjar Manalili <manalilibenjar@yahoo.com>
+Date:   Mon Aug 1 16:19:00 2016 +0800
+
+    Removed Actionbar for MainActivity.
+
+[33mcommit 9acc08caf9ef45ef2da198aac0742e9735799af1[m
+Author: Benjar Manalili <manalilibenjar@yahoo.com>
+Date:   Mon Aug 1 15:11:00 2016 +0800
+
+    Created Splash screen base application.
+
+[33mcommit b476fae944ad9f0dd8c5ab59e66f6ce159ddfdce[m
+Merge: 49a752b e16f7b5
+Author: Benjar Manalili <manalilibenjar@yahoo.com>
+Date:   Wed Jul 27 16:52:57 2016 +0800
+
+    Merge branch 'master' of github.com:MobileComputingClass/FirstAndroidApp_Morning
+
+[33mcommit 49a752b66204e72e4a0ac1d12d299603681d5205[m
+Author: Benjar Manalili <manalilibenjar@yahoo.com>
+Date:   Wed Jul 27 16:52:40 2016 +0800
+
+    Re-init base class; fixed errors.
+
+[33mcommit e16f7b5d4173b932c73efe6fa214efe2c15c8e22[m
+Author: Benjar Manalili <manalilibenjar@yahoo.com>
+Date:   Sat Jul 16 09:58:30 2016 +0800
+
+    Adding base env.
+
+[33mcommit 1bdadd5baacea0505ce5a4351c2083e7dde3283f[m
+Author: Benjar Manalili <bbmanalili@dynamicobjx.com>
+Date:   Sat Jul 16 09:50:23 2016 +0800
+
+    Initial commit

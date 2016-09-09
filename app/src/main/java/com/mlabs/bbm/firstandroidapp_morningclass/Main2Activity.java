@@ -55,11 +55,11 @@ public class Main2Activity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), ""+msg, Toast.LENGTH_SHORT).show();
 
         if(y1 == y2){
-            msg = String.format("Swiped up to down");
+
         }else if(y1 > y2){
             msg = String.format("Swiped down to up");
         }else if (y1 < y2){
-
+            msg = String.format("Swiped up to down");
         }
 
         Toast.makeText(getApplicationContext(), ""+msg, Toast.LENGTH_SHORT).show();
