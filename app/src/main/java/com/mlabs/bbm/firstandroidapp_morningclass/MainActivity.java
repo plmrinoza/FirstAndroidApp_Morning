@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (email.getText().toString().equals("jkafidelino@yahoo.com")
-                        && password.getText().toString().equals("ngodwetrust1328")) {
+                if (email.getText().toString().equals("user")
+                        && password.getText().toString().equals("pass")) {
                     Toast.makeText(getApplicationContext(), "Connecting...", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, UserAct.class);
                     startActivity(intent);
