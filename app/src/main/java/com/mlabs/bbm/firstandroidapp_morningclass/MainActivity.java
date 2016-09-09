@@ -38,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if(email.getText().toString().equals("markhersonhuelgas@gmail.com") &&
-
-                        password.getText().toString().equals("mark04herson29")){
+                if(email.getText().toString().equals("mh@gmail.com") &&
+                password.getText().toString().equals("mark0429")){
                     Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                     startActivity(intent);
