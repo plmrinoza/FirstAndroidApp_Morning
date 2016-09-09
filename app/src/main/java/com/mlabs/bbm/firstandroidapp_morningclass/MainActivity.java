@@ -24,27 +24,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = (EditText) findViewById(R.id.etUser);
-        password = (EditText) findViewById(R.id.etPass);
-        Show = (TextView) findViewById(R.id.tvshow);
+        email = (EditText) findViewById(R.id.uname);
+        password = (EditText) findViewById(R.id.pass);
+        Show = (TextView) findViewById(R.id.pshow);
         login = (Button) findViewById(R.id.bLog);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (email.getText().toString().equals("jkafidelino@yahoo.com")
-                        && password.getText().toString().equals("ngodwetrust1328")) {
-                    Toast.makeText(getApplicationContext(), "Connecting...", Toast.LENGTH_SHORT).show();
+                if (email.getText().toString().equals("rusdain")
+                        && password.getText().toString().equals("dainrussel")) {
+                    Toast.makeText(getApplicationContext(), "Transmitting...", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, UserAct.class);
                     startActivity(intent);
                 } else if (isValidEmail(email.getText().toString()) == false || password.getText().toString().length() < 8) {
                     if (isValidEmail(email.getText().toString()) == false) {
-                        Toast.makeText(getApplicationContext(), "Invalid E-mail!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Access Denied!", Toast.LENGTH_SHORT).show();
                         email.getText().clear();
                         email.requestFocus();
                     }
                     if (password.getText().toString().length() < 8) {
-                        Toast.makeText(getApplicationContext(), "Provide at least 15 characters long Password!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Provide at least 8 characters long Password!", Toast.LENGTH_SHORT).show();
                         password.getText().clear();
                         password.requestFocus();
                     }
