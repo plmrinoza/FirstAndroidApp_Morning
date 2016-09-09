@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (validate(etEmail.getText().toString(),etPW.getText().toString())){
-                Intent intent = new Intent(MainActivity.this,Blank.class );
+                Intent intent = new Intent(MainActivity.this,Transition.class );
                 startActivity(intent);
             }
             else
