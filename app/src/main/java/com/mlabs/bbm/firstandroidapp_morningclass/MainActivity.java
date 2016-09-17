@@ -14,7 +14,7 @@ import android.app.Activity;
 public class MainActivity extends Activity {
 
     EditText User, Pass, showPass;
-    Button AccessBtn;
+    Button AccessBtn, signUpBtn;
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         AccessBtn = (Button) findViewById(R.id.BLogin);
+        signUpBtn = (Button) findViewById(R.id.supB);
         User = (EditText) findViewById(R.id.Uname);
         Pass = (EditText) findViewById(R.id.Pword);
         showPass = (EditText) findViewById(R.id.show);
+
 
         AccessBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -35,6 +37,14 @@ public class MainActivity extends Activity {
                     startActivity(intent);
                 } else
                     Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Sign_Up.class);
+                startActivity(intent);
             }
         });
         showPass.setOnTouchListener(new View.OnTouchListener() {
@@ -55,6 +65,7 @@ public class MainActivity extends Activity {
         });
     }
 
+
     boolean validEmailadd(String x, String y){
         if (android.util.Patterns.EMAIL_ADDRESS.matcher(x).matches() && y.length() >= 8 && y.length() !=0){
             return true;
@@ -68,4 +79,6 @@ public class MainActivity extends Activity {
         super.onPause();
         finish();
     }
+
+
 }

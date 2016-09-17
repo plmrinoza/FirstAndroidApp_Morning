@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Loggedin" />
-        <activity android:name=".OnTouchActivity"></activity>
+        <activity android:name=".OnTouchActivity" />
+        <activity android:name=".Sign_Up"></activity>
     </application>
 
 </manifest>

@@ -41,7 +41,7 @@ public class OnTouchActivity extends AppCompatActivity {
                             Log.d(getApplicationContext().toString(),"LEFT TO RIGHT SWIPE");
                             Toast.makeText(getApplicationContext(),"LEFT TO RIHGT SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
-                        else if(initX > finalX){
+                        if(initX > finalX){
                             Log.d(getApplicationContext().toString(),"RIGHT TO LEFT SWIPE");
                             Toast.makeText(getApplicationContext(),"RIGHT TO LEFT SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
@@ -49,7 +49,7 @@ public class OnTouchActivity extends AppCompatActivity {
                             Log.d(getApplicationContext().toString(),"DOWN TO UP SWIPE");
                             Toast.makeText(getApplicationContext(),"DOWN TO UP SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
-                        else if(initY < finalY){
+                        if(initY < finalY){
                             Log.d(getApplicationContext().toString(),"UP TO DOWN SWIPE");
                             Toast.makeText(getApplicationContext(),"UP TO DOWN SWIPE, X: " + finalX + "Y: " +finalY, Toast.LENGTH_SHORT).show();
                         }
