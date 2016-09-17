@@ -34,7 +34,7 @@ public class OnTouchActivity extends AppCompatActivity {
                         finalY = motionEvent.getY();
 
                         if (initX-finalX > initY-finalY){
-                            
+
                         }
 
                         if (initX < finalX){
