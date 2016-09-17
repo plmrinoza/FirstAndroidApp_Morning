@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn;
         final EditText emailAdd,passWord,Show;
         final Button  btnMenu = (Button) findViewById(R.id.button2);
-
+        final Button btn3 = (Button) findViewById(R.id.button3);
 
         Show = (EditText)findViewById(R.id.show);
         emailAdd=(EditText)findViewById(R.id.editText);
@@ -95,7 +95,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+        if (btn!=null){
+            btn3.setOnClickListener(new View.OnClickListener(){
+             //@Override;
+                public  void onClick(View v){
+                    Intent intent = new Intent(MainActivity.this, RegisterForm.class);
+                    startActivity(intent);
+                }
 
+
+
+
+
+            });
+        }
 
     }
 }

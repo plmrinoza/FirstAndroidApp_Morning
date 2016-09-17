@@ -34,7 +34,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".OnTouch"></activity>
+        <activity android:name=".OnTouch" />
+        <activity android:name=".Database" />
+        <activity android:name=".RegisterForm"></activity>
     </application>
 
 </manifest>
