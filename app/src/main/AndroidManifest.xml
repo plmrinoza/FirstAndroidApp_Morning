@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+>>>>>>> f6606f551478ab79d64a5beb1c384f7dfe39ff27
 
         <activity android:name=".MainActivity"
             android:label="FirstAndroidApp_MorningClass">
@@ -24,8 +30,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <activity android:name=".NextScreen">
+=======
+        <activity android:name=".After_Login">
+            <intent-filter>eppaguinaldo@gmail.com
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+>>>>>>> f6606f551478ab79d64a5beb1c384f7dfe39ff27
         </activity>
     </application>
 
