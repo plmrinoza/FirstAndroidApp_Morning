@@ -1,14 +1,13 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Blank extends Activity {
+public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.blank_layout);
+        setContentView(R.layout.layout_sign_up);
     }
-
-};
+}

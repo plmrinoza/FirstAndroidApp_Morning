@@ -60,4 +60,15 @@
         android:layout_marginBottom="50dp"
         android:layout_marginTop="20dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sign Up"
+        android:id="@+id/txtSignUp"
+        android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:textStyle="bold|italic" />
+
 </RelativeLayout>

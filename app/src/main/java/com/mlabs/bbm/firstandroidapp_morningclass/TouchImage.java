@@ -43,7 +43,7 @@ public class TouchImage extends AppCompatActivity {
                             y = "UP";
                         else if(y1<y2)
                             y = "DOWN";
-                        Toast.makeText(getApplicationContext(), x + " " +y + " from ("+x1+","+y1+") to ("+x2+","+y2+")", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), x + " " +y + " from ("+x1+","+y1+") to ("+x2+","+y2+")", Toast.LENGTH_SHORT).show();
                                 }
             Log.d("onTouch","Exit onTouch");
             return false;
