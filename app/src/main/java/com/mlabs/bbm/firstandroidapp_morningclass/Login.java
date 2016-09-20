@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-/*import android.app.Activity;*/
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -12,7 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.util.Log;
+
 
 
 public class Login extends AppCompatActivity {
