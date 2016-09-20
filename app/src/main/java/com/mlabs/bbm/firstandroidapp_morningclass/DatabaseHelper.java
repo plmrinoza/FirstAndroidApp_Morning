@@ -18,12 +18,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String accounts_ID = "ID";
     public static final String accounts_EMAIL = "EMAIL";
     public static final String accounts_PASSWORD = "PASSWORD";
-   // public static final String accounts_CREATED_AT = "CREATED_AT";
+    // public static final String accounts_CREATED_AT = "CREATED_AT";
 
 
     //public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
 
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context) {
         super(context, databaseName, null, 1);
         //For checking if database exists.
         //SQLiteDatabase db = this.getWritableDatabase();
@@ -31,24 +31,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-     //   db.execSQL("Create table " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT, PASSWORD TEXT)");
+        //   db.execSQL("Create table " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT, PASSWORD TEXT)");
         String CREATE_ACCOUNT_TABLE = "Create Table " + tableName + "("
-             + accounts_ID + " INTEGER PRIMARY KEY,"
-             + accounts_EMAIL + " TEXT UNIQUE,"
-             + accounts_PASSWORD + " TEXT" + ")";
+                + accounts_ID + " INTEGER PRIMARY KEY,"
+                + accounts_EMAIL + " TEXT UNIQUE,"
+                + accounts_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_ACCOUNT_TABLE);
 
     }
 
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int olderVersion, int newVersion) {
-            // Drop older table if existed.
-            db.execSQL("DROP TABLE IF EXISTS " + tableName);
-            //Recreate Table.
-            onCreate(db);
-        }
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int olderVersion, int newVersion) {
+        // Drop older table if existed.
+        db.execSQL("DROP TABLE IF EXISTS " + tableName);
+        //Recreate Table.
+        onCreate(db);
+    }
 
-    public boolean insertAccount (String email, String password) {
+    public boolean insertAccount(String email, String password) {
         String emailParameter = email;
         String passwordParameter = password;
 
@@ -58,26 +58,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertValues.put("password", passwordParameter);
         long result = db.insert(tableName, null, insertValues);
 
-        if(result == -1){
+        if (result == -1) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
 
-    public boolean updateAccount (Integer id, String email, String password)  {
+    public boolean updateAccount(Integer id, String email, String password) {
         String emailParameter = email;
         String passwordParameter = password;
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues updatedValues = new ContentValues();
         updatedValues.put("email", emailParameter);
         updatedValues.put("password", passwordParameter);
-        db.update(tableName, updatedValues, "id = ? ", new String[] { Integer.toString(id) } );
+        db.update(tableName, updatedValues, "id = ? ", new String[]{Integer.toString(id)});
         return true;
     }
 
+
+
     public Cursor getAllData() {
+
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = new String[] { accounts_ID,accounts_EMAIL,accounts_PASSWORD };
         Cursor cursor = db.query(tableName, columns, null,
@@ -91,6 +93,7 @@ public Cursor getAllData() {
     return cursor;
 }
 */
+
 
 
 }
