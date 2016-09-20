@@ -1,14 +1,20 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.util.regex.Matcher; //Used for validating email and password
 import java.util.regex.Pattern;
-
+/*
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.text.InputType;
+import android.widget.Toast;
+import android.util.Log;
+import android.text.TextWatcher;
+*/
 import android.content.Intent;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -17,21 +23,24 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.text.InputType;
-import android.widget.Toast;
-import android.util.Log;
-import android.text.TextWatcher;
+
 public class MainActivity extends AppCompatActivity {
+
+    //Database Instance name
+    DatabaseHelper accountsDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        accountsDb = new DatabaseHelper(this);
 
         final EditText loginEmail = (EditText) findViewById(R.id.editTextEmail);
         final EditText loginPassword = (EditText) findViewById(R.id.editTextPass);
         final TextView show = (TextView) findViewById(R.id.textViewShowPassword);
-        Button loginwithregex = (Button) findViewById(R.id.loginButton);
+        final Button loginwithregex = (Button) findViewById(R.id.loginButton);
+        //In order to register
+        final TextView register = (TextView) findViewById(R.id.textViewRegister);
 
         loginwithregex.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -45,33 +54,16 @@ public class MainActivity extends AppCompatActivity {
                     //Toast.makeText(MainActivity.this,"Input Validation Success", Toast.LENGTH_LONG).show();
                     Intent myIntent = new Intent(v.getContext(), MainMenu.class);
                     startActivityForResult(myIntent, 0);
+                    onPause();
+                    finish();
                 }
-
             }
-        });
 
-//        show.setOnClickListener(OnClickListener((view) {
-//            if showpass
-//
-//        });
+        });
 
         show.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
-//                int event = motionEvent.getAction();
-//                if(event == motionEvent.ACTION_DOWN) {
-//                    Log.d("onTouchListener", "ACTION_DOWN was pressed.");
-//                    //loginPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-//                    loginPassword.setTransformationMethod(null);
-//                    return true;
-//                } else {
-//                    Log.d("onTouchListener", "ACTION_DOWN was released.");
-//                    //loginPassword.setInputType(129);
-//                    loginPassword.setTransformationMethod(new PasswordTransformationMethod());
-//                    return true;
-//                }
-
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         loginPassword.setTransformationMethod(null);
@@ -85,8 +77,18 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        register.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //Toast.makeText(MainActivity.this,"Input Validation Success", Toast.LENGTH_LONG).show();
+
+                Intent myIntent = new Intent(v.getContext(), AccountRegister.class);
+                startActivityForResult(myIntent, 0);
+                onPause();
+            }
+            });
+
     }
-//Return true if password is valid and false if password is invalid
+        //Return true if password is valid and false if password is invalid
         protected boolean validatePassword(String password) {
             if(password!=null && password.length()>9) {
                 return true;
@@ -106,13 +108,61 @@ public class MainActivity extends AppCompatActivity {
             return matcher.matches();
         }
 
-    protected void onPause(){
-        super.onPause();
-        finish();
+/*
+    public void signIn(View v){
+
+        final EditText loginEmail = (EditText) findViewById(R.id.editTextEmail);
+        final EditText loginPassword = (EditText) findViewById(R.id.editTextPass);
+        Button btnLogin=(Button) findViewById(R.id.loginButton);
+        accountsDb = new DatabaseHelper(this);
+
+        // Set On ClickListener
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // get The User name and Password
+                String email=loginEmail.getText().toString();
+                String password=loginPassword.getText().toString();
+
+                // fetch the Password form database for respective user name
+               // String storedPassword=accountsDb.getSingleEntry(email);
+
+                // check if the Stored password matches with  Password entered by user
+                if(password.equals(storedPassword))
+                {
+                    //Toast.makeText(HomeActivity.this, "Congrats: Login Successfull", Toast.LENGTH_LONG).show();
+                    //dialog.dismiss();
+                }
+                else
+                {
+                    //Toast.makeText(HomeActivity.this, "User Name or Password does not match", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
+    */
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
+}
 
 /*experiments*/
+
+//                int event = motionEvent.getAction();
+//                if(event == motionEvent.ACTION_DOWN) {
+//                    Log.d("onTouchListener", "ACTION_DOWN was pressed.");
+//                    //loginPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//                    loginPassword.setTransformationMethod(null);
+//                    return true;
+//                } else {
+//                    Log.d("onTouchListener", "ACTION_DOWN was released.");
+//                    //loginPassword.setInputType(129);
+//                    loginPassword.setTransformationMethod(new PasswordTransformationMethod());
+//                    return true;
+//                }
+
 /* Button next = (Button) findViewById(R.id.loginButton);
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
