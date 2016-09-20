@@ -27,6 +27,12 @@
 
         <activity android:name=".NextScreen">
         </activity>
-    </application>
+
+        <activity android:name=".SignUp">
+        </activity>
+
+
+
+        </application>
 
 </manifest>

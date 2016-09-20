@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         final Button show = (Button) findViewById(R.id.show) ;
         final EditText Email = (EditText) findViewById(R.id.Email);
         final EditText Pw = (EditText) findViewById(R.id.Pw);
+        final Button reg = (Button) findViewById(R.id.btnReg);
 
         show.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -59,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
                     doLogin();
                 }
             }
+        });
+
+        reg.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, SignUp.class);
+                startActivity(i);
+            }
+
         });
 
     }
