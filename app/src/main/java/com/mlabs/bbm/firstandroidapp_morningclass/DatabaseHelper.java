@@ -77,20 +77,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-   /* public Cursor getAllData() {
+    public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = new String[] { accounts_ID,accounts_EMAIL,accounts_PASSWORD };
         Cursor cursor = db.query(tableName, columns, null,
                 null, null, null, null);
         return cursor;
     }
-*/
+/*
 public Cursor getAllData() {
     SQLiteDatabase db = this.getWritableDatabase();
     Cursor  cursor = db.rawQuery("select * from "+ tableName,null);
     return cursor;
 }
-
+*/
 
 
 }
