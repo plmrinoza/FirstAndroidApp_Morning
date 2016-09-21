@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     //db name
     public static final String databaseName = "accountsAndroid.db";
-
+    public static final String TAG = DatabaseHelper.class.getSimpleName();
     //table name
     public static final String tableName = "accounts";
     //public static final String tableName = "users";
@@ -75,7 +75,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(tableName, updatedValues, "id = ? ", new String[]{Integer.toString(id)});
         return true;
     }
+    public String getSinlgeEntry(String userName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(tableName, null, " EMAIL=?",
+                new String[] { userName }, null, null, null);
+        if (cursor.getCount() < 1) {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        cursor.close();
+        return password;
+    }
 
+   /* public boolean getUserDetails(String email, String password){
+        SQLiteDatabase db = this.getReadableDatabase();
+        HashMap<String, String> user = new HashMap<String, String>();
+        String query = "SELECT * FROM " + tableName + "WHERE " + accounts_EMAIL + "=" + email ;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToNext();
+        if (cursor.getCount()>0){
+            user.put("email", cursor.getString(1));
+            user.put("password", cursor.getString(2));
+        }
+        cursor.close();
+        db.close();
+        Log.d(TAG, "Fetching user from database: " + user.toString());
+        if (password.equals(user.get(password))){
+            Log.d(TAG, "Correct Password");
+            return true;
+        }
+        else {
+            Log.d(TAG, "Incorrect Password");
+            return false;
+        }
+    } */
 
 
     public Cursor getAllData() {

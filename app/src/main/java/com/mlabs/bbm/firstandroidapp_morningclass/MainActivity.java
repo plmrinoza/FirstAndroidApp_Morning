@@ -23,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,20 +45,28 @@ public class MainActivity extends AppCompatActivity {
 
         loginwithregex.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                if (!validateEmail(loginEmail.getText().toString())) {
+                String loginE = loginEmail.getText().toString().trim();
+                String loginPass = loginPassword.getText().toString().trim();
+               /* if (!validateEmail(loginE)) {
                     loginEmail.setError("Invalid Email");
                     loginEmail.requestFocus();
-                } else if (!validatePassword(loginPassword.getText().toString())) {
+                }
+                else if (!validatePassword(loginPass)) {
                     loginPassword.setError("Invalid Password");
                     loginPassword.requestFocus();
-                } else {
+                }*/
                     //Toast.makeText(MainActivity.this,"Input Validation Success", Toast.LENGTH_LONG).show();
-                    Intent myIntent = new Intent(v.getContext(), MainMenu.class);
-                    startActivityForResult(myIntent, 0);
-                    onPause();
-                    finish();
+                    String verifyUser = accountsDb.getSinlgeEntry(loginE);
+                    if(loginPass.equals(verifyUser)) {
+                        Intent myIntent = new Intent(MainActivity.this, MainMenu.class);
+                        startActivity(myIntent);
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this,"Invalid Email and Password", Toast.LENGTH_LONG).show();
+                        loginEmail.requestFocus();
+                    }
                 }
-            }
 
         });
 
@@ -89,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
         //Return true if password is valid and false if password is invalid
-        protected boolean validatePassword(String password) {
+    /*    protected boolean validatePassword(String password) {
             if(password!=null && password.length()>9) {
                 return true;
             } else {
@@ -106,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             Matcher matcher = pattern.matcher(email);
 
             return matcher.matches();
-        }
+        } */
 
 /*
     public void signIn(View v){
