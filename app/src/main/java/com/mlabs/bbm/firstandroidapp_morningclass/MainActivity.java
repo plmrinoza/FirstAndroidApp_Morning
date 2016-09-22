@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
                 else{Toast.makeText(getBaseContext(), "Hacker is not allowed here!", Toast.LENGTH_SHORT).show();finish(); System.exit(0);}
 
                 break;
+            case R.id.button2:
+                Intent intent = new Intent(MainActivity.this,register.class );
+                startActivity(intent);
+                break;
         }
     }
 

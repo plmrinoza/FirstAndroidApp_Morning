@@ -29,7 +29,7 @@ public class SplashScreen extends Activity{
             public void run(){
                 try{
 
-                    sleep(6000);
+                    sleep(2500);
 
                 }
                 catch(InterruptedException e){
