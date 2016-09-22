@@ -13,6 +13,7 @@ public class UsersDataSource {
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {MySQLiteHelper.COLUMN_ID, MySQLiteHelper.COLUMN_EMAIL, MySQLiteHelper.COLUMN_PASSWORD, MySQLiteHelper.COLUMN_DATE};
+    //testing di makapagpush and pull
 
     public UsersDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
