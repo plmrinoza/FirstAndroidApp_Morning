@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText email = (EditText) findViewById(R.id.etEmail);
+        final EditText email = (EditText) findViewById(R.id.regEmail);
         final EditText password = (EditText) findViewById(R.id.etPassword);
-        final Button btnNext = (Button) findViewById(R.id.btnNext);
+        final Button btnSignup = (Button) findViewById(R.id.btnSignup);
+        final Button btnLogin = (Button) findViewById (R.id.btnLogin);
         final Button btnShow= (Button) findViewById(R.id.btnShow);
-        btnNext.setOnClickListener(new View.OnClickListener(){
+
+        btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
@@ -41,15 +42,25 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
-                        Intent loginIntent = new Intent(MainActivity.this, MAIN.class);
+                        Intent loginIntent = new Intent(MainActivity.this, Registerform.class);
                         startActivity(loginIntent);
                     }
+
                 }
             });
+       // btnSignup.setOnClickListener(new View.OnClickListener(){
+         //   @Override
+          //  public void onCLick(View v){
+            //    Intent myIntent = new Intent(v.getContext(), Registerform.class);
+              //  startActivityForResult(myIntent,0);
+               // onPause();
+           // }
+
+        //});
 
              btnShow.setOnTouchListener(new View.OnTouchListener(){
                      @Override
-                 public boolean onTouch(View view, MotionEvent motionEvent){
+                 public boolean onTouch(View view, MotionEvent motionEvent) {
 
 //                         if(event == motionEvent.ACTION_DOWN){
 //                             Log.d("onTouchListener", "ACTION_DOWN was pressed");
@@ -63,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 //                             return false;
 //                         }
 //
-                         switch(motionEvent.getAction()){
+                         switch (motionEvent.getAction()) {
                              case MotionEvent.ACTION_DOWN:
                                  password.setTransformationMethod(null);
                                  password.setSelection(password.getText().length());
@@ -75,11 +86,12 @@ public class MainActivity extends AppCompatActivity {
                          }
                          return true;
 
-
                      }
 
 
                      });
+
+
 
         }
         private boolean isValidEmail(String email) {
@@ -94,12 +106,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+
     }
 
     @Override
-    protected void onPause(){
-        super.onPause();
-        finish();
+    protected void onResume(){
+        super.onResume();
     }
 }
 
