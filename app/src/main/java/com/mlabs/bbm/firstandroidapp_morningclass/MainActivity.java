@@ -23,40 +23,40 @@ public class MainActivity extends AppCompatActivity {
         final EditText email = (EditText) findViewById(R.id.regEmail);
         final EditText password = (EditText) findViewById(R.id.etPassword);
         final Button btnSignup = (Button) findViewById(R.id.btnSignup);
-        final Button btnLogin = (Button) findViewById (R.id.btnLogin);
-        final Button btnShow= (Button) findViewById(R.id.btnShow);
+        final Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        final Button btnShow = (Button) findViewById(R.id.btnShow);
 
-        btnLogin.setOnClickListener(new View.OnClickListener(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
-                    if (!isValidEmail(email.getText().toString())) {
-                        email.setError("Invalid Email");
-                        email.requestFocus();
+                if (!isValidEmail(email.getText().toString())) {
+                    email.setError("Invalid Email");
+                    email.requestFocus();
 
-                    }
-                   else if (!isValidPassword(password.getText().toString())) {
-                        password.setError("Invalid Password");
-                        password.requestFocus();
+                } else if (!isValidPassword(password.getText().toString())) {
+                    password.setError("Invalid Password");
+                    password.requestFocus();
 
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
-                        Intent loginIntent = new Intent(MainActivity.this, Registerform.class);
-                        startActivity(loginIntent);
-                    }
-
+                } else {
+                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                    Intent loginIntent = new Intent(MainActivity.this, blank.class);
+                    startActivity(loginIntent);
                 }
-            });
-       // btnSignup.setOnClickListener(new View.OnClickListener(){
-         //   @Override
-          //  public void onCLick(View v){
-            //    Intent myIntent = new Intent(v.getContext(), Registerform.class);
-              //  startActivityForResult(myIntent,0);
-               // onPause();
-           // }
 
-        //});
+            }
+        });
+            btnSignup.setOnClickListener(new View.OnClickListener() {
+                @Override
+
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(v.getContext(), Registerform.class);
+                    startActivityForResult(myIntent, 0);
+                    onPause();
+                }
+
+            });
+
 
              btnShow.setOnTouchListener(new View.OnTouchListener(){
                      @Override

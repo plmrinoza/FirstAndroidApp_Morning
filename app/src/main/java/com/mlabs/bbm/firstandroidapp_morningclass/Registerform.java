@@ -24,24 +24,12 @@ public class Registerform extends AppCompatActivity {
         regEmail= (EditText) findViewById(R.id.regEmail);
         regPass = (EditText) findViewById(R.id.regPass);
         regConPass = (EditText) findViewById(R.id.regConPass);
-        btnBack= (Button)findViewById(R.id.btnBack);
-        btnBack= (Button)findViewById(R.id.btnBack);
         btnSend= (Button)findViewById(R.id.btnSend);
         addAcct();
 
     }
 
-    public void back(){
-        btnBack.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent myIntent= new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(myIntent,0);
-                onPause();
-                finish();
-            }
-        });
-    }
+
      public void addAcct(){
          btnSend.setOnClickListener(new View.OnClickListener(){
              @Override
@@ -49,20 +37,20 @@ public class Registerform extends AppCompatActivity {
                  String email= regEmail.getText().toString().trim();
                  String password= regPass.getText().toString();
                  String confirmPassword= regConPass.getText().toString();
-                 String emailPattern= "\"^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$\";";
+                 String emailPattern= "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
                  if (email.equals("")){
-                     Toast.makeText(getApplicationContext(), "Field empty", Toast.LENGTH_LONG).show();
+                     Toast.makeText(getApplicationContext(), "Please complete all Fields", Toast.LENGTH_LONG).show();
                      return;
 
                  }
                  else if (password.equals("")){
-                     Toast.makeText(getApplicationContext(), "Field empty", Toast.LENGTH_LONG).show();
+                     Toast.makeText(getApplicationContext(), "Please complete all Fields", Toast.LENGTH_LONG).show();
                      return;
 
                  }
                   else if (confirmPassword.equals("")){
-                     Toast.makeText(getApplicationContext(), "Field empty", Toast.LENGTH_LONG).show();
+                     Toast.makeText(getApplicationContext(), "Please complete all Fields", Toast.LENGTH_LONG).show();
                      return;
 
                  }
