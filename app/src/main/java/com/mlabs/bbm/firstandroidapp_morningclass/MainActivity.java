@@ -3,6 +3,7 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button btn;
         final EditText emailAdd,passWord,Show;
-
-
+        final Button  btnMenu = (Button) findViewById(R.id.button2);
+        final Button btn3 = (Button) findViewById(R.id.button3);
 
         Show = (EditText)findViewById(R.id.show);
         emailAdd=(EditText)findViewById(R.id.editText);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             Show.setOnTouchListener(new View.OnTouchListener(){
-              @Override
+                @Override
                 public boolean onTouch(View view, MotionEvent motionEvent){
 //                  if(motionEvent.getAction() == MotionEvent.ACTION_DOWN)
 //                    {
@@ -70,29 +71,44 @@ public class MainActivity extends AppCompatActivity {
 //                   passWord.setTransformationMethod(new PasswordTransformationMethod());
 //                      return false;
 //                  }
-                switch (motionEvent.getAction())
-                {
-                    case MotionEvent.ACTION_DOWN:
-                        passWord.setTransformationMethod(null);
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        passWord.setTransformationMethod(new PasswordTransformationMethod());
-                         return false;
-                    default:
-                        return false;
+                    switch (motionEvent.getAction())
+                    {
+                        case MotionEvent.ACTION_DOWN:
+                            passWord.setTransformationMethod(null);
+                            return true;
+                        case MotionEvent.ACTION_UP:
+                            passWord.setTransformationMethod(new PasswordTransformationMethod());
+                            return false;
+                        default:
+                            return false;
 
+
+                    }
 
                 }
-
-             }
-
-
 
             });
 
 
-        }
 
+
+
+
+        }
+        if (btn!=null){
+            btn3.setOnClickListener(new View.OnClickListener(){
+                //@Override;
+                public  void onClick(View v){
+                    Intent intent = new Intent(MainActivity.this, RegistrationForm.class);
+                    startActivity(intent);
+                }
+
+
+
+
+
+            });
+        }
 
     }
 }
