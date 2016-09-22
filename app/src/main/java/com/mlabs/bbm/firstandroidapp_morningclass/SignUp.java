@@ -39,24 +39,24 @@ public class SignUp extends Activity {
 
                 if (Email.equals("") || Password.equals("")
                         || confirmPassword.equals("")) {
-
-                    Toast.makeText(getApplicationContext(), "Fill Up required fields",
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Fill Up required fields", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (!Password.equals(confirmPassword)) {
-                    Toast.makeText(getApplicationContext(),
-                            "Password does not match", Toast.LENGTH_LONG)
-                            .show();
-                    return;
-                } else {
 
+                if (!validateEmail(Email)) {
+                    EmailSignUp.setError("Not a valid email address!");
+                } else if (!validatePassword(Password)) {
+                    PwSignUp.setError("Not a valid password!");
+                }
+
+                if (!Password.equals(confirmPassword)) {
+                    Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else {
                     DataBaseAdapter.registerUser(Email,Password,GetCurrentDateAndTime());
-                    Toast.makeText(getApplicationContext(),
-                            "Account Successfully Created ", Toast.LENGTH_LONG)
-                            .show();
-                    Intent i = new Intent(SignUp.this,
-                            MainActivity.class);
+                    Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(SignUp.this, MainActivity.class);
                     startActivity(i);
                     finish();
 
@@ -64,23 +64,6 @@ public class SignUp extends Activity {
             }
         });
     }
-
-    /*protected boolean validateEmail(String Email) {
-        String Email_Pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-        Pattern pattern = Pattern.compile(Email_Pattern);
-        Matcher matcher = pattern.matcher(Email);
-        return matcher.matches();
-    }
-
-    protected boolean validatePassword(String Password) {
-        if(Password!=null && Password.length()>9) {
-            return true;
-        } else {
-            return false;
-        }
-    }*/
 
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -93,13 +76,6 @@ public class SignUp extends Activity {
 
     public boolean validatePassword(String Pw) {
         return Pw.length() >=8;
-    }
-
-    public void doLogin() {
-        Toast.makeText(getApplicationContext(), "Successfully Logged-in", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(SignUp.this, NextScreen.class);
-
-        startActivity(i);
     }
 
     public String GetCurrentDateAndTime(){
