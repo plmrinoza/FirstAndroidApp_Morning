@@ -10,4 +10,59 @@
     tools:context="com.mlabs.bbm.firstandroidapp_morningclass.SignUp"
     android:background="@drawable/polka">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailReg"
+        android:inputType="text"
+        android:minWidth="300dp"
+        android:maxWidth="300dp"
+        android:hint="Email Address"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/passReg"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/emailReg"
+        android:layout_alignLeft="@+id/emailReg"
+        android:layout_alignStart="@+id/emailReg"
+        android:layout_alignRight="@+id/emailReg"
+        android:layout_alignEnd="@+id/emailReg" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTER"
+        android:id="@+id/reg"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="#000000"
+        android:longClickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/cPassReg" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cPassReg"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/passReg"
+        android:layout_alignLeft="@+id/passReg"
+        android:layout_alignStart="@+id/passReg"
+        android:layout_alignRight="@+id/passReg"
+        android:layout_alignEnd="@+id/passReg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

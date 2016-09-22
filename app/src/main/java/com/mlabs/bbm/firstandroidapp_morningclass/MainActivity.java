@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText etEmail, etPW;
     Pattern emailP;
+    DbHandler helper = new DbHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPW = (EditText) findViewById(R.id.etPW);
-
         TextView txtSU = (TextView) findViewById(R.id.txtSignUp);
         txtSU.setPaintFlags(txtSU.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG); //puts some underline on 'Sign Up'
         //set listeners
@@ -59,12 +59,19 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener btnLoginClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (validate(etEmail.getText().toString(),etPW.getText().toString())){
-                Intent intent = new Intent(MainActivity.this,Transition.class );
-                startActivity(intent);
+            String emailStrLog = etEmail.getText().toString();
+            String pwStrLog = etPW.getText().toString();
+
+            String password = helper.searchPass(emailStrLog);
+            if(pwStrLog.equals(password)){
+                if (validate(emailStrLog, pwStrLog)){
+                    Intent intent = new Intent(MainActivity.this,Transition.class );
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Invalid Email Address/Password", Toast.LENGTH_SHORT).show();
             }
-            else
-                Toast.makeText(getApplicationContext(), "Invalid Email Address/Password", Toast.LENGTH_SHORT).show();
+
         }
     };
 
