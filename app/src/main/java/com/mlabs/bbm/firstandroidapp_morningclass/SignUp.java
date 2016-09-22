@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import java.sql.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUp extends Activity {
     @Override
@@ -61,6 +63,43 @@ public class SignUp extends Activity {
                 }
             }
         });
+    }
+
+    /*protected boolean validateEmail(String Email) {
+        String Email_Pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(Email_Pattern);
+        Matcher matcher = pattern.matcher(Email);
+        return matcher.matches();
+    }
+
+    protected boolean validatePassword(String Password) {
+        if(Password!=null && Password.length()>9) {
+            return true;
+        } else {
+            return false;
+        }
+    }*/
+
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
+    private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+    private Matcher matcher;
+
+    public boolean validateEmail(String email) {
+        matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    public boolean validatePassword(String Pw) {
+        return Pw.length() >=8;
+    }
+
+    public void doLogin() {
+        Toast.makeText(getApplicationContext(), "Successfully Logged-in", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(SignUp.this, NextScreen.class);
+
+        startActivity(i);
     }
 
     public String GetCurrentDateAndTime(){
