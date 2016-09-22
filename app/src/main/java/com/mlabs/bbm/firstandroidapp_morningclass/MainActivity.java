@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+//Yam was here
     //Database Instance name
     DatabaseHelper accountsDb;
 
