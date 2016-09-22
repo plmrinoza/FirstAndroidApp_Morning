@@ -7,17 +7,21 @@ import android.util.Log;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_USER = "comments";
-    public static final String COLUMN_USERNAME = "username";
-    public static final String COLUMN_PASSWORD = "password";
+    public static final String TABLE_USER = "users";
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_EMAIL = "emails";
+    public static final String COLUMN_PASSWORD = "passwords";
+    public static final String COLUMN_DATE = "dates";
 
     private static final String DATABASE_NAME = "username.db";
     private static final int DATABASE_VERSION = 1;
 
     // Database creation sql statement
     private static final String DATABASE_CREATE = "create table "
-            + TABLE_USER + "( " + COLUMN_USERNAME
-            + " integer primary key autoincrement, " + COLUMN_PASSWORD
+            + TABLE_USER + "( " + COLUMN_ID
+            + " integer primary key autoincrement, " + COLUMN_EMAIL
+            + " text not null, " + COLUMN_PASSWORD
+            + " text not null, " + COLUMN_DATE
             + " text not null);";
 
     public MySQLiteHelper(Context context) {

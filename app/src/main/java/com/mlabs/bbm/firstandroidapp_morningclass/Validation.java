@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.content.Context;
 import android.widget.TextView;
 
 /**
@@ -9,19 +10,25 @@ public class Validation {
 
     private TextView emailTxtView;
     private TextView passwordTxtView;
+    private UsersDataSource usersDataSource;
+    private Context context;
 
-    public Validation(TextView emailTxtView, TextView passwordTxtView){
+    public Validation(UsersDataSource db, TextView emailTxtView, TextView passwordTxtView){
+        this.usersDataSource = db;
         this.emailTxtView = emailTxtView;
         this.passwordTxtView = passwordTxtView;
     }
 
     public boolean validateLogin(String email, String password){
         boolean isEmailValid = false, isPasswordCorrect = false;
-        String myemail = "";
-        String mypassword = "";
+        User user = null;
         email = email.replace(" ","");
 
-        if(!email.equals(myemail)){
+        usersDataSource.open();
+
+        user = usersDataSource.getUser(email);
+
+        if(!email.equals(user.getEmail())){
             emailTxtView.setText(String.format("%s","Email is not existing"));
 
             if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -33,13 +40,15 @@ public class Validation {
             isEmailValid = true;
         }
 
-        if(isEmailValid && password.equals(mypassword))
+        usersDataSource.close();
+
+        if(isEmailValid && password.equals(user.getPassword()))
             isPasswordCorrect = true;
         else if(password.length() == 0) {
             passwordTxtView.setText(String.format("%s","Please enter password"));
         }else if(!isEmailValid && password.length() < 8){
             passwordTxtView.setText(String.format("%s","Password length must be more than 7"));
-        }else if(isEmailValid && !password.equals(mypassword)){
+        }else if(isEmailValid && !password.equals(user.getPassword())){
             passwordTxtView.setText(String.format("%s", "Password is incorrect"));
         }
 

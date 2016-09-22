@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by ChristianJohn on 8/4/2016.
  */
@@ -30,6 +34,15 @@ public class LoginScreen extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
 
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+
+        UsersDataSource usersDataSource = new UsersDataSource(getApplicationContext());
+        usersDataSource.open();
+        usersDataSource.createUser("john_aparejado@yahoo.com","tutunogtunog",""+formattedDate);
+
         loginBtn = (Button)findViewById(R.id.loginBtn);
         emailEdtTxt = (EditText)findViewById(R.id.emailEditTxt);
         passwordEdtTxt = (EditText)findViewById(R.id.passwordEditTxt);
@@ -37,7 +50,7 @@ public class LoginScreen extends Activity{
         passwordTxtView = (TextView)findViewById(R.id.passwordTextView);
         toggleTxt = (TextView)findViewById(R.id.toggleTxt);
 
-        validation = new Validation(emailTxtView, passwordTxtView);
+        validation = new Validation(usersDataSource, emailTxtView, passwordTxtView);
 
         loginBtn.setOnClickListener(new BtnListener());
         emailEdtTxt.setOnTouchListener(new ETextListener());
