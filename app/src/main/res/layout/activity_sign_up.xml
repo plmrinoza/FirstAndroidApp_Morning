@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/chi_city"
-    tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
+    tools:context="com.mlabs.bbm.firstandroidapp_morningclass.SignUp">
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/etUser"
+        android:id="@+id/etRegUser"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/etPass"
-        android:layout_below="@+id/etUser"
+        android:id="@+id/etRegPass"
+        android:layout_below="@+id/etRegUser"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -37,40 +37,32 @@
         android:textSize="20dp"
         android:textColorHint="#fff"/>
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/etConPass"
+        android:layout_below="@+id/etRegPass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="--Confirm Password--"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:textColorHint="#fff"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LogIn"
-        android:id="@+id/bLog"
+        android:text="Register"
+        android:id="@+id/btnReg"
         android:textColor="#ffff"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/tvshow"
+        android:layout_below="@+id/etConPass"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show"
-        android:id="@+id/tvshow"
-        android:textSize="22dp"
-        android:layout_marginTop="8dp"
-        android:textColor="#ffff"
-        android:layout_below="@+id/etPass"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Sign Up here"
-        android:id="@+id/tvSignUp"
-        android:textColor="#ffff"
-        android:layout_below="@+id/bLog"
-        android:layout_centerHorizontal="true" />
-
 </RelativeLayout>
