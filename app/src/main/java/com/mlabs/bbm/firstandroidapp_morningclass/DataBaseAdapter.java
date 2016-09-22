@@ -1,12 +1,12 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.content.ContentValues;
-import android.os.StrictMode;
+
 import java.util.HashMap;
 
 
@@ -88,7 +88,7 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         //return user record
-        Log.d(TAG, "Fetching user from Sqlite: " + user.toString());
+        Log.d(TAG, "Fetching user from SQLite: " + user.toString());
         //         Toast.makeText(DataBaseAdapter.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
         if(password.equals(user.get(password))){
 
