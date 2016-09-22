@@ -15,7 +15,7 @@ import android.text.TextUtils;
 public class MainActivity extends AppCompatActivity {
 
     EditText password, email;
-    TextView Show;
+    TextView Show, reglink;
     Button login;
     boolean showpassword = true;
 
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.etUser);
         password = (EditText) findViewById(R.id.etPass);
         Show = (TextView) findViewById(R.id.tvshow);
+        reglink = (TextView) findViewById(R.id.tvSignUp);
         login = (Button) findViewById(R.id.bLog);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
                 return false;
 
             }
+        });
+
+
+        reglink.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SignUp.class);
+                MainActivity.this.startActivity(intent);
+
+            }
+
         });
     }
 
