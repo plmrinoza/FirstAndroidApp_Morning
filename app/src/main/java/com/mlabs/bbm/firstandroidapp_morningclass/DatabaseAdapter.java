@@ -16,11 +16,12 @@ public class DatabaseAdapter {
     public DatabaseAdapter(Context context) {
         dbHelper = new MySQLiteHelper(context);
     }
-
+//Used for opening database.
     public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
     }
-
+//Used for closing database.
+    // NOTE THIS METHOD IS UNUSED.
     public void close() {
         dbHelper.close();
     }
