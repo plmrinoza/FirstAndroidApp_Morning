@@ -1,3 +1,5 @@
+//SIGN-UP//
+
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
 import android.app.Activity;
@@ -24,6 +26,8 @@ public class SignUp extends Activity {
         final DataBaseAdapter DataBaseAdapter;
         DataBaseAdapter = new DataBaseAdapter(this);
 
+        DataBaseAdapter.open();
+
         final EditText EmailSignUp = (EditText) findViewById(R.id.email_signup);
         final EditText PwSignUp = (EditText) findViewById(R.id.pw_signup);
         final EditText ConPwSignUp = (EditText) findViewById(R.id.conpw_signup);
@@ -43,18 +47,19 @@ public class SignUp extends Activity {
                     return;
                 }
 
-                if (!validateEmail(Email)) {
-                    EmailSignUp.setError("Not a valid email address!");
-                } else if (!validatePassword(Password)) {
-                    PwSignUp.setError("Not a valid password!");
-                }
-
                 if (!Password.equals(confirmPassword)) {
                     Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if (!validateEmail(Email)) {
+                    Toast.makeText(getApplicationContext(), "Not a valid Email", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (!validatePassword(Password)) {
+                    Toast.makeText(getApplicationContext(), "Not a valid Password", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 else {
-                    DataBaseAdapter.registerUser(Email,Password,GetCurrentDateAndTime());
+                    DataBaseAdapter.registerUser(Email,Password/*,GetCurrentDateAndTime()*/);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(SignUp.this, MainActivity.class);
                     startActivity(i);
@@ -78,14 +83,22 @@ public class SignUp extends Activity {
         return Pw.length() >=8;
     }
 
-    public String GetCurrentDateAndTime(){
+   /* public String GetCurrentDateAndTime(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         //get current date time with Date()
         Date date = new Date();
         System.out.println(dateFormat.format(date));
         return dateFormat.format(date).toString();
+}*/
+
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+
+        // DataBaseAdapter.close();
+    }
 
 
-}
 
 }
