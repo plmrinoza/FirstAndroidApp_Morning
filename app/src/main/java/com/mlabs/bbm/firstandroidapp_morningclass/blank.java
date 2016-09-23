@@ -3,6 +3,8 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import om.mlabs.bbm.firstandroidapp_morningclass.R;
+
 public class blank extends AppCompatActivity {
 
     @Override
