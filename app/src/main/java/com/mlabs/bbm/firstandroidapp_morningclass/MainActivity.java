@@ -12,78 +12,91 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-    EditText password, email;
-    TextView Show;
-    Button login;
-    boolean showpassword = true;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = (EditText) findViewById(R.id.etUser);
-        password = (EditText) findViewById(R.id.etPass);
-        Show = (TextView) findViewById(R.id.tvshow);
-        login = (Button) findViewById(R.id.bLog);
+        Button login = (Button) findViewById(R.id.login);
+        final Button show = (Button) findViewById(R.id.show) ;
+        final EditText Email = (EditText) findViewById(R.id.Email);
+        final EditText Pw = (EditText) findViewById(R.id.Pw);
+        final Button reg = (Button) findViewById(R.id.btnReg);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        show.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                if (email.getText().toString().equals("user")
-                        && password.getText().toString().equals("pass")) {
-                    Toast.makeText(getApplicationContext(), "Connecting...", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, UserAct.class);
-                    startActivity(intent);
-                } else if (isValidEmail(email.getText().toString()) == false || password.getText().toString().length() < 8) {
-                    if (isValidEmail(email.getText().toString()) == false) {
-                        Toast.makeText(getApplicationContext(), "Invalid E-mail!", Toast.LENGTH_SHORT).show();
-                        email.getText().clear();
-                        email.requestFocus();
-                    }
-                    if (password.getText().toString().length() < 8) {
-                        Toast.makeText(getApplicationContext(), "Provide at least 15 characters long Password!", Toast.LENGTH_SHORT).show();
-                        password.getText().clear();
-                        password.requestFocus();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "E-mail and Password does not match!", Toast.LENGTH_SHORT).show();
-                    email.getText().clear();
-                    password.getText().clear();
-                    email.requestFocus();
-                }
-            }
 
-        });
-
-        Show.setOnTouchListener(new View.OnTouchListener() {
-            @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        password.setTransformationMethod(null);
+                    case MotionEvent.ACTION_DOWN: {
+                        Pw.setTransformationMethod(null);
+                        Pw.setSelection(Pw.getText().length());
                         return true;
-                    case MotionEvent.ACTION_UP:
-                        password.setTransformationMethod(new PasswordTransformationMethod());
-                        return false;
-
-
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        Pw.setTransformationMethod(new PasswordTransformationMethod());
+                        Pw.setSelection(Pw.getText().length());
+                        return true;
+                    }
                 }
                 return false;
+            }
 
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                if (!validateEmail(Email.getText().toString())) {
+                    Email.setError("Not a valid email address!");
+                } else if (!validatePassword(Pw.getText().toString())) {
+                    Pw.setError("Not a valid password!");
+                } else {
+                    Email.setError(null);
+                    Pw.setError(null);
+                    doLogin();
+                }
             }
         });
+
+        reg.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, UserAct.class);
+                startActivity(i);
+            }
+
+        });
+
     }
 
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
+    private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+    private Matcher matcher;
 
-    public final static boolean isValidEmail(CharSequence target) {
-        if (TextUtils.isEmpty(target)) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-        }
+    public boolean validateEmail(String email) {
+        matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    public boolean validatePassword(String Pw) {
+        return Pw.length() >=8;
+    }
+
+    public void doLogin() {
+        Toast.makeText(getApplicationContext(), "Successfully Logged-in", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(MainActivity.this, TouchActivity.class);
+
+        startActivity(i);
+    }
+
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }
