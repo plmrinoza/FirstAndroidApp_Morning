@@ -24,11 +24,13 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     }
 
    @Override
-    public void onCreate(SQLiteDatabase sqlDB){
+    public void onCreate(SQLiteDatabase db){
         String CREATE_USER_TABLE= "CREATE TABLE" + TABLE_USER + "("
                 + KEY_ID + "INTEGER PRIMARY KEY"
                 + KEY_EMAIL + "TEXT UNIQUE"
                 + KEY_PASSWORD + "TEXT," + KEY_CREATED_AT + "TEXT" + ")";
+       db.execSQL(CREATE_USER_TABLE);
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
@@ -36,7 +38,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void registerUser(String email, String password,String created_at ){
+    public boolean registerUser(String email, String password,String created_at ){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values= new ContentValues();
         values.put(KEY_EMAIL,email);
@@ -47,6 +49,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         db.close();
 
         Log.d(TAG, "Successfully added user: " + id);
+        return true;
     }
 
     public boolean validateUser(String userName, String password){
