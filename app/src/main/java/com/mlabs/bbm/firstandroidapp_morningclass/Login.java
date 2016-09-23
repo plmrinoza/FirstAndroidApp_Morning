@@ -1,9 +1,9 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 public class Login extends AppCompatActivity {
-    private EditText emailEditText;
-    private EditText passEditText;
-    private TextView showText;
+    EditText emailEditText;
+    EditText passEditText;
+    TextView showText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,32 +27,58 @@ public class Login extends AppCompatActivity {
         emailEditText = (EditText) findViewById(R.id.Emailtxt);
         passEditText = (EditText) findViewById(R.id.Passwordtxt);
         showText = (TextView) findViewById(R.id.show);
+        final Context CTX = this;
 
-        findViewById(R.id.button).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.button).setOnClickListener(new OnClickListener() { //Log in button
             @Override
             public void onClick(View arg0) {
-                final String email = emailEditText.getText().toString();
-                if (!isValidEmail(email)) {
-                        emailEditText.setError("Invalid Email");
-                }
-
-                final String pass = passEditText.getText().toString();
-                if (!isValidPassword(pass)) {
-                        passEditText.setError("Invalid Password");
-                }
-
-                if (isValidEmail(email) && isValidPassword(pass))
+            String email = emailEditText.getText().toString();
+            String pass = passEditText.getText().toString();
+                if(email == "") //If Email field is empty
                 {
-                    Intent intent = new Intent(Login.this,After_Login.class);
-                    startActivity(intent);
-                    finish();
+                 emailEditText.setError("Please enter Email");
+                }
+                else if(pass == "") //If password field is empty
+                {
+                    passEditText.setError("Please enter Password");
+                }
+                else {
+                    DatabaseHelper db = new DatabaseHelper(CTX);
+                    Cursor cr = db.getInfo(db);
+                    cr.moveToFirst();
+                    boolean logstat = false;
+
+                    do {
+                        if (email.equals(cr.getString(0)) && (pass.equals(cr.getString(1)))) //checks database if entered information is present
+                        {
+                            logstat = true;
+                        }
+                    } while (cr.moveToNext());
+                    if (logstat == true) {
+                        Intent intent = new Intent(Login.this, After_Login.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(Login.this, "Invalid Email or Password", Toast.LENGTH_LONG).show();
+                        emailEditText.setText("");
+                        passEditText.setText("");
+                    }
                 }
 
             }
         });
+
+        findViewById(R.id.suBtn).setOnClickListener(new OnClickListener() { //Sign Up button
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         showText.setOnTouchListener(new View.OnTouchListener(){
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public boolean onTouch(View view, MotionEvent motionEvent) { //Show password
 
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
@@ -69,18 +95,4 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private boolean isValidEmail(String email) {
-        String EMAIL_PATTERN = "[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-                "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-    private boolean isValidPassword(String pass){
-        if (pass !=null && pass.length() > 7){
-            return true;
-        }
-        return false;
-    }
 }

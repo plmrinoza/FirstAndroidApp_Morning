@@ -12,45 +12,47 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:padding="10dp"
         android:background="@drawable/android_button"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/suBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp" />
 
     <EditText
         android:id="@+id/Emailtxt"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:background="@drawable/android_edittxt"
         android:inputType="textEmailAddress"
         android:hint="Email"
-        android:layout_marginTop="29dp"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/Passwordtxt"
+        android:layout_alignStart="@+id/Passwordtxt"
+        android:layout_marginTop="30dp" />
 
     <EditText
         android:id="@+id/Passwordtxt"
-        android:layout_width="250dp"
+        android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:background="@drawable/android_edittxt"
         android:inputType="textPassword"
         android:hint="Password"
-        android:layout_marginTop="33dp"
         android:layout_below="@+id/Emailtxt"
-        android:layout_alignLeft="@+id/Emailtxt"
-        android:layout_alignStart="@+id/Emailtxt" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:src="@drawable/embed"
+        android:src="@drawable/login_text"
         android:contentDescription="Log in"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -61,9 +63,19 @@
         android:layout_height="wrap_content"
         android:text="Show"
         android:id="@+id/show"
-        android:textSize="50dp"
-        android:layout_alignTop="@+id/button"
-        android:layout_alignRight="@+id/Passwordtxt"
-        android:layout_alignEnd="@+id/Passwordtxt" />
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/Passwordtxt"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:background="@drawable/android_register"
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/suBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

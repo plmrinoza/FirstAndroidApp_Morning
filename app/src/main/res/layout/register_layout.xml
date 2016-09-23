@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/test">
+
+    <EditText
+        android:id="@+id/EmailReg"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/android_edittxt"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:layout_above="@+id/PassReg"
+        android:layout_alignLeft="@+id/PassReg"
+        android:layout_alignStart="@+id/PassReg"
+        android:layout_marginBottom="0dp" />
+    <EditText
+        android:id="@+id/PassReg"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/android_edittxt"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="20dp" />
+    <EditText
+        android:id="@+id/ConfirmPass"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/android_edittxt"
+        android:inputType="textPassword"
+        android:hint="Confirm Password"
+        android:layout_below="@+id/PassReg"
+        android:layout_alignLeft="@+id/PassReg"
+        android:layout_alignStart="@+id/PassReg"
+        android:layout_marginTop="20dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/sign_up_text"
+        android:layout_marginBottom="35dp"
+        android:layout_above="@+id/EmailReg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/regibtn"
+        android:background="@drawable/android_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="59dp" />
+</RelativeLayout>
