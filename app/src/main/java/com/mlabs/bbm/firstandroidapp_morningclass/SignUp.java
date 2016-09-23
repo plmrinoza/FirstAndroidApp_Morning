@@ -1,8 +1,12 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
-
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,11 +37,13 @@ public class SignUp extends AppCompatActivity {
         View.OnClickListener regClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String emailStr = email.getText().toString();
+                String emailStr = email.getText().toString().toLowerCase();
                 String pwStr = pass.getText().toString();
                 String cPWStr = cPass.getText().toString();
+                String eMsg = null;
 
-                if(validate(emailStr,pwStr,cPWStr)){
+                eMsg = validate(emailStr,pwStr,cPWStr);
+                if(eMsg == null){
                     Accounts a = new Accounts();
                     a.setEmail(emailStr);
                     a.setPass(pwStr);
@@ -45,22 +51,55 @@ public class SignUp extends AppCompatActivity {
 
                     helper.regAccount(a);
 
-                    Toast.makeText(getApplicationContext(),"Account Registered!",Toast.LENGTH_SHORT);
+                    //pop up dialog box
+                    AlertDialog alertDialog = new AlertDialog.Builder(SignUp.this).create();
+                    alertDialog.setMessage("Account Successfully Created");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    //back to loginScreen
+                                    //MainActivity is already gone, start new one
+                                    finish();
+                                    Intent intent = new Intent(SignUp.this,MainActivity.class );
+                                    startActivity(intent);
+                                }
+                            });
+                    alertDialog.show();
+
                 }else
-                    Toast.makeText(getApplicationContext(),"Invalid Email/Password!",Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), eMsg, Toast.LENGTH_SHORT).show();
             }
         };
 
-    Boolean validate(String email, String pw, String cpw) {
+    String validate(String email, String pw, String cpw) {
         Matcher m;
         m = emailP.matcher(email);
         if (m.matches() && pw.length()>=8){
-            if (pw.equals(cpw)) {
-            }
-            return true;
+            Log.d("TEST","valid input");
+            if (pw.equals(cpw)){
+                    Log.d("TEST", "password match");
+                    if(helper.emailUnused(email))
+                        return null;
+                    else
+                        return "Email already used";
+                }
+            else
+                return "Password does not match";
         }
         else {
-            return false;
+            return "Invalid Email/Password";
         }
+    }
+
+    //back button goes back to loginScreen
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            Intent intent = new Intent(SignUp.this,MainActivity.class );
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

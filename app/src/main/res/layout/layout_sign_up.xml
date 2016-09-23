@@ -11,27 +11,24 @@
     android:background="@drawable/polka">
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/emailReg"
         android:inputType="text"
         android:minWidth="300dp"
         android:maxWidth="300dp"
         android:hint="Email Address"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/passReg"
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/passReg"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_below="@+id/emailReg"
-        android:layout_alignLeft="@+id/emailReg"
-        android:layout_alignStart="@+id/emailReg"
-        android:layout_alignRight="@+id/emailReg"
-        android:layout_alignEnd="@+id/emailReg" />
+        android:layout_above="@+id/cPassReg"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -43,26 +40,21 @@
         android:textColor="#ffffff"
         android:background="#000000"
         android:longClickable="true"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
+        android:layout_below="@+id/cPassReg"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/cPassReg" />
+        android:layout_marginTop="93dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cPassReg"
         android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:layout_below="@+id/passReg"
-        android:layout_alignLeft="@+id/passReg"
-        android:layout_alignStart="@+id/passReg"
-        android:layout_alignRight="@+id/passReg"
-        android:layout_alignEnd="@+id/passReg" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword" />
+
 </RelativeLayout>

@@ -63,6 +63,20 @@ public class DbHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean emailUnused(String email){
+
+            db = this.getReadableDatabase();
+            String query = "Select * from tableAccount where " + UN + " = '" + email+"'";
+            Cursor cursor = db.rawQuery(query, null);
+            if(cursor.getCount() <= 0){
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+
+    }
+
     public String searchPass (String email){
         db = this.getWritableDatabase();
         String query = "select UN, PW from " + tableAccount;

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener btnLoginClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String emailStrLog = etEmail.getText().toString();
+            String emailStrLog = etEmail.getText().toString().toLowerCase();
             String pwStrLog = etPW.getText().toString();
 
             String password = helper.searchPass(emailStrLog);
