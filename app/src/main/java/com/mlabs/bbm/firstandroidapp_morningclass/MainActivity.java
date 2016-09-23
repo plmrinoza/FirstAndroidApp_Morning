@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.content.Intent;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
 
@@ -26,8 +25,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        emailEditText = (EditText) findViewById(R.id.eml);
-        pasEditText = (EditText) findViewById(R.id.pass);
+        emailEditText = (EditText) findViewById(R.id.editTextEmail);
+        pasEditText = (EditText) findViewById(R.id.editTextPassword);
         show = (TextView) findViewById(R.id.Show);
 
         findViewById(R.id.button).setOnClickListener(new OnClickListener() {

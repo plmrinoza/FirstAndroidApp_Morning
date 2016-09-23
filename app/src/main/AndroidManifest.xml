@@ -32,7 +32,8 @@
                 <category android:name="anroid.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".OnTouchActivity"></activity>
+        <activity android:name=".OnTouchActivity" />
+        <activity android:name=".SignupActivity3"></activity>
     </application>
 
 </manifest>

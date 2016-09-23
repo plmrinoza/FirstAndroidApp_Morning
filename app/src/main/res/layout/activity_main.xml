@@ -27,7 +27,7 @@ tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
         android:text="Password"
         android:id="@+id/textView2"
         android:layout_marginTop="40dp"
-        android:layout_below="@+id/eml"
+        android:layout_below="@+id/editTextEmail"
         android:layout_centerHorizontal="true"
         android:background="#ffffff" />
 
@@ -43,20 +43,20 @@ tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/eml"
+        android:id="@+id/editTextEmail"
         android:layout_below="@+id/textView"
         android:layout_marginTop="31dp"
-        android:layout_alignLeft="@+id/pass"
-        android:layout_alignStart="@+id/pass"
-        android:layout_alignRight="@+id/pass"
-        android:layout_alignEnd="@+id/pass" />
+        android:layout_alignLeft="@+id/editTextPassword"
+        android:layout_alignStart="@+id/editTextPassword"
+        android:layout_alignRight="@+id/editTextPassword"
+        android:layout_alignEnd="@+id/editTextPassword" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/pass"
+        android:id="@+id/editTextPassword"
         android:layout_marginTop="49dp"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
@@ -67,8 +67,8 @@ tools:context="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity">
         android:text="Show"
         android:id="@+id/Show"
         android:background="#ffffff"
-        android:layout_alignBottom="@+id/pass"
-        android:layout_toRightOf="@+id/pass"
-        android:layout_toEndOf="@+id/pass" />
+        android:layout_alignBottom="@+id/editTextPassword"
+        android:layout_toRightOf="@+id/editTextPassword"
+        android:layout_toEndOf="@+id/editTextPassword" />
 
 </RelativeLayout>
