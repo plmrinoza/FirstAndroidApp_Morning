@@ -55,30 +55,29 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean validateUser(String userName, String password){
-        HashMap<String,String> user= new HashMap<String,String>();
-        String selectQuery = "SELECT email, password FROM " + TABLE_USER  + " WHERE " + KEY_EMAIL + "=\"" + userName+"\" AND " + KEY_PASSWORD + "=\""+password+"\"";
+    public boolean validateUser(String userName, String password) {
+        HashMap<String, String> user = new HashMap<String, String>();
+        String selectQuery = "SELECT email, password FROM " + TABLE_USER + " WHERE " + KEY_EMAIL + "=\"" + userName + "\" AND " + KEY_PASSWORD + "=\"" + password + "\"";
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor  = db.rawQuery(selectQuery,null);
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
         boolean result = false;
 
         cursor.moveToFirst();
-        if (cursor.getCount()>0) {
+        if (cursor.getCount() > 0) {
             user.put("email", cursor.getString(1));
             user.put("password", cursor.getString(2));
             user.put("created_at", cursor.getString(3));
             result = true;
-        }
-        else
-        {
+        } else {
             result = false;
         }
         cursor.close();
         db.close();
         return result;
-        
+    }
+
       /**
         Log.d(TAG, "Fetching user for SQLite" + user.toString());
         if(password.equals(user.get(password))){
