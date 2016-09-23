@@ -3,10 +3,13 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,51 +20,111 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button login1 = (Button) findViewById(R.id.login);
-        login1.setOnClickListener(new View.OnClickListener() {
+        final EditText email = (EditText) findViewById(R.id.regEmail);
+        final EditText password = (EditText) findViewById(R.id.etPassword);
+        final Button btnSignup = (Button) findViewById(R.id.btnSignup);
+        final Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        final Button btnShow = (Button) findViewById(R.id.btnShow);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                final EditText Email1 = (EditText) findViewById(R.id.Email);
-                final EditText Pw1 = (EditText) findViewById(R.id.Pw);
 
-                String email = Email1.getText().toString();
-                String password = Pw1.getText().toString();
+                if (!isValidEmail(email.getText().toString())) {
+                    email.setError("Invalid Email");
+                    email.requestFocus();
 
-                if (!validateEmail(email)) {
-                    Email1.setError("Not a valid email address!");
-                } else if (!validatePassword(password)) {
-                    Pw1.setError("Not a valid password!");
+                } else if (!isValidPassword(password.getText().toString())) {
+                    password.setError("Invalid Password");
+                    password.requestFocus();
+
                 } else {
-                    Email1.setError(null);
-                    Pw1.setError(null);
-                    doLogin();
+                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                    Intent loginIntent = new Intent(MainActivity.this, blank.class);
+                    startActivity(loginIntent);
                 }
+
             }
         });
+            btnSignup.setOnClickListener(new View.OnClickListener() {
+                @Override
+
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(v.getContext(), Registerform.class);
+                    startActivityForResult(myIntent, 0);
+                    onPause();
+                }
+
+            });
+
+
+             btnShow.setOnTouchListener(new View.OnTouchListener(){
+                     @Override
+                 public boolean onTouch(View view, MotionEvent motionEvent) {
+
+//                         if(event == motionEvent.ACTION_DOWN){
+//                             Log.d("onTouchListener", "ACTION_DOWN was pressed");
+//                             password.setTransformationMethod(null);
+//                             return true;
+//
+//                         }
+//                         else{
+//                             Log.d("onTouchListener", "ACTION_DOWN was released");
+//                             password.setTransformationMethod(new PasswordTransformationMethod());
+//                             return false;
+//                         }
+//
+                         switch (motionEvent.getAction()) {
+                             case MotionEvent.ACTION_DOWN:
+                                 password.setTransformationMethod(null);
+                                 password.setSelection(password.getText().length());
+                                 return true;
+                             case MotionEvent.ACTION_UP:
+                                 password.setTransformationMethod(new PasswordTransformationMethod());
+                                 password.setSelection(password.getText().length());
+                                 return false;
+                         }
+                         return true;
+
+                     }
+
+
+                     });
+
+
+
+        }
+        private boolean isValidEmail(String email) {
+            String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            Pattern pattern = Pattern.compile(emailPattern);
+            Matcher matcher = pattern.matcher(email);
+            return matcher.matches();
+        }
+    private boolean isValidPassword(String password) {
+        if (password != null && password.length() > 8) {
+            return true;
+        }
+        return false;
+
     }
 
-    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
-    private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-    private Matcher matcher;
-
-    public boolean validateEmail(String email) {
-        matcher = pattern.matcher(email);
-        return matcher.matches();
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
-
-    public boolean validatePassword(String Pw) {
-        return Pw.length() >=8;
-    }
-
-    public void doLogin() {
-        Toast.makeText(getApplicationContext(), "Successfully Logged-in", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(MainActivity.this, NextScreen.class);
-
-        startActivity(i);
-
-
-    }
-
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

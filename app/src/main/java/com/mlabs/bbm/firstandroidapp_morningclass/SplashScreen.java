@@ -1,41 +1,40 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import om.mlabs.bbm.firstandroidapp_morningclass.R;
 
-/**
- * Created by benjarmanalili on 31/07/2016.
- */
-public class SplashScreen extends Activity {
+
+public class SplashScreen extends MainActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
+
         Thread timerThread = new Thread() {
             public void run() {
+
                 try {
                     sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent loginIntent = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(loginIntent);
                 }
             }
         };
         timerThread.start();
 
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
+        @Override
+        protected void onPause(){
+            super.onPause();
+            finish();
+        }
     }
 
-
-}
