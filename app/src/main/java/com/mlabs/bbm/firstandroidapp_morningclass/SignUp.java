@@ -42,11 +42,13 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v){
                 String emailStr = email.getText().toString().toLowerCase();
                 String unameStr = uname.getText().toString().toLowerCase();
+                String fnameStr = fname.getText().toString().toLowerCase();
+                String lnameStr = lname.getText().toString().toLowerCase();
                 String pwStr = pass.getText().toString();
                 String cPWStr = cPass.getText().toString();
                 String eMsg = null;
 
-                eMsg = validate(emailStr,unameStr,pwStr,cPWStr);
+                eMsg = validate(emailStr,unameStr,pwStr,cPWStr,fnameStr,lnameStr);
                 if(eMsg == null){
                     Accounts a = new Accounts();
                     a.setEmail(emailStr);
@@ -76,7 +78,7 @@ public class SignUp extends AppCompatActivity {
             }
         };
 
-    String validate(String email, String uname, String pw, String cpw) {
+    String validate(String email, String uname, String pw, String cpw, String fname, String lname) {
         Matcher m;
         m = emailP.matcher(email);
         if (m.matches() && pw.length()>=8){
@@ -85,7 +87,10 @@ public class SignUp extends AppCompatActivity {
                     Log.d("TEST", "password match");
                     if(helper.emailUnused(email))
                         if(helper.unameUnused(uname))
-                            return null;
+                            if(isAlpha(fname)&&isAlpha(lname))
+                                return null;
+                                else
+                                    return "invalid name";
                         else
                             return"Username already used.";
                     else
@@ -97,6 +102,10 @@ public class SignUp extends AppCompatActivity {
         else {
             return "Invalid Email/Password";
         }
+    }
+
+    public boolean isAlpha(String name){
+        return name.matches("^[\\p{L} .'-]+$"); //letter and spaces only
     }
 
     //back button goes back to loginScreen

@@ -100,12 +100,12 @@ public class DbHandler extends SQLiteOpenHelper {
         return false;
     }
 
-    public String searchPass (String email){
+    public String matchPassEA (String email){
         db = this.getWritableDatabase();
-        String query = "select UN, PW from " + tableAccount;
+        String query = "select "+EA+", PW from " + tableAccount;
         Cursor cursor = db.rawQuery(query,null);
         String e, p;
-        p = "password not found!";
+        p = null;
         if(cursor.moveToFirst()){
             do{
                 e = cursor.getString(0);
@@ -120,4 +120,25 @@ public class DbHandler extends SQLiteOpenHelper {
         }
         return p;
     }
+
+    public String matchPassUN (String uname){
+        db = this.getWritableDatabase();
+        String query = "select "+UN+" , PW from " + tableAccount;
+        Cursor cursor = db.rawQuery(query,null);
+        String e, p;
+        p = null;
+        if(cursor.moveToFirst()){
+            do{
+                e = cursor.getString(0);
+
+                if(e.equals(uname)){
+                    p = cursor.getString(1);
+                    break;
+                }
+
+            }while(cursor.moveToNext());
+        }
+        return p;
+    }
 }
+
