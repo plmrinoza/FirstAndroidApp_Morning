@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="User Name"
+        android:text="Email"
         android:id="@+id/textView2"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -82,5 +82,74 @@
         android:layout_alignBottom="@+id/rCpass"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="User Name"
+        android:id="@+id/textView5"
+        android:layout_above="@+id/eMail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Last Name"
+        android:id="@+id/textView6"
+        android:layout_above="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="34dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="First Name "
+        android:id="@+id/textView7"
+        android:layout_above="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="36dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/Fname"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_alignRight="@+id/eMail"
+        android:layout_alignEnd="@+id/eMail"
+        android:layout_alignLeft="@+id/eMail"
+        android:layout_alignStart="@+id/eMail" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/Lname"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignLeft="@+id/Fname"
+        android:layout_alignStart="@+id/Fname"
+        android:layout_alignRight="@+id/Fname"
+        android:layout_alignEnd="@+id/Fname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/UN"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignRight="@+id/Lname"
+        android:layout_alignEnd="@+id/Lname"
+        android:layout_alignLeft="@+id/Lname"
+        android:layout_alignStart="@+id/Lname" />
 
 </RelativeLayout>

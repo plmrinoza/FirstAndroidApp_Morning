@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class Sign_Up extends AppCompatActivity {
 
     Button Create_Acct;
-    EditText Email, Pass_R, CPass_R;
+    EditText Email, Pass_R, CPass_R, FnameR, LnameR, UnameR;
     Context context = this;
     DataBaseAdapter DataBaseAdapter;
 
@@ -29,6 +29,9 @@ public class Sign_Up extends AppCompatActivity {
         Email = (EditText) findViewById(R.id.eMail);
         Pass_R = (EditText) findViewById(R.id.rPass);
         CPass_R = (EditText) findViewById(R.id.rCpass);
+        FnameR = (EditText) findViewById(R.id.Fname);
+        LnameR = (EditText) findViewById(R.id.Lname);
+        UnameR = (EditText) findViewById(R.id.UN);
 
         Create_Acct = (Button) findViewById(R.id.bCreate);
         Create_Acct.setOnClickListener(new View.OnClickListener() {
