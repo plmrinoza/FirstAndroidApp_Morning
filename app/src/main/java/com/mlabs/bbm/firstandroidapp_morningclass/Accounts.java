@@ -11,11 +11,17 @@ import java.util.Date;
  */
 public class Accounts {
     private int id;
-    private String email, pass, date;
+    private String email, pass, date,fname, lname, uname;
 
     public Accounts(){}
 
     public void setEmail(String email){this.email = email; }
+
+    public void setFname(String email){this.fname = fname; }
+
+    public void setLname(String email){this.lname = lname; }
+
+    public void setUname(String email){this.uname = uname; }
 
     public void setPass(String pass){this.pass = pass; }
 
@@ -36,6 +42,12 @@ public class Accounts {
     }
 
     public String getDate(){return this.date; }
+
+    public String getFname(){return this.fname; }
+
+    public String getLname(){return this.lname; }
+
+    public String getUname(){return this.uname; }
 
     public int getId() {return this.id; }
 }

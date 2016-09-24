@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
-    EditText email, pass, cPass;
+    EditText email, uname, fname, lname, pass, cPass;
     Button reg;
     DbHandler helper = new DbHandler(this);
     Pattern emailP;
@@ -27,6 +27,9 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.layout_sign_up);
 
         email = (EditText) findViewById(R.id.emailReg);
+        uname = (EditText) findViewById(R.id.etUname);
+        fname = (EditText) findViewById(R.id.etFname);
+        lname = (EditText) findViewById(R.id.etLname);
         pass = (EditText) findViewById(R.id.passReg);
         cPass = (EditText) findViewById(R.id.cPassReg);
         reg = (Button) findViewById(R.id.reg);
@@ -38,11 +41,12 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 String emailStr = email.getText().toString().toLowerCase();
+                String unameStr = uname.getText().toString().toLowerCase();
                 String pwStr = pass.getText().toString();
                 String cPWStr = cPass.getText().toString();
                 String eMsg = null;
 
-                eMsg = validate(emailStr,pwStr,cPWStr);
+                eMsg = validate(emailStr,unameStr,pwStr,cPWStr);
                 if(eMsg == null){
                     Accounts a = new Accounts();
                     a.setEmail(emailStr);
@@ -72,7 +76,7 @@ public class SignUp extends AppCompatActivity {
             }
         };
 
-    String validate(String email, String pw, String cpw) {
+    String validate(String email, String uname, String pw, String cpw) {
         Matcher m;
         m = emailP.matcher(email);
         if (m.matches() && pw.length()>=8){
@@ -80,7 +84,10 @@ public class SignUp extends AppCompatActivity {
             if (pw.equals(cpw)){
                     Log.d("TEST", "password match");
                     if(helper.emailUnused(email))
-                        return null;
+                        if(helper.unameUnused(uname))
+                            return null;
+                        else
+                            return"Username already used.";
                     else
                         return "Email already used";
                 }

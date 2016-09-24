@@ -44,9 +44,9 @@
         android:paddingTop="15dp"
         android:paddingRight="15dp"
         android:paddingBottom="15dp"
-        android:layout_below="@+id/cPassReg"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="93dp" />
+        android:layout_marginBottom="73dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -56,5 +56,38 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:inputType="textPassword" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etUname"
+        android:inputType="text"
+        android:minWidth="300dp"
+        android:maxWidth="300dp"
+        android:hint="Username"
+        android:layout_above="@+id/emailReg"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etLname"
+        android:inputType="text"
+        android:minWidth="300dp"
+        android:maxWidth="300dp"
+        android:hint="Last Name"
+        android:layout_above="@+id/etUname"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etFname"
+        android:inputType="text"
+        android:minWidth="300dp"
+        android:maxWidth="300dp"
+        android:hint="First Name"
+        android:layout_above="@+id/etLname"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
