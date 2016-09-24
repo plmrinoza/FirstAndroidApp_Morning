@@ -39,15 +39,16 @@ public class Sign_Up extends AppCompatActivity {
                 String password = Pass_R.getText().toString();
                 String confirmPassword = CPass_R.getText().toString();
 
-                if (validEmailadd(Email.getText().toString(), Pass_R.getText().toString(), CPass_R.getText().toString())) {
+                if (validEmailadd(Email.getText().toString()) && validPassword( Pass_R.getText().toString(), CPass_R.getText().toString())) {
                     Intent intent = new Intent(Sign_Up.this, MainActivity.class);
                     startActivity(intent);
                 } else
-                    Toast.makeText(getApplicationContext(), "Invalid Email Format or Password is < 8", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Email Format or Password < 8", Toast.LENGTH_LONG).show();
 
 
-                if (userName.equals("") || password.equals("")
-                        || confirmPassword.equals("")) {
+
+
+                if (userName.equals("") || password.equals("") || confirmPassword.equals("")) {
 
                     Toast.makeText(getApplicationContext(), "Field Vaccant",
                             Toast.LENGTH_LONG).show();
@@ -73,10 +74,19 @@ public class Sign_Up extends AppCompatActivity {
         });
     }
 
-    boolean validEmailadd(String x, String y, String z){
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(x).matches() && y.length() >= 8 && y.length() !=0 && z.length() >=8 && z.length() !=0)
+    boolean validEmailadd(String x){
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(x).matches())
         {
             return true;
+        }
+        else
+            return false;
+    }
+
+    boolean validPassword(String y, String z){
+        if(y.length() >= 8 && y.length() !=0 && z.length() >=8 && z.length() !=0)
+        {
+         return true;
         }
         else
             return false;
