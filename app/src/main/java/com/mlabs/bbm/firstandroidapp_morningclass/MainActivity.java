@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText pT;
 
-    Button Button;
+    Button Button,signup;
     TextView show;
 
 
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         uT = (EditText) findViewById(R.id.userText);
         pT = (EditText) findViewById(R.id.passText);
         Button = (Button) findViewById(R.id.button);
+        signup = (Button) findViewById(R.id.signbutton);
         show = (TextView) findViewById(R.id.show);
 
 
@@ -50,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_LONG).show();
 
 
+            }
+        });
+
+        signup.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, sign_up.class);
+                startActivity(intent);
             }
         });
 
