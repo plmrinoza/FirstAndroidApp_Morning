@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
 
     EditText User, Pass, showPass;
     Button AccessBtn, signUpBtn;
+    DataBaseAdapter DataBaseAdapter;
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
@@ -26,17 +27,31 @@ public class MainActivity extends Activity {
         User = (EditText) findViewById(R.id.Uname);
         Pass = (EditText) findViewById(R.id.Pword);
         showPass = (EditText) findViewById(R.id.show);
+        DataBaseAdapter=new DataBaseAdapter(this);
+        DataBaseAdapter=DataBaseAdapter.open();
 
 
         AccessBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (validEmailadd(User.getText().toString(), Pass.getText().toString())) {
+
+                String userName=User.getText().toString();
+                String password=Pass.getText().toString();
+
+                String storedPassword=DataBaseAdapter.getSinlgeEntry(userName);
+
+                if(password.equals(storedPassword) && validEmailadd(User.getText().toString(), Pass.getText().toString()))
+                {
                     Intent intent = new Intent(MainActivity.this, Loggedin.class);
                     startActivity(intent);
-                } else
-                    Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_LONG).show();
+
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Invalid Username or Password", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
