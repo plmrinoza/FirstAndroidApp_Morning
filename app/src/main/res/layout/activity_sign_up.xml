@@ -27,10 +27,10 @@
         android:backgroundTint="@color/abc_color_highlight_material"
         android:textColor="@color/abc_input_method_navigation_guard"
         android:textSize="20dp"
-        android:layout_marginBottom="100dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/eTxtConfPassword"
         android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="31dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -68,11 +68,49 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/eTxtEmail"
-        android:layout_marginTop="102dp"
         android:hint="Enter Email Address"
         android:typeface="monospace"
         android:textColor="@color/abc_primary_text_material_dark"
-        android:layout_below="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eTxtUser"
+        android:layout_above="@+id/eTxtEmail"
+        android:typeface="monospace"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:hint="UserName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eTextLname"
+        android:layout_above="@+id/eTxtUser"
+        android:typeface="monospace"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:hint="LastName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eTxtFname"
+        android:layout_above="@+id/eTextLname"
+        android:typeface="monospace"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:hint="FirstName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"

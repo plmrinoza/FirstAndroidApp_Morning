@@ -29,6 +29,9 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     private static final String ID = "userId";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
+    private static final String UserName = "uname";
+    private static final String FirstName = "fname";
+    private static final String LastName = "lname";
     private static final String DATECREATED = "date_created";
 
 
@@ -39,7 +42,8 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqlDB) {
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "(" + ID + "INTEGER PRIMARY KEY, "
-                + EMAIL + " TEXT UNIQUE," + PASSWORD + " TEXT," + DATECREATED + " TEXT" + ")";
+                + EMAIL + " TEXT UNIQUE," + PASSWORD + " TEXT," + UserName + " TEXT UNIQUE," + FirstName + " TEXT,"
+                + LastName + " TEXT," + DATECREATED + " TEXT" + ")";
 
         sqlDB.execSQL(CREATE_USER_TABLE);
     }
@@ -48,13 +52,16 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void registerUser(String email, String password, String datecreated) {
+    public void registerUser(String email, String password, String username, String firstname, String lastname, String datecreated) {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
             ContentValues values = new ContentValues();
             values.put(EMAIL, email);
             values.put(PASSWORD, password);
+            values.put(UserName, username);
+            values.put(FirstName, firstname);
+            values.put(LastName, lastname);
             values.put(DATECREATED, datecreated);
 
             //long id = db.insert(TABLE_USER, null, values);
