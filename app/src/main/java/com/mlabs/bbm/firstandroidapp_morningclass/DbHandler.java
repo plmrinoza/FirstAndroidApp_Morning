@@ -102,7 +102,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public String matchPassEA (String email){
         db = this.getWritableDatabase();
-        String query = "select "+EA+", PW from " + tableAccount;
+        String query = "select "+ EA +", "+ PW +" from " + tableAccount;
         Cursor cursor = db.rawQuery(query,null);
         String e, p;
         p = null;
@@ -116,14 +116,13 @@ public class DbHandler extends SQLiteOpenHelper {
                 }
 
             }while(cursor.moveToNext());
-
         }
         return p;
     }
 
     public String matchPassUN (String uname){
         db = this.getWritableDatabase();
-        String query = "select "+UN+" , PW from " + tableAccount;
+        String query = "select " + UN + " ," + PW + " from " + tableAccount;
         Cursor cursor = db.rawQuery(query,null);
         String e, p;
         p = null;
@@ -135,7 +134,6 @@ public class DbHandler extends SQLiteOpenHelper {
                     p = cursor.getString(1);
                     break;
                 }
-
             }while(cursor.moveToNext());
         }
         return p;

@@ -46,12 +46,15 @@ public class SignUp extends AppCompatActivity {
                 String lnameStr = lname.getText().toString().toLowerCase();
                 String pwStr = pass.getText().toString();
                 String cPWStr = cPass.getText().toString();
-                String eMsg = null;
+                String eMsg;
 
                 eMsg = validate(emailStr,unameStr,pwStr,cPWStr,fnameStr,lnameStr);
                 if(eMsg == null){
                     Accounts a = new Accounts();
                     a.setEmail(emailStr);
+                    a.setUname(unameStr);
+                    a.setFname(fnameStr);
+                    a.setLname(lnameStr);
                     a.setPass(pwStr);
                     a.setDate();
 
@@ -72,7 +75,6 @@ public class SignUp extends AppCompatActivity {
                                 }
                             });
                     alertDialog.show();
-
                 }else
                     Toast.makeText(getApplicationContext(), eMsg, Toast.LENGTH_SHORT).show();
             }
@@ -90,9 +92,9 @@ public class SignUp extends AppCompatActivity {
                             if(isAlpha(fname)&&isAlpha(lname))
                                 return null;
                                 else
-                                    return "invalid name";
+                                    return "Invalid name";
                         else
-                            return"Username already used.";
+                            return "Username already used.";
                     else
                         return "Email already used";
                 }

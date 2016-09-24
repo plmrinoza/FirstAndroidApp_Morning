@@ -62,29 +62,26 @@ public class MainActivity extends AppCompatActivity {
             String emailStrLog = etEmail.getText().toString().toLowerCase();
             String pwStrLog = etPW.getText().toString();
 
-            if (validate(emailStrLog))
-            {
+            //login by email
+            if (validate(emailStrLog)) {
                 String password = helper.matchPassEA(emailStrLog);
                 if(pwStrLog.equals(password)){
-
                     Intent intent = new Intent(MainActivity.this,Transition.class );
                     startActivity(intent);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Invalid Email Address/Password", Toast.LENGTH_SHORT).show();
                 }
-            else
-            {
+            //login by username
+            else {
                 String password = helper.matchPassUN(emailStrLog);
                 if(pwStrLog.equals(password)){
-
                     Intent intent = new Intent(MainActivity.this,Transition.class );
                     startActivity(intent);
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Invalid Email Address/Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Username/Password", Toast.LENGTH_SHORT).show();
             }
-            
         }
     };
 
@@ -94,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
-
 
 
     Boolean validate(String email)
