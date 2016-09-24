@@ -11,6 +11,5 @@
         android:id="@+id/imgBG"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@drawable/mascot1"
-        android:layout_alignParentTop="true" />
+        android:background="@drawable/mascot1" />
 </RelativeLayout>
