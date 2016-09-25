@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
 
@@ -17,7 +18,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
 //all the fields we need
     static final String dbName ="myDB.db";
-    static final int dbVersion = 1;
+    static final int dbVersion = 3;
     static final String tableAccount = "tableAccount";
     static final String id = "id";
     static final String UN = "UN"; //username
@@ -43,6 +44,7 @@ public class DbHandler extends SQLiteOpenHelper {
 //create empty table
     @Override
     public void onCreate(SQLiteDatabase db){
+        //every db upgrade drops previous db and needs to repopulate it manually
         db.execSQL(tableCreate);
         this.db = db;
     }
@@ -63,7 +65,6 @@ public class DbHandler extends SQLiteOpenHelper {
         String query = "select * from tableAccount";
         Cursor cursor = db.rawQuery(query,null);
         int count = cursor.getCount();
-
         values.put(id,count);
         values.put(UN, a.getUname());
         values.put(EA, a.getEmail());
@@ -108,10 +109,10 @@ public class DbHandler extends SQLiteOpenHelper {
         p = null;
         if(cursor.moveToFirst()){
             do{
-                e = cursor.getString(0);
+                e = cursor.getString(cursor.getColumnIndex("email"));
 
                 if(e.equals(email)){
-                    p = cursor.getString(1);
+                    p = cursor.getString(cursor.getColumnIndex("PW"));
                     break;
                 }
 
@@ -128,15 +129,21 @@ public class DbHandler extends SQLiteOpenHelper {
         p = null;
         if(cursor.moveToFirst()){
             do{
-                e = cursor.getString(0);
+                e = cursor.getString(cursor.getColumnIndex("UN"));
 
                 if(e.equals(uname)){
-                    p = cursor.getString(1);
+                    p = cursor.getString(cursor.getColumnIndex("PW"));
                     break;
                 }
             }while(cursor.moveToNext());
         }
         return p;
+    }
+
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+ tableAccount,null);
+        return res;
     }
 }
 

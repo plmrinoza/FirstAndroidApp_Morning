@@ -44,9 +44,8 @@
         android:paddingTop="15dp"
         android:paddingRight="15dp"
         android:paddingBottom="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="73dp" />
+        android:layout_below="@+id/cPassReg"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -89,5 +88,14 @@
         android:hint="First Name"
         android:layout_above="@+id/etLname"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View All"
+        android:id="@+id/viewAll"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp" />
 
 </RelativeLayout>

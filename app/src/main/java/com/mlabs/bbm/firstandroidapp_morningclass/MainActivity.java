@@ -1,7 +1,9 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Paint;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -61,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             String emailStrLog = etEmail.getText().toString().toLowerCase();
             String pwStrLog = etPW.getText().toString();
-
             //login by email
             if (validate(emailStrLog)) {
                 String password = helper.matchPassEA(emailStrLog);
+
                 if(pwStrLog.equals(password)){
                     Intent intent = new Intent(MainActivity.this,Transition.class );
                     startActivity(intent);

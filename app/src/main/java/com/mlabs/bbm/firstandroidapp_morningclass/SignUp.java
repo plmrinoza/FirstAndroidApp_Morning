@@ -2,6 +2,7 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
     EditText email, uname, fname, lname, pass, cPass;
-    Button reg;
+    Button reg, viewAll;
     DbHandler helper = new DbHandler(this);
     Pattern emailP;
 
@@ -33,8 +34,10 @@ public class SignUp extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.passReg);
         cPass = (EditText) findViewById(R.id.cPassReg);
         reg = (Button) findViewById(R.id.reg);
+        viewAll = (Button) findViewById(R.id.viewAll);
         emailP = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         findViewById(R.id.reg).setOnClickListener(regClickListener);
+        viewAll();
     }
 
         View.OnClickListener regClickListener = new View.OnClickListener() {
@@ -59,7 +62,6 @@ public class SignUp extends AppCompatActivity {
                     a.setDate();
 
                     helper.regAccount(a);
-
                     //pop up dialog box
                     AlertDialog alertDialog = new AlertDialog.Builder(SignUp.this).create();
                     alertDialog.setMessage("Account Successfully Created");
@@ -119,5 +121,43 @@ public class SignUp extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void viewAll() {
+        viewAll.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = helper.getAllData();
+                        if(res.getCount() == 0) {
+                            // show message
+                            showMessage("Error","Nothing found");
+                            return;
+                        }
+
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append("id :"+ res.getString(0)+"\n");
+                            buffer.append("UN :"+ res.getString(1)+"\n");
+                            buffer.append("email :"+ res.getString(2)+"\n");
+                            buffer.append("firstname :"+ res.getString(3)+"\n");
+                            buffer.append("lastname :"+ res.getString(4)+"\n");
+                            buffer.append("PW :"+ res.getString(5)+"\n");
+                            buffer.append("DC :"+ res.getString(6)+"\n\n");
+                        }
+
+                        // Show all data
+                        showMessage("Data",buffer.toString());
+                    }
+                }
+        );
+    }
+
+    public void showMessage(String title,String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
     }
 }

@@ -17,11 +17,11 @@ public class Accounts {
 
     public void setEmail(String email){this.email = email; }
 
-    public void setFname(String email){this.fname = fname; }
+    public void setFname(String fname){this.fname = fname; }
 
-    public void setLname(String email){this.lname = lname; }
+    public void setLname(String lname){this.lname = lname; }
 
-    public void setUname(String email){this.uname = uname; }
+    public void setUname(String uname){this.uname = uname; }
 
     public void setPass(String pass){this.pass = pass; }
 
