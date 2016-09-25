@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         Button login = (Button) findViewById(R.id.login);
         final Button show = (Button) findViewById(R.id.show) ;
         final EditText Email = (EditText) findViewById(R.id.Email);
+        final EditText Username = (EditText) findViewById(R.id.Email);
         final EditText Pw = (EditText) findViewById(R.id.Pw);
         final Button reg = (Button) findViewById(R.id.btnReg);
 
@@ -50,9 +51,16 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                if (Email.equals("") || Pw.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Fill Up required fields", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if (!validateEmail(Email.getText().toString())) {
                     Email.setError("Not a valid email address!");
-                } else if (!validatePassword(Pw.getText().toString())) {
+                }   else if (!validateUsername(Username.getText().toString())) {
+                    Username.setError("Not a valid user name!");
+                }
+                if (!validatePassword(Pw.getText().toString())) {
                     Pw.setError("Not a valid password!");
                 } else {
                     Email.setError(null);
@@ -81,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
         matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
+    private static final String USERNAME = "^[a-z0-9_-]{3,15}$";
+    private Pattern pattern1 = Pattern.compile(USERNAME);
+    private Matcher matcher1;
+
+    public boolean validateUsername(String username) {
+        matcher1 = pattern1.matcher(username);
+        return matcher1.matches();
+    }
+
 
     public boolean validatePassword(String Pw) {
         return Pw.length() >=8;

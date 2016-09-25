@@ -12,8 +12,6 @@ import android.util.Log;
 import java.util.HashMap;
 
 
-
-
 /**
  * Created by LocalAd on 9/20/2016.
  */
@@ -31,9 +29,14 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_CREATE_AT = "create_at";
 
+    private static final String KEY_FIRST_NAME = "firstname";
+    private static final String KEY_LAST_NAME = "lastname";
+    private static final String KEY_USER_NAME = "username";
+
+
     static final String DATABASE_CREATE = "create table " + "LOGIN" + "( "
             + "ID" + " integer primary key autoincrement,"
-            + "Email  text,Password text); ";
+            + "FirstName text, LastName text, UserName text, Email  text,Password text); ";
 
 
     public SQLiteDatabase db;
@@ -65,6 +68,9 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqlDB){
         String CREATE_USER_TABLE = "CREATE TABLE" + TABLE_USER + "("
                 + KEY_ID + "INTEGER PRIMARY KEY,"
+                + KEY_FIRST_NAME + "TEXT,"
+                + KEY_LAST_NAME + "TEXT,"
+                + KEY_USER_NAME + "TEXT UNIQUE,"
                 + KEY_EMAIL + "TEXT UNIQUE,"
                 + KEY_PASSWORD + "TEXT,"
                 + KEY_CREATE_AT + " TEXT " + ")";
@@ -85,11 +91,14 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
     }
 
     //Creating new user/s:
-    public void registerUser(String email, String password/*, String
+    public void registerUser(String firstname, String lastname, String username, String email, String password/*, String
 create_at*/){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_FIRST_NAME, firstname);//first name
+        values.put(KEY_LAST_NAME, lastname);//last name
+        values.put(KEY_USER_NAME, username);//user name
         values.put(KEY_EMAIL, email); //email
         values.put(KEY_PASSWORD, password); //password
         // values.put(KEY_CREATE_AT, create_at); // created at
@@ -112,9 +121,12 @@ create_at*/){
         //Move to first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0){
-            user.put("email", cursor.getString(1));
-            user.put("password", cursor.getString(2));
-            user.put("created_at", cursor.getString(3));
+            user.put("firstname", cursor.getString(1));
+            user.put("lastname", cursor.getString(2));
+            user.put("username", cursor.getString(3));
+            user.put("email", cursor.getString(4));
+            user.put("password", cursor.getString(5));
+            user.put("created_at", cursor.getString(6));
         }
         cursor.close();
         db.close();
