@@ -9,6 +9,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_USER = "users";
     public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_FNAME = "fnames";
+    public static final String COLUMN_LNAME = "lnames";
+    public static final String COLUMN_UNAME = "unames";
     public static final String COLUMN_EMAIL = "emails";
     public static final String COLUMN_PASSWORD = "passwords";
     public static final String COLUMN_DATE = "dates";
@@ -19,7 +22,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     // Database creation sql statement
     private static final String DATABASE_CREATE = "create table "
             + TABLE_USER + "( " + COLUMN_ID
-            + " integer primary key autoincrement, " + COLUMN_EMAIL
+            + " integer primary key autoincrement, " + COLUMN_FNAME
+            + " text not null, " + COLUMN_LNAME
+            + " text not null, " + COLUMN_UNAME
+            + " text not null, " + COLUMN_EMAIL
             + " text not null, " + COLUMN_PASSWORD
             + " text not null, " + COLUMN_DATE
             + " text not null);";

@@ -18,7 +18,7 @@
         <activity android:name=".LoginScreen" />
         <activity android:name=".MainActivity" />
         <activity android:name=".OnTouchActivity" />
-        <activity android:name=".register"></activity>
+        <activity android:name=".Registration"></activity>
     </application>
 
 </manifest>

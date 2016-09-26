@@ -3,18 +3,15 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by ChristianJohn on 8/4/2016.
@@ -22,26 +19,21 @@ import java.util.Date;
 public class LoginScreen extends Activity{
 
     private Button loginBtn;
-    private Validation validation;
+    private LoginAndRegister loginAndRegister;
     private EditText emailEdtTxt;
     private EditText passwordEdtTxt;
     private TextView emailTxtView;
     private TextView passwordTxtView;
     private TextView toggleTxt;
+    private TextView signUpLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
 
-        Calendar c = Calendar.getInstance();
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = df.format(c.getTime());
-
-        UsersDataSource usersDataSource = new UsersDataSource(getApplicationContext());
-        usersDataSource.open();
-        usersDataSource.createUser("john_aparejado@yahoo.com","tutunogtunog",""+formattedDate);
+       // UsersDataSource usersDataSource = new UsersDataSource(getApplicationContext());
+       // usersDataSource.createDatabase();
 
         loginBtn = (Button)findViewById(R.id.loginBtn);
         emailEdtTxt = (EditText)findViewById(R.id.emailEditTxt);
@@ -49,13 +41,13 @@ public class LoginScreen extends Activity{
         emailTxtView = (TextView)findViewById(R.id.emailTextView);
         passwordTxtView = (TextView)findViewById(R.id.passwordTextView);
         toggleTxt = (TextView)findViewById(R.id.toggleTxt);
-
-        validation = new Validation(usersDataSource, emailTxtView, passwordTxtView);
+        signUpLink = (TextView)findViewById(R.id.signUpTxt);
 
         loginBtn.setOnClickListener(new BtnListener());
         emailEdtTxt.setOnTouchListener(new ETextListener());
         passwordEdtTxt.setOnTouchListener(new ETextListener());
         toggleTxt.setOnTouchListener(new ETextListener());
+        signUpLink.setOnTouchListener(new ETextListener());
     }
 
     private class BtnListener implements View.OnClickListener{
@@ -64,9 +56,12 @@ public class LoginScreen extends Activity{
         public void onClick(View v){
 
             if(v.equals(loginBtn)){
+
+                loginAndRegister = new LoginAndRegister(getApplicationContext(), emailTxtView, passwordTxtView);
+
                 boolean isLoginValid = false;
 
-                isLoginValid = validation.validateLogin(emailEdtTxt.getText().toString(), passwordEdtTxt.getText().toString());
+                isLoginValid = loginAndRegister.validateLogin(emailEdtTxt, passwordEdtTxt);
 
                 if(isLoginValid){
                     Intent intent = new Intent(LoginScreen.this, MainActivity.class);
@@ -100,6 +95,11 @@ public class LoginScreen extends Activity{
                         passwordEdtTxt.setSelection(passwordEdtTxt.getText().length());
                         return false;
                 }
+            }
+
+            if(v.equals(signUpLink)){
+                Intent intent = new Intent(LoginScreen.this, Registration.class);
+                startActivity(intent);
             }
 
             return false;
