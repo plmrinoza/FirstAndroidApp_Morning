@@ -30,6 +30,17 @@ EditText userName,password;
         final Button btnShow = (Button) findViewById(R.id.btnShow);
         final Context context = this;
 
+
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, Registerform.class);
+                startActivityForResult(myIntent, 0);
+                onPause();
+
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -61,20 +72,7 @@ EditText userName,password;
 
                         Toast.makeText(getApplicationContext(), "Invalid Email and Passwordl!", Toast.LENGTH_SHORT).show();
 
-                    }
-                }
-
-
-                btnSignup.setOnClickListener(new View.OnClickListener() {
-                    @Override
-
-                    public void onClick(View v) {
-                        Intent myIntent = new Intent(MainActivity.this, Registerform.class);
-                        startActivityForResult(myIntent, 0);
-                        onPause();
-                    }
-
-                });
+                    }}}});
 
 
                 btnShow.setOnTouchListener(new View.OnTouchListener() {
