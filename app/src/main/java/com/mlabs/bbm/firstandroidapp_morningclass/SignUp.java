@@ -11,11 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.lang.String;
 
 public class SignUp extends Activity {
-    @Override
+
+   @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
@@ -65,6 +70,19 @@ public class SignUp extends Activity {
                 }
                  if (!validateUsername(Username.getText().toString())) {
                     Username.setError("Not a valid User Name");
+
+                  /*   //validate the username or email
+                     if (Username == null || Username.isEmpty()){
+                         Username.setError(getString(R.string.error_username));
+                         Username.requestFocus();
+                         return;
+                     }
+                     //validate the password
+                     if (Password == null || Password.isEmpty()){
+                         Password.setError(getString(R.string.error_password));
+                         return;
+                     }
+                     return; */
                 }
                  if (!validateEmail(EmailSignUp.getText().toString())) {
                     EmailSignUp.setError("Not a valid Email");
@@ -72,7 +90,7 @@ public class SignUp extends Activity {
                     PwSignUp.setError("Not a valid password!");
                 }
                 else {
-                    DataBaseAdapter.registerUser(Fname,Lname,Uname,Email,Password/*,GetCurrentDateAndTime()*/);
+                    DataBaseAdapter.registerUser(Fname,Lname,Uname,Email,Password,GetCurrentDateAndTime());
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(SignUp.this, MainActivity.class);
                     startActivity(i);
@@ -114,20 +132,20 @@ public class SignUp extends Activity {
         return Pw.length() >=8;
     }
 
-   /* public String GetCurrentDateAndTime(){
+    public String GetCurrentDateAndTime(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         //get current date time with Date()
         Date date = new Date();
         System.out.println(dateFormat.format(date));
         return dateFormat.format(date).toString();
-}*/
+    }
 
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
 
-        // DataBaseAdapter.close();
+    //    DataBaseAdapter.close();
     }
 
 

@@ -9,6 +9,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.util.HashMap;
 
 
@@ -90,9 +92,16 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+     /* public long insert(String email, ContentValues values){
+        return getWritableDatabase().insert(email, null, values);
+    }
+
+    public long update(String KEY_EMAIL, ContentValues values); {
+        return getWritableDatabase().update(KEY_EMAIL,values);
+    }*/
+
     //Creating new user/s:
-    public void registerUser(String firstname, String lastname, String username, String email, String password/*, String
-create_at*/){
+    public void registerUser(String firstname, String lastname, String username, String email, String password, String create_at){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -101,13 +110,14 @@ create_at*/){
         values.put(KEY_USER_NAME, username);//user name
         values.put(KEY_EMAIL, email); //email
         values.put(KEY_PASSWORD, password); //password
-        // values.put(KEY_CREATE_AT, create_at); // created at
+        values.put(KEY_CREATE_AT, create_at); // created at
 
         //Inserting Row
         long id = db.insert(TABLE_USER, null, values);
         db.close(); //close database connection
 
         Log.d(TAG, "Successfully Added User " +id);
+
     }
 
     //Pulling records from Database

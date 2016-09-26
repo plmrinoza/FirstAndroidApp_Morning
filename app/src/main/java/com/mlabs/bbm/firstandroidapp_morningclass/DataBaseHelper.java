@@ -2,10 +2,12 @@
 
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.security.keystore.KeyNotYetValidException;
 import android.util.Log;
 
 /**
@@ -34,4 +36,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(_db);
     }
 
+    public long insert (String email, ContentValues values) throws NotValidException {
+        validate(values);
+        return  getWritableDatabase().insert(email, null, values);
+    }
+
+    protected void validate(ContentValues values) throws NotValidException {
+        String email = null;
+        if (!values.containsKey(email) || values.getAsString(email) == null || values.getAsString(email).isEmpty()){
+            throw new NotValidException("Email must be set");
+        }
+    }
+    public static class NotValidException extends Throwable {
+        public NotValidException(String msg){
+            super(msg);
+        }
+    }
 }
