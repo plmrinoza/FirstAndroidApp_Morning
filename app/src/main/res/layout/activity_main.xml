@@ -71,4 +71,23 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="58dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/show"
+        android:id="@+id/textView2_show"
+        android:layout_below="@+id/editText2_password"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/Signup"
+        android:id="@+id/textView2_Signup"
+        android:layout_below="@+id/buttonSubmit"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

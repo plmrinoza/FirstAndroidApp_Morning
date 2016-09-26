@@ -25,11 +25,22 @@
         <activity
             android:name=".MainAct.user"
             android:label="@string/title_activity_user">
-        <intent-filter>
-            <action android:name="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.user" />
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.user" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainAct.AccountRegister"
+            android:label="@string/title_activity_account_register">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp_morningclass.MainActivity.AccountRegister" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainAct.DatabaseHelper">
+
         </activity>
     </application>
 
