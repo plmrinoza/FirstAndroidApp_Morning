@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@android:drawable/sym_def_app_icon">
+=======
+    android:background="@drawable/lipstick">
+>>>>>>> daf1a508abdefe32f94f5c4ee200722e92e1d82b
 
-</LinearLayout>
+    <ImageView android:id="@+id/splash"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:src="@drawable/glamour"
+        android:scaleType="fitEnd"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
