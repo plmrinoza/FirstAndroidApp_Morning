@@ -19,47 +19,70 @@ import java.util.regex.Pattern;
 import java.lang.String;
 
 public class SignUp extends Activity {
+    EditText UsernameReg, PasswordReg, PasswordConfirm, EmailReg;
+    Button Register;
+    DataBaseAdapter db;
 
    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up);
+    protected void onCreate(Bundle savedInstanceState) {
+        //TODO Auto-generated method stub
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.sign_up);
 
-        Context context = this;
-        final DataBaseAdapter DataBaseAdapter;
-        DataBaseAdapter = new DataBaseAdapter(this);
+       Context context = this;
+       //get Instance of DataBase Adapter
+       final DataBaseAdapter db = new DataBaseAdapter(this);
+       db.open();
 
-        DataBaseAdapter.open();
+       //get reference views
+       final EditText EmailSignUp = (EditText) findViewById(R.id.EmailReg);
+       final EditText PwSignUp = (EditText) findViewById(R.id.PasswordReg);
+       final EditText ConPwSignUp = (EditText) findViewById(R.id.PasswordConfirm);
 
-        final EditText EmailSignUp = (EditText) findViewById(R.id.email_signup);
-        final EditText PwSignUp = (EditText) findViewById(R.id.pw_signup);
-        final EditText ConPwSignUp = (EditText) findViewById(R.id.conpw_signup);
+       final EditText Firstname = (EditText) findViewById(R.id.FirstName);
+       final EditText Lastname = (EditText) findViewById(R.id.LastName);
+       final EditText Username = (EditText) findViewById(R.id.UsernameReg);
 
-        final EditText Firstname = (EditText) findViewById(R.id.FirstName);
-        final EditText Lastname = (EditText) findViewById(R.id.LastName);
-        final EditText Username = (EditText) findViewById(R.id.UserName);
+       final Button Register = (Button) findViewById(R.id.Register);
 
-        final Button CreateAccountBtn = (Button) findViewById(R.id.createaccnt_btn);
+       Register.setOnClickListener(new View.OnClickListener() {
 
-        CreateAccountBtn.setOnClickListener(new View.OnClickListener() {
+           public void onClick(View v) {
+               //TODO Auto-generate method stub
+               String Email = EmailReg.getText().toString();
+               String Password = PasswordReg.getText().toString();
+               String confirmPassword = PasswordConfirm.getText().toString();
+               String TakenUsername = db.getData();
+               String Fname = Firstname.getText().toString();
+               String Lname = Lastname.getText().toString();
+               String Uname = UsernameReg.getText().toString();
 
-            public void onClick(View v) {
+               //check if any of the field are vacant
+               if (Uname.equals("") || Password.equals("")
+                       || confirmPassword.equals("")) {
+                   Toast.makeText(getApplicationContext(), "Fill-Up required fields", Toast.LENGTH_LONG).show();
+                   return;
+               }
 
-                String Email = EmailSignUp.getText().toString();
-                String Password = PwSignUp.getText().toString();
-                String confirmPassword = ConPwSignUp.getText().toString();
+               // Check if both passwords matches
+               if (!Password.equals(PasswordConfirm)) {
+                   Toast.makeText(getApplicationContext(), "Password does not match",
+                           Toast.LENGTH_LONG).show();
+                   return;
+               }
+               if (Uname.equals(TakenUsername)) {
+                   Toast.makeText(getApplicationContext(), "Username Already Taken", Toast.LENGTH_LONG).show();
+                   return;
+               } else {
+                   // Save data in database
+                   db.insertPlayer(Uname, Password, Email);
+                   Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                   Intent i = new Intent(SignUp.this, NextScreen.class);
 
-                String Fname = Firstname.getText().toString();
-                String Lname = Lastname.getText().toString();
-                String Uname = Username.getText().toString();
+                   startActivity(i);
+               }
 
-                if (Email.equals("") || Password.equals("")
-                        || confirmPassword.equals("")  || Fname.equals("")  ||
-                        Lname.equals("")  || Uname.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Fill Up required fields", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (!Password.equals(ConPwSignUp.getText().toString())) {
+                if (!PasswordReg.equals(ConPwSignUp.getText().toString())) {
                     ConPwSignUp.setError("Password does not match!");
                 }
                 if (!validateName(Firstname.getText().toString())) {
@@ -68,26 +91,13 @@ public class SignUp extends Activity {
                 if (!validateName(Lastname.getText().toString())) {
                     Lastname.setError("Not a valid Last Name");
                 }
-                 if (!validateUsername(Username.getText().toString())) {
-                    Username.setError("Not a valid User Name");
-
-                  /*   //validate the username or email
-                     if (Username == null || Username.isEmpty()){
-                         Username.setError(getString(R.string.error_username));
-                         Username.requestFocus();
-                         return;
-                     }
-                     //validate the password
-                     if (Password == null || Password.isEmpty()){
-                         Password.setError(getString(R.string.error_password));
-                         return;
-                     }
-                     return; */
+                 if (!validateUsername(UsernameReg.getText().toString())) {
+                    UsernameReg.setError("Not a valid User Name");
                 }
-                 if (!validateEmail(EmailSignUp.getText().toString())) {
-                    EmailSignUp.setError("Not a valid Email");
-                } if (!validatePassword(PwSignUp.getText().toString())) {
-                    PwSignUp.setError("Not a valid password!");
+                 if (!validateEmail(EmailReg.getText().toString())) {
+                    EmailReg.setError("Not a valid Email");
+                } if (!validatePassword(PasswordReg.getText().toString())) {
+                    PasswordReg.setError("Not a valid password!");
                 }
                 else {
                     DataBaseAdapter.registerUser(Fname,Lname,Uname,Email,Password,GetCurrentDateAndTime());
@@ -99,7 +109,7 @@ public class SignUp extends Activity {
                 }
             }
         });
-    }
+   }
 
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -145,7 +155,7 @@ public class SignUp extends Activity {
         // TODO Auto-generated method stub
         super.onDestroy();
 
-    //    DataBaseAdapter.close();
+    //db.close();
     }
 
 

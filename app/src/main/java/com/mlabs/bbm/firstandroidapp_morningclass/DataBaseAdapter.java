@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -65,6 +66,7 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
         return db;
     }
 
+
     //Define Database Table
     @Override
     public void onCreate(SQLiteDatabase sqlDB){
@@ -91,14 +93,6 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
         //Recreate Table
         onCreate(db);
     }
-
-     /* public long insert(String email, ContentValues values){
-        return getWritableDatabase().insert(email, null, values);
-    }
-
-    public long update(String KEY_EMAIL, ContentValues values); {
-        return getWritableDatabase().update(KEY_EMAIL,values);
-    }*/
 
     //Creating new user/s:
     public void registerUser(String firstname, String lastname, String username, String email, String password, String create_at){
@@ -155,4 +149,18 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
         }
     }
 
+    public long insertPlayer(String UsernameReg, String PasswordReg, String EmailReg)
+    {
+        ContentValues values = new ContentValues();
+        values.put("USERNAME", UsernameReg);
+        values.put("PASSWORD", PasswordReg);
+        values.put("EMAIL", EmailReg);
+
+        return db.insertWithOnConflict(DATABASE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+
+    }
+
+    public String getData() {
+      return null;
+    }
 }
