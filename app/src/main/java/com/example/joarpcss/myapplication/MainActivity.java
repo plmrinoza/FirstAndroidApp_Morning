@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText pword = (EditText) findViewById(R.id.etxtPword);
 
                 //if (checkLogin(emailAdd.getText().toString(), pword.getText().toString()) == true) {
-                if (sqlDB.validateUser(emailAdd.getText().toString(), pword.getText().toString()) == true) {
+                if (sqlDB.validateUserFromEmail(emailAdd.getText().toString(), pword.getText().toString()) == true
+                        || sqlDB.validateUserFromUName(emailAdd.getText().toString(), pword.getText().toString()) == true) {
                     //Toast.makeText(getApplicationContext(), "Connecting...", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, UserAccountActivity.class);
                     startActivity(intent);

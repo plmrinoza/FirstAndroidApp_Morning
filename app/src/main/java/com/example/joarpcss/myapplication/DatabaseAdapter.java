@@ -22,7 +22,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     private static final String TAG = DatabaseAdapter.class.getSimpleName();
 
     private static final String DATABASE_NAME = "users.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String TABLE_USER = "users";
 
@@ -50,49 +50,71 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        //Recreate Table
+         onCreate(db);
+
     }
 
     public void registerUser(String email, String password, String username, String firstname, String lastname, String datecreated) {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-            ContentValues values = new ContentValues();
-            values.put(EMAIL, email);
-            values.put(PASSWORD, password);
-            values.put(UserName, username);
-            values.put(FirstName, firstname);
-            values.put(LastName, lastname);
-            values.put(DATECREATED, datecreated);
 
-            //long id = db.insert(TABLE_USER, null, values);
+        ContentValues values = new ContentValues();
+        values.put(EMAIL, email);
+        values.put(PASSWORD, password);
+        values.put(UserName, username);
+        values.put(FirstName, firstname);
+        values.put(LastName, lastname);
+        values.put(DATECREATED, datecreated);
 
-            db.insert(TABLE_USER, null, values);
-            db.close();
+        //long id = db.insert(TABLE_USER, null, values);
 
+        db.insert(TABLE_USER, null, values);
+        db.close();
     }
 
 
-    public boolean validateUser(String emailAdd, String password) {
-
-        HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE " + EMAIL + " = '" + emailAdd +"' AND " + PASSWORD + " = '" + password + "'";
+    public boolean validateUserFromEmail(String emailAdd, String password) {
+        //HashMap<String, String> user = new HashMap<String, String>();
+        String selectQueryFromEmail = "SELECT * FROM " + TABLE_USER + " WHERE " + EMAIL + " = '" + emailAdd +"' AND " + PASSWORD + " = '" + password + "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursorEmail = db.rawQuery(selectQueryFromEmail, null);
 
-        cursor.moveToFirst();
-        if (cursor.getCount() > 0) {
-            cursor.close();
+        cursorEmail.moveToFirst();
+        if (cursorEmail.getCount() > 0) {
+            cursorEmail.close();
             db.close();
             return true;
         }
 
-        cursor.close();
+        cursorEmail.close();
         db.close();
         return false;
 
 
     }
+
+    public boolean validateUserFromUName(String userName, String password) {
+        String selectQueryFromUsername = "SELECT * FROM " + TABLE_USER + " WHERE " + UserName + " = '" + userName +"' AND " + PASSWORD + " = '" + password + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorUserName = db.rawQuery(selectQueryFromUsername, null);
+
+        cursorUserName.moveToFirst();
+        if (cursorUserName.getCount() > 0) {
+            cursorUserName.close();
+            db.close();
+            return true;
+        }
+        cursorUserName.close();
+        db.close();
+        return false;
+    }
+
 
     public boolean validateEmail(String emailAdd) {
         String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE " + EMAIL + " = '" + emailAdd +"'";
@@ -107,5 +129,20 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         }
             cursor.close();
             return false;
+    }
+
+    public boolean validateUserName(String userName) {
+        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE " + UserName + " = '" + userName +"'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        cursor.moveToFirst();
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
     }
 }
