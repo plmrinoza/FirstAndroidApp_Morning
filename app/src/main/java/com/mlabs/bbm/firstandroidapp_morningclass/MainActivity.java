@@ -69,7 +69,7 @@ EditText userName,password;
                     @Override
 
                     public void onClick(View v) {
-                        Intent myIntent = new Intent(v.getContext(), Registerform.class);
+                        Intent myIntent = new Intent(MainActivity.this, Registerform.class);
                         startActivityForResult(myIntent, 0);
                         onPause();
                     }
