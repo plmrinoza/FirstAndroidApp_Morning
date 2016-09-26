@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity
             android:name=".MainAct.user"
             android:label="@string/title_activity_user">
@@ -44,10 +43,10 @@
         </activity>
         <activity android:name=".MainAct.DatabaseHelper">
 
-=======
+
 
         <activity android:name=".NextScreen">
->>>>>>> daf1a508abdefe32f94f5c4ee200722e92e1d82b
+
         </activity>
     </application>
 
