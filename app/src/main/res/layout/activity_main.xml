@@ -23,32 +23,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter email:"
-        android:id="@+id/tvEmail"
+        android:text="User name/ Email:"
+        android:id="@+id/textView8"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="67dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/regEmail"
-        android:layout_below="@+id/tvEmail"
+        android:id="@+id/etUser"
+        android:layout_below="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/btnShow"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignRight="@+id/btnShow"
+        android:layout_alignEnd="@+id/btnShow" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter password:"
         android:id="@+id/tvPassword"
-        android:layout_below="@+id/regEmail"
+        android:layout_below="@+id/etUser"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -61,8 +59,8 @@
         android:layout_below="@+id/tvPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/btnShow"
-        android:layout_toStartOf="@+id/btnShow" />
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
 
     <Button
         android:layout_width="wrap_content"
@@ -88,30 +86,8 @@
         android:layout_height="wrap_content"
         android:text="SIGN-UP"
         android:id="@+id/btnSignup"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/etPassword"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User name:"
-        android:id="@+id/textView8"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/etUser"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/btnShow"
-        android:layout_alignEnd="@+id/btnShow" />
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_toEndOf="@+id/textView8" />
 
 </RelativeLayout>

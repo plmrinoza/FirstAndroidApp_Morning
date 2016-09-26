@@ -28,6 +28,9 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
     private static final String KEY_USER = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_CREATED_AT = "created_at";
+    static final String DATABASE_CREATE = "create table " + "LOGIN" + "( "
+                       + "ID" + " integer primary key autoincrement,"
+                      + "Email  text,Password text); ";
 
 
     public DatabaseAdapter(Context context) {
@@ -82,23 +85,25 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
         }
     }
 
-    public boolean validateUser(String email, String password){
+    public boolean validateUser(String userc, String password){
         HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM "+TABLE_USER+" WHERE " +KEY_EMAIL+ "='" + email+"' AND " + KEY_PASSWORD + "="+password;
+        String selectQuery = "SELECT * FROM "+TABLE_USER+" WHERE " +KEY_EMAIL+ "='" + userc+"' or " + KEY_USER + "= '"+userc+"'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery,null);
 
         cursor.moveToFirst();
         if (cursor.getCount()>0){
-            user.put("first",cursor.getString(1));
-            user.put("surname",cursor.getString(2));
-            user.put("username",cursor.getString(3));
-            user.put("email",cursor.getString(4));
-            user.put("password",cursor.getString(5));
-            user.put("created_at",cursor.getString(6));
-            Log.d(TAG,"Fetching user from Sqlite: "+user.toString());
-            cursor.close();
-            db.close();
+            if (password.equals(cursor.getString(5))){
+                user.put("first",cursor.getString(1));
+                user.put("surname",cursor.getString(2));
+                user.put("username",cursor.getString(3));
+                user.put("email",cursor.getString(4));
+                user.put("password",cursor.getString(5));
+                user.put("created_at",cursor.getString(6));
+                Log.d(TAG,"Fetching user from Sqlite: "+user.toString());
+                cursor.close();
+                db.close();
+            }
             return true;
         }
         else{

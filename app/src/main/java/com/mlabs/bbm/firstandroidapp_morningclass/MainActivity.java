@@ -1,8 +1,9 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -15,56 +16,70 @@ import android.view.MotionEvent;
 
 
 public class MainActivity extends AppCompatActivity {
+
+EditText userName,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText email = (EditText) findViewById(R.id.regEmail);
-        final EditText password = (EditText) findViewById(R.id.etPassword);
         final EditText userName= (EditText)findViewById(R.id.etUser);
+        final EditText password = (EditText) findViewById(R.id.etPassword);
         final Button btnSignup = (Button) findViewById(R.id.btnSignup);
         final Button btnLogin = (Button) findViewById(R.id.btnLogin);
         final Button btnShow = (Button) findViewById(R.id.btnShow);
+        final Context context = this;
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View arg0) {
+                String emailUname = userName.getText().toString();
+                String pass = password.getText().toString();
 
-                if (!isValidEmail(email.getText().toString())) {
-                    email.setError("Invalid Email");
-                    email.requestFocus();
 
-                } else if (!isValidPassword(password.getText().toString())) {
-                    password.setError("Invalid Password");
-                    password.requestFocus();
+                if (emailUname.equals("")) {
 
-                } else if (!isValidUsername(userName.getText().toString())){
-                        userName.setError("Invalid user name!");
+                    userName.setError("Please enter your username or email!");
+                } else if (pass.equals("")) {
+
+                    password.setError("Please enter your password!");
+                } else if (!isValidPassword(pass)) {
+                    Toast.makeText(getApplicationContext(), "Invalid Passwordl!", Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    DatabaseAdapter db = new DatabaseAdapter(context);
+                    boolean login = db.validateUser(userName.getText().toString().trim(), password.getText().toString().trim());
+
+
+                    if (login == true) {
+                        Intent loginIntent = new Intent(MainActivity.this, blank.class);
+                        startActivity(loginIntent);
+                        finish();
+
+                    } else {
+
+                        Toast.makeText(getApplicationContext(), "Invalid Email and Passwordl!", Toast.LENGTH_SHORT).show();
+
                     }
-                 else {
-                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                    Intent loginIntent = new Intent(MainActivity.this, blank.class);
-                    startActivity(loginIntent);
-                }}
-
-     });
-
-            btnSignup.setOnClickListener(new View.OnClickListener() {
-                @Override
-
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(v.getContext(), Registerform.class);
-                    startActivityForResult(myIntent, 0);
-                    onPause();
                 }
 
-            });
+
+                btnSignup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+
+                    public void onClick(View v) {
+                        Intent myIntent = new Intent(v.getContext(), Registerform.class);
+                        startActivityForResult(myIntent, 0);
+                        onPause();
+                    }
+
+                });
 
 
-             btnShow.setOnTouchListener(new View.OnTouchListener(){
-                     @Override
-                 public boolean onTouch(View view, MotionEvent motionEvent) {
+                btnShow.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
 
 //                         if(event == motionEvent.ACTION_DOWN){
 //                             Log.d("onTouchListener", "ACTION_DOWN was pressed");
@@ -78,54 +93,35 @@ public class MainActivity extends AppCompatActivity {
 //                             return false;
 //                         }
 //
-                         switch (motionEvent.getAction()) {
-                             case MotionEvent.ACTION_DOWN:
-                                 password.setTransformationMethod(null);
-                                 password.setSelection(password.getText().length());
-                                 return true;
-                             case MotionEvent.ACTION_UP:
-                                 password.setTransformationMethod(new PasswordTransformationMethod());
-                                 password.setSelection(password.getText().length());
-                                 return false;
-                         }
-                         return true;
+                        switch (motionEvent.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                password.setTransformationMethod(null);
+                                password.setSelection(password.getText().length());
+                                return true;
+                            case MotionEvent.ACTION_UP:
+                                password.setTransformationMethod(new PasswordTransformationMethod());
+                                password.setSelection(password.getText().length());
+                                return false;
+                        }
+                        return true;
 
-                     }
-
-
-                     });
-
+                    }
+                });
+            }
 
 
-        }
-        private boolean isValidEmail(String email) {
-            String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-            Pattern pattern = Pattern.compile(emailPattern);
-            Matcher matcher = pattern.matcher(email);
-            return matcher.matches();
-        }
-    private boolean isValidUsername(String userName){
-        String userNamePattern ="^[a-z0-9_-]{3,15}$";
-        Pattern pattern1 = Pattern.compile(userNamePattern);
-        Matcher matcher1 = pattern1.matcher(userName);
-        return matcher1.matches();
+            private boolean isValidPassword(String password) {
+                if (password != null && password.length() > 8) {
+                    return true;
+                }
+                return false;
 
-
-    }
-    private boolean isValidPassword(String password) {
-        if (password != null && password.length() > 8) {
-            return true;
-        }
-        return false;
-
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
+            }
+        });
     }
 }
+
+
 
 
 
