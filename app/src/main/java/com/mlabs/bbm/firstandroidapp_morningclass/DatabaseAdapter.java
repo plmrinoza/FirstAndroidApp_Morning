@@ -19,8 +19,12 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     private static final String KEY_EMAIL= "email";
     private static final String KEY_PASSWORD= "password";
     private static final String KEY_CREATED_AT= "created at";
+    private static final String KEY_FIRST_NAME= "firstname";
+    private static final String KEY_LAST_NAME= "lastname";
+    private static final String KEY_USER_NAME= "username";
 
-    static final String DATABASE_CREATE = "create table" + "LOGIN" + "(" + "ID" + "integer primary key autoincrement," + "Email text, password text);";
+
+    static final String DATABASE_CREATE = "create table" + "LOGIN" + "(" + "ID" + "integer primary key autoincrement," + "Email text, password text);" + "FirstName text, LastName text);";
 
     public SQLiteDatabase db;
     private final Context context;
@@ -50,7 +54,11 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         String CREATE_USER_TABLE= "CREATE TABLE" + TABLE_USER + "("
                 + KEY_ID + "INTEGER PRIMARY KEY"
                 + KEY_EMAIL + "TEXT UNIQUE"
-                + KEY_PASSWORD + "TEXT," + KEY_CREATED_AT + "TEXT" + ")";
+                + KEY_PASSWORD + "TEXT,"
+                + KEY_FIRST_NAME + "TEXT,"
+                + KEY_LAST_NAME + "TEXT,"
+                + KEY_USER_NAME + "TEXT,"
+                + KEY_CREATED_AT + "TEXT" + ")";
        db.execSQL(CREATE_USER_TABLE);
 
     }
@@ -60,10 +68,13 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public  void registerUser(String email, String password, String created_at){
+    public  void registerUser(String email,String firstname, String lastname, String username, String password, String created_at){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values= new ContentValues();
         values.put(KEY_EMAIL,email);
+        values.put(KEY_FIRST_NAME,firstname);
+        values.put(KEY_LAST_NAME,lastname);
+        values.put(KEY_USER_NAME,username);
         values.put(KEY_PASSWORD,password);
         values.put(KEY_CREATED_AT,created_at);
 
@@ -85,7 +96,12 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         if (cursor.getCount()>0){
             user.put(KEY_EMAIL, cursor.getString(1));
             user.put(KEY_PASSWORD, cursor.getString(2));
-            //user.put("created_at", cursor.getString(3));
+            user.put(KEY_FIRST_NAME, cursor.getString(3));
+            user.put(KEY_LAST_NAME, cursor.getString(4));
+            user.put(KEY_USER_NAME, cursor.getString(5));
+            user.put("created_at", cursor.getString(6));
+
+
            result= true;
         }
         else{

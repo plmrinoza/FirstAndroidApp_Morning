@@ -19,13 +19,13 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.mlabs.bbm.firstandroidapp_morningclass.DatabaseAdapter.registerUser;
+
 
 public class Registerform extends AppCompatActivity {
     DatabaseAdapter db;
 
     Button btnSend;
-    EditText regEmail, regPass, regConPass;
+    EditText regEmail, regPass, regConPass, firstName,lastName, userName;
 
 
     @Override
@@ -37,12 +37,17 @@ public class Registerform extends AppCompatActivity {
         final DatabaseAdapter DataBaseAdapter;
         DataBaseAdapter = new DatabaseAdapter(this);
 
+
+
         DataBaseAdapter.open();
 
         regEmail = (EditText) findViewById(R.id.regEmail);
         regPass = (EditText) findViewById(R.id.regPass);
         regConPass = (EditText) findViewById(R.id.regConPass);
         btnSend = (Button) findViewById(R.id.btnSend);
+        firstName= (EditText) findViewById(R.id.etFirst);
+        lastName= (EditText)findViewById(R.id.etLast);
+        userName= (EditText)findViewById(R.id.etUsername) ;
         addAcct();
 
     }
@@ -55,10 +60,14 @@ public class Registerform extends AppCompatActivity {
                                            String email = regEmail.getText().toString().trim();
                                            String password = regPass.getText().toString();
                                            String confirmPassword = regConPass.getText().toString();
+                                           final String fName= firstName.getText().toString();
+                                           final String lName= lastName.getText().toString();
+                                           final String uName= userName.getText().toString();
 
                                            final String email1 = regEmail.getText().toString();
                                            final String pass1 = regPass.getText().toString();
                                            final String conPass1 = regConPass.getText().toString();
+
 
 
                                            if (email.equals("") || (password.equals("") || (confirmPassword.equals("")))) {
@@ -75,11 +84,23 @@ public class Registerform extends AppCompatActivity {
 
 
                                            }
+                                           if(!isValidName(fName)){
+                                               firstName.setError("Invalid first name");
+
+                                           }
+                                           else if(!isValidName(lName)){
+                                               lastName.setError("Invalid first name");
+                                           }
+
+                                           if(!isValidUserName(uName)){
+                                               userName.setError("Invalid first name");
+                                           }
 
                                            if (!pass1.equals(conPass1)) {
                                                Toast.makeText(getApplicationContext(), "Password does not match!", Toast.LENGTH_LONG).show();
                                                return;
                                            } else {
+
                                                DatabaseAdapter.registerUser(email1, pass1, GetCurrentDateAndTime());
                                                Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
                                                Intent i = new Intent(Registerform.this, MainActivity.class);
@@ -89,6 +110,22 @@ public class Registerform extends AppCompatActivity {
                                            }
 
                                        }
+
+
+                                        private boolean isValidName(String name){
+                                            String namePattern = "^[a-zA-Z ]+$";
+                                            Pattern pattern1 = Pattern.compile(namePattern);
+                                            Matcher matcher1= pattern1.matcher(name);
+                                            return matcher1.matches();
+
+
+                                        }
+                                        private boolean isValidUserName(String UserName){
+                                            String namePattern = "^[a-z0-9_-]{3,15}$";
+                                            Pattern pattern1 = Pattern.compile(namePattern);
+                                            Matcher matcher1= pattern1.matcher(UserName);
+                                            return matcher1.matches();
+                                        }
 
 
                                        private boolean isValidEmail(String email) {

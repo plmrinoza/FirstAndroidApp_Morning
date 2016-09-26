@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText email = (EditText) findViewById(R.id.regEmail);
         final EditText password = (EditText) findViewById(R.id.etPassword);
+        final EditText userName= (EditText)findViewById(R.id.etUser);
         final Button btnSignup = (Button) findViewById(R.id.btnSignup);
         final Button btnLogin = (Button) findViewById(R.id.btnLogin);
         final Button btnShow = (Button) findViewById(R.id.btnShow);
@@ -38,14 +39,17 @@ public class MainActivity extends AppCompatActivity {
                     password.setError("Invalid Password");
                     password.requestFocus();
 
-                } else {
+                } else if (!isValidUsername(userName.getText().toString())){
+                        userName.setError("Invalid user name!");
+                    }
+                 else {
                     Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
                     Intent loginIntent = new Intent(MainActivity.this, blank.class);
                     startActivity(loginIntent);
-                }
+                }}
 
-            }
-        });
+     });
+
             btnSignup.setOnClickListener(new View.OnClickListener() {
                 @Override
 
@@ -101,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
             Matcher matcher = pattern.matcher(email);
             return matcher.matches();
         }
+    private boolean isValidUsername(String userName){
+        String userNamePattern ="^[a-z0-9_-]{3,15}$";
+        Pattern pattern1 = Pattern.compile(userNamePattern);
+        Matcher matcher1 = pattern1.matcher(userName);
+        return matcher1.matches();
+
+
+    }
     private boolean isValidPassword(String password) {
         if (password != null && password.length() > 8) {
             return true;
