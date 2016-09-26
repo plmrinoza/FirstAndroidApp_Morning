@@ -21,7 +21,7 @@ public class AccountRegister extends AppCompatActivity {
 
     //variables of each views
     Button registerButton, viewAccountsButton, backButton;
-    EditText registerEmail, registerPassword, registerVerifyPassword;
+    EditText registerEmail, registerPassword, registerVerifyPassword, registerUname,registerFname,registerLname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +30,16 @@ public class AccountRegister extends AppCompatActivity {
         //open database
         accountsDb = new DatabaseHelper(this);
 
-
+        registerFname = (EditText) findViewById(R.id.registerFname);
+        registerLname = (EditText) findViewById(R.id.registerLname);
+        registerUname = (EditText) findViewById(R.id.registerUname);
         registerEmail = (EditText) findViewById(R.id.registerEmail);
         registerPassword = (EditText) findViewById(R.id.registerPassword);
-        registerVerifyPassword = (EditText) findViewById(R.id.registerVerifyPass);
+        registerVerifyPassword = (EditText) findViewById(R.id.registerVerifyPassword);
         registerButton = (Button) findViewById(R.id.btnRegister);
         viewAccountsButton = (Button) findViewById(R.id.buttonViewAccounts);
         backButton = (Button) findViewById(R.id.buttonBack);
+        registerFname.requestFocus();
         addAccount();
         viewAll();
         back();
@@ -61,11 +64,14 @@ public class AccountRegister extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this,"Input Validation Success", Toast.LENGTH_LONG).show();
+                String fname=registerFname.getText().toString();
+                String lname=registerLname.getText().toString();
+                String username=registerUname.getText().toString();
                 String email=registerEmail.getText().toString();
                 String password=registerPassword.getText().toString();
                 String verifyPassword = registerVerifyPassword.getText().toString();
                 //Check if Fields are empty.
-                if(email.equals("")||password.equals("")||verifyPassword.equals(""))
+                if(fname.equals("") || lname.equals("") || username.equals("") || email.equals("")||password.equals("")||verifyPassword.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Field Incomplete.", Toast.LENGTH_LONG).show();
                     return;
@@ -86,8 +92,11 @@ public class AccountRegister extends AppCompatActivity {
                 else
                 {
                     // Save the Data in Database
-                    accountsDb.insertAccount(email, password);
+                    accountsDb.insertAccount(fname,lname,username,email,password);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                    Intent myIntent = new Intent(AccountRegister.this, MainActivity.class);
+                    startActivity(myIntent);
+                    finish();
                 }
             }
         });
@@ -141,7 +150,7 @@ public void showMessage(String title, String Message) {
     }
     //Return true if password is valid and false if password is invalid
     protected boolean validatePassword(String password) {
-        if(password!=null && password.length()>9) {
+        if(password!=null && password.length()>=8) {
             return true;
         } else {
             return false;

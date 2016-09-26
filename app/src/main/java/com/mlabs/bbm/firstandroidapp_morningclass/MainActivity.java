@@ -56,8 +56,19 @@ public class MainActivity extends AppCompatActivity {
                     loginPassword.requestFocus();
                 }*/
                     //Toast.makeText(MainActivity.this,"Input Validation Success", Toast.LENGTH_LONG).show();
-                    String verifyUser = accountsDb.getSinlgeEntry(loginE);
-                    if(loginPass.equals(verifyUser)) {
+                String verifyUser = accountsDb.getSingleEntryUname(loginE);
+                String verifyEmail = accountsDb.getSingleEntryEmail(loginE);
+                if(validateEmail(loginE)){
+                        if (loginPass.equals(verifyEmail)) {
+                            Intent myIntent = new Intent(MainActivity.this, MainMenu.class);
+                            startActivity(myIntent);
+                            finish();
+                        }else{
+                            Toast.makeText(MainActivity.this,"Invalid Email and Password", Toast.LENGTH_LONG).show();
+                            loginEmail.requestFocus();
+                        }
+                }
+                else if(loginPass.equals(verifyUser)) {
                         Intent myIntent = new Intent(MainActivity.this, MainMenu.class);
                         startActivity(myIntent);
                         finish();
@@ -104,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 return false;
             }
-        }
+        }*/
 
         //Return true if email is valid and false if email is invalid
         protected boolean validateEmail(String email) {
@@ -115,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             Matcher matcher = pattern.matcher(email);
 
             return matcher.matches();
-        } */
+        }
 
 /*
     public void signIn(View v){
