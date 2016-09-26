@@ -32,9 +32,9 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(new OnClickListener() { //Log in button
             @Override
             public void onClick(View arg0) {
-            String email = emailEditText.getText().toString();
+            String emailuname = emailEditText.getText().toString();
             String pass = passEditText.getText().toString();
-                if(email == "") //If Email field is empty
+                if(emailuname == "") //If Email field is empty
                 {
                  emailEditText.setError("Please enter Email");
                 }
@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
                     boolean logstat = false;
 
                     do {
-                        if (email.equals(cr.getString(0)) && (pass.equals(cr.getString(1)))) //checks database if entered information is present
+                        if ((emailuname.equals(cr.getString(3)) || emailuname.equals(cr.getString(4))) && (pass.equals(cr.getString(5)))) //checks database if entered information is present
                         {
                             logstat = true;
                         }
@@ -60,8 +60,6 @@ public class Login extends AppCompatActivity {
                         finish();
                     } else {
                         Toast.makeText(Login.this, "Invalid Email or Password", Toast.LENGTH_LONG).show();
-                        emailEditText.setText("");
-                        passEditText.setText("");
                     }
                 }
 

@@ -29,13 +29,15 @@ public class Register extends Activity {
         setContentView(R.layout.register_layout);
         myDb = new DatabaseHelper(this);
 
+        editFname = (EditText)findViewById(R.id.FnameReg);
+        editLname = (EditText)findViewById(R.id.LnameReg);
+        editUname = (EditText)findViewById(R.id.UnameReg);
         editEmail = (EditText)findViewById(R.id.EmailReg);
         editPassword = (EditText)findViewById(R.id.PassReg);
         editCPassword = (EditText)findViewById(R.id.ConfirmPass);
         btnAddData = (Button)findViewById(R.id.regibtn);
-        editFname = (EditText)findViewById(R.id.FnameReg);
-        editLname = (EditText)findViewById(R.id.LnameReg);
-        editUname = (EditText)findViewById(R.id.UnameReg);
+
+        //To restrict Fname and Lname edittext from accepting numbers as well as special characters
         editFname.setFilters(new InputFilter[]{
                 new InputFilter() {
                     @Override
@@ -86,9 +88,7 @@ public class Register extends Activity {
                         {
                             if(!(pass.equals(cpass))){
                                 Toast.makeText(Register.this, "Passwords do not match", Toast.LENGTH_LONG).show();
-                                editEmail.setText("");
-                                editPassword.setText("");
-                                editCPassword.setText("");
+                                editCPassword.requestFocus();
                             }
                             else
                             {
