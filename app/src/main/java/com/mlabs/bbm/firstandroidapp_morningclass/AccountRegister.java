@@ -21,7 +21,7 @@ public class AccountRegister extends AppCompatActivity {
 
     //variables of each views
     Button registerButton, viewAccountsButton, backButton;
-    EditText registerEmail, registerPassword, registerVerifyPassword, registerUname,registerFname,registerLname;
+    EditText registerEmail, registerPassword, registerVerifyPassword, registerUname, registerFname, registerLname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +45,10 @@ public class AccountRegister extends AppCompatActivity {
         back();
     }
 
-    public void back(){
-        backButton.setOnClickListener(new View.OnClickListener(){
+    public void back() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), MainActivity.class);
                 startActivityForResult(myIntent, 0);
                 onPause();
@@ -57,42 +57,65 @@ public class AccountRegister extends AppCompatActivity {
         });
     }
 
-//method for adding account
+    //method for adding account
     public void addAccount() {
         //Button register
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this,"Input Validation Success", Toast.LENGTH_LONG).show();
-                String fname=registerFname.getText().toString();
-                String lname=registerLname.getText().toString();
-                String username=registerUname.getText().toString();
-                String email=registerEmail.getText().toString();
-                String password=registerPassword.getText().toString();
+                String fname = registerFname.getText().toString();
+                String lname = registerLname.getText().toString();
+                String username = registerUname.getText().toString();
+                String email = registerEmail.getText().toString();
+                String password = registerPassword.getText().toString();
                 String verifyPassword = registerVerifyPassword.getText().toString();
+
+                String usernameDB = accountsDb.getUsernameDB(username);
+                String emailDB = accountsDb.getEmailDB(email);
+
                 //Check if Fields are empty.
-                if(fname.equals("") || lname.equals("") || username.equals("") || email.equals("")||password.equals("")||verifyPassword.equals(""))
-                {
+                if (fname.equals("") || lname.equals("") || username.equals("") || email.equals("") || password.equals("") || verifyPassword.equals("")) {
                     Toast.makeText(getApplicationContext(), "Field Incomplete.", Toast.LENGTH_LONG).show();
                     return;
-                }else if (!validateEmail(email)) {
+                } else if (!validateEmail(email)) {
                     registerEmail.setError("Invalid Email Format");
                     registerEmail.requestFocus();
-                }
-                else if (!validatePassword(password)) {
-                    registerPassword.setError("Atleast Minimum of 10 either Numerical or Alphabetical or Mix");
+                } else if (!validatePassword(password)) {
+                    registerPassword.setError("Password must be of minimal 8 characters.");
                     registerPassword.requestFocus();
                 }
-                // check if both password matches
-                else if(!password.equals(verifyPassword))
-                {
-                    Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
+                else if (!validateUName(username)) {
+                    registerUname.setError("Letters, Numbers, Underscore, and Dash are only allowed.");
+                    registerUname.requestFocus();
+                }
+                else if(!validateFName(fname)) {
+                    registerFname.setError("Letters are only allowed.");
+                    registerFname.requestFocus();
+                }
+                else if(!validateLName(lname)){
+                    registerLname.setError("Letters are only allowed.");
+                    registerLname.requestFocus();
+                }
+
+                // check if username exists
+                else if (username.equals(usernameDB)){
+                    registerUname.setError("Username already exists.");
+                    registerUname.requestFocus();
+                }
+                // check if email exists
+                else if (email.equals(emailDB)){
+                    registerEmail.setError("Email already exists.");
+                    registerEmail.requestFocus();
+                }
+
+                else if (!password.equals(verifyPassword)) {
+                    Toast.makeText(getApplicationContext(), "Password does not match.", Toast.LENGTH_LONG).show();
                     return;
                 }
-                else
-                {
+                else {
                     // Save the Data in Database
-                    accountsDb.insertAccount(fname,lname,username,email,password);
+                    accountsDb.insertAccount(email, password, username, fname, lname);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
                     Intent myIntent = new Intent(AccountRegister.this, MainActivity.class);
                     startActivity(myIntent);
@@ -103,9 +126,7 @@ public class AccountRegister extends AppCompatActivity {
     }
 
 
-
-
-   public void viewAll() {
+    public void viewAll() {
 
 
         viewAccountsButton.setOnClickListener(new View.OnClickListener() {
@@ -116,28 +137,32 @@ public class AccountRegister extends AppCompatActivity {
                     //if no records found.
                     showMessage("Error", "No data found.");
                     //Toast.makeText(getApplicationContext(), "No data available.", Toast.LENGTH_LONG).show();
-                return;
+                    return;
                 }
                 StringBuffer buffer = new StringBuffer();
                 while (cursor.moveToNext()) {
                     buffer.append("Id: " + cursor.getString(0) + " \n");
                     buffer.append("Email: " + cursor.getString(1) + "\n");
                     buffer.append("Password: " + cursor.getString(2) + "\n");
+                    buffer.append("Username: " + cursor.getString(3) + " \n");
+                    buffer.append("First Name: " + cursor.getString(4) + "\n");
+                    buffer.append("Last Name: " + cursor.getString(5) + "\n");
                 }
                 //show all data
-                showMessage("Data",buffer.toString());
+                showMessage("Data", buffer.toString());
             }
         });
 
     }
 
-public void showMessage(String title, String Message) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setCancelable(true);
-    builder.setTitle(title);
-    builder.setMessage(Message);
-    builder.show();
-}
+    public void showMessage(String title, String Message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
+
     //Return true if email is valid and false if email is invalid
     protected boolean validateEmail(String email) {
         String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -148,14 +173,46 @@ public void showMessage(String title, String Message) {
 
         return matcher.matches();
     }
+
     //Return true if password is valid and false if password is invalid
     protected boolean validatePassword(String password) {
-        if(password!=null && password.length()>=8) {
+        if (password != null && password.length() >= 8) {
             return true;
         } else {
             return false;
         }
     }
+
+    protected boolean validateUName(String uname) {
+        String unamePattern = "^([_A-Za-z0-9-])+$";
+
+        Pattern pattern = Pattern.compile(unamePattern);
+        Matcher matcher = pattern.matcher(uname);
+
+        return matcher.matches();
+    }
+
+    protected boolean validateFName(String fname) {
+        String fnamePattern = "^([A-Za-z- ])+$";
+
+        Pattern pattern = Pattern.compile(fnamePattern);
+        Matcher matcher = pattern.matcher(fname);
+
+        return matcher.matches();
+    }
+
+    protected boolean validateLName(String lname) {
+        String lnamePattern = "^([A-Za-z- .])+$";
+
+        Pattern pattern = Pattern.compile(lnamePattern);
+        Matcher matcher = pattern.matcher(lname);
+
+        return matcher.matches();
+    }
+
+
+
+
 /* Code for Choosing File
     public ArrayList<String> readFileFromSQLite() {
 

@@ -14,20 +14,20 @@
         android:layout_height="wrap_content"
         android:text="Email:"
         android:id="@+id/regEmailtxt"
+        android:layout_marginTop="31dp"
         android:layout_below="@+id/regUnametxt"
         android:layout_alignRight="@+id/regUnametxt"
-        android:layout_alignEnd="@+id/regUnametxt"
-        android:layout_marginTop="35dp" />
+        android:layout_alignEnd="@+id/regUnametxt" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/btnRegister"
-        android:layout_above="@+id/buttonViewAccounts"
+        android:layout_below="@+id/registerVerifyPassword"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="29dp"
+        android:layout_marginTop="34dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -36,9 +36,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/registerEmail"
         android:layout_alignBottom="@+id/regEmailtxt"
-        android:layout_toRightOf="@+id/regEmailtxt"
         android:layout_alignRight="@+id/btnRegister"
-        android:layout_alignEnd="@+id/btnRegister" />
+        android:layout_alignEnd="@+id/btnRegister"
+        android:layout_alignLeft="@+id/registerUname"
+        android:layout_alignStart="@+id/registerUname" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,10 +54,10 @@
         android:layout_height="wrap_content"
         android:text="View Accounts"
         android:id="@+id/buttonViewAccounts"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="55dp"
+        android:layout_below="@+id/btnRegister"
+        android:layout_marginTop="18dp"
+        android:layout_alignRight="@+id/btnRegister"
+        android:layout_alignEnd="@+id/btnRegister"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -65,8 +66,10 @@
         android:layout_height="wrap_content"
         android:text="First Name:"
         android:id="@+id/regFnametxt"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/txtRegisterhere" />
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/txtRegisterhere"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -93,17 +96,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/registerLname"
         android:layout_alignBottom="@+id/regLnametxt"
-        android:layout_toRightOf="@+id/regLnametxt"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/regFnametxt"
+        android:layout_toEndOf="@+id/regFnametxt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username:"
         android:id="@+id/regUnametxt"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/regLnametxt"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/registerLname"
         android:layout_toLeftOf="@+id/registerFname"
         android:layout_toStartOf="@+id/registerFname" />
 
@@ -122,23 +126,25 @@
         android:layout_height="wrap_content"
         android:text="Back"
         android:id="@+id/buttonBack"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/buttonViewAccounts"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password:"
         android:id="@+id/regPasswordtxt"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/regLnametxt"
-        android:layout_alignEnd="@+id/regLnametxt" />
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/regEmailtxt"
+        android:layout_toLeftOf="@+id/registerEmail"
+        android:layout_toStartOf="@+id/registerEmail" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/registerPassword"
-        android:layout_alignBottom="@+id/regPasswordtxt"
+        android:layout_above="@+id/regVerifyPasswordtxt"
         android:layout_toRightOf="@+id/regEmailtxt"
         android:layout_alignRight="@+id/registerEmail"
         android:layout_alignEnd="@+id/registerEmail" />
@@ -146,20 +152,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Verify Password:"
+        android:text="Verify"
         android:id="@+id/regVerifyPasswordtxt"
+        android:layout_marginTop="17dp"
         android:layout_below="@+id/regPasswordtxt"
-        android:layout_toLeftOf="@+id/registerPassword"
-        android:layout_toStartOf="@+id/registerPassword"
-        android:layout_marginTop="23dp" />
+        android:layout_alignLeft="@+id/regVerifyPassword2"
+        android:layout_alignStart="@+id/regVerifyPassword2" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/registerVerifyPassword"
-        android:layout_alignBottom="@+id/regVerifyPasswordtxt"
-        android:layout_toRightOf="@+id/regVerifyPasswordtxt"
-        android:layout_alignRight="@+id/registerPassword"
-        android:layout_alignEnd="@+id/registerPassword" />
+        android:layout_alignBottom="@+id/regVerifyPassword2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/regEmailtxt"
+        android:layout_toEndOf="@+id/regEmailtxt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        android:id="@+id/regVerifyPassword2"
+        android:layout_below="@+id/regVerifyPasswordtxt"
+        android:layout_toLeftOf="@+id/registerVerifyPassword"
+        android:layout_toStartOf="@+id/registerVerifyPassword" />
 
 </RelativeLayout>

@@ -46,7 +46,7 @@ public class SplashScreen2 extends Activity{
         timerThread.start();
     }
     private void insertMethodHere() {
-        for (int progress=0; progress<100; progress+=10) {
+        for (int progress=0; progress<100; progress+=15) {
             try {
                 Thread.sleep(350);
                 mProgress.setProgress(progress);

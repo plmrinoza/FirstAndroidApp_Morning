@@ -58,23 +58,26 @@ public class MainActivity extends AppCompatActivity {
                     //Toast.makeText(MainActivity.this,"Input Validation Success", Toast.LENGTH_LONG).show();
                 String verifyUser = accountsDb.getSingleEntryUname(loginE);
                 String verifyEmail = accountsDb.getSingleEntryEmail(loginE);
+
+                //If user entered his/her email address.
                 if(validateEmail(loginE)){
                         if (loginPass.equals(verifyEmail)) {
                             Intent myIntent = new Intent(MainActivity.this, MainMenu.class);
                             startActivity(myIntent);
                             finish();
                         }else{
-                            Toast.makeText(MainActivity.this,"Invalid Email and Password", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this,"Invalid Username/Email and Password", Toast.LENGTH_LONG).show();
                             loginEmail.requestFocus();
                         }
                 }
+                //If user entered his/her username.
                 else if(loginPass.equals(verifyUser)) {
                         Intent myIntent = new Intent(MainActivity.this, MainMenu.class);
                         startActivity(myIntent);
                         finish();
                     }
                     else{
-                        Toast.makeText(MainActivity.this,"Invalid Email and Password", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this,"Invalid Username/Email and Password", Toast.LENGTH_LONG).show();
                         loginEmail.requestFocus();
                     }
                 }

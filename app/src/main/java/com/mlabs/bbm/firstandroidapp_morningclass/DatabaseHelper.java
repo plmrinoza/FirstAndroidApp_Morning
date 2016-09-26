@@ -16,11 +16,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //columns
     public static final String accounts_ID = "ID";
-    public static final String accounts_FIRSTNAME = "FIRSTNAME";
-    public static final String accounts_LASTNAME = "LASTNAME";
-    public static final String accounts_USERNAME = "USERNAME";
     public static final String accounts_EMAIL = "EMAIL";
     public static final String accounts_PASSWORD = "PASSWORD";
+    public static final String accounts_USERNAME = "USERNAME";
+    public static final String accounts_FIRSTNAME = "FIRSTNAME";
+    public static final String accounts_LASTNAME = "LASTNAME";
     // public static final String accounts_CREATED_AT = "CREATED_AT";
 
 
@@ -37,11 +37,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //   db.execSQL("Create table " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT, PASSWORD TEXT)");
         String CREATE_ACCOUNT_TABLE = "Create Table " + tableName + "("
                 + accounts_ID + " INTEGER PRIMARY KEY,"
-                + accounts_FIRSTNAME + " TEXT,"
-                + accounts_LASTNAME + " TEXT,"
-                + accounts_USERNAME + " TEXT,"
                 + accounts_EMAIL + " TEXT UNIQUE,"
-                + accounts_PASSWORD + " TEXT" + ")";
+                + accounts_PASSWORD + " TEXT,"
+                + accounts_USERNAME + " TEXT,"
+                + accounts_FIRSTNAME + " TEXT,"
+                + accounts_LASTNAME + " TEXT" + ")";
         db.execSQL(CREATE_ACCOUNT_TABLE);
 
     }
@@ -54,14 +54,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertAccount(String email, String password) {
+    public boolean insertAccount(String email, String password, String username, String firstname, String lastname) {
         String emailParameter = email;
         String passwordParameter = password;
+        String usernameParameter = username;
+        String firstnameParameter = firstname;
+        String lastnameParameter = lastname;
+
 
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues insertValues = new ContentValues();
         insertValues.put("email", emailParameter);
         insertValues.put("password", passwordParameter);
+        insertValues.put("username", usernameParameter);
+        insertValues.put("firstname", firstnameParameter);
+        insertValues.put("lastname", lastnameParameter);
         long result = db.insert(tableName, null, insertValues);
 
         if (result == -1) {
@@ -71,6 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //Update data of an Account.
     public boolean updateAccount(Integer id, String email, String password) {
         String emailParameter = email;
         String passwordParameter = password;
@@ -81,6 +89,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(tableName, updatedValues, "id = ? ", new String[]{Integer.toString(id)});
         return true;
     }
+
+    //if username is found, password is returned.
     public String getSingleEntryUname(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(tableName, null, " USERNAME=?", new String[]{username}, null, null, null);
@@ -93,7 +103,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return password;
     }
-    public String getSingleEntryEmail(String email){
+
+    //For checking if username exists... Returns username.
+    public String getUsernameDB(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(tableName, null, " USERNAME=?", new String[]{username}, null, null, null);
+        if (cursor.getCount() < 1) {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String unDB = cursor.getString(cursor.getColumnIndex("USERNAME"));
+        cursor.close();
+        return unDB;
+    }
+
+    //For checking if email exists... Returns email.
+    public String getEmailDB(String email) {
+        {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor cursor = db.query(tableName, null, " EMAIL=?", new String[]{email}, null, null, null);
+            if (cursor.getCount() < 1) {
+                cursor.close();
+                return "NOT EXIST";
+            }
+            cursor.moveToFirst();
+
+            String emDB = cursor.getString(cursor.getColumnIndex("EMAIL"));
+            cursor.close();
+            return emDB;
+        }
+    }
+
+    public String getSingleEntryEmail(String email) {
         {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.query(tableName, null, " EMAIL=?", new String[]{email}, null, null, null);
@@ -134,12 +177,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllData() {
 
-        SQLiteDatabase db = this.getWritableDatabase();
-        String[] columns = new String[] { accounts_ID,accounts_EMAIL,accounts_PASSWORD };
-        Cursor cursor = db.query(tableName, columns, null,
-                null, null, null, null);
-        return cursor;
+            SQLiteDatabase db = this.getWritableDatabase();
+            String[] columns = new String[]{ accounts_ID, accounts_EMAIL, accounts_PASSWORD, accounts_USERNAME, accounts_FIRSTNAME, accounts_LASTNAME};
+            Cursor cursor = db.query(tableName, columns, null,
+                    null, null, null, null);
+            return cursor;
+
     }
+
 /*
 public Cursor getAllData() {
     SQLiteDatabase db = this.getWritableDatabase();
