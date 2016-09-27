@@ -10,16 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 /**
  * Created by ChristianJohn on 8/4/2016.
  */
 public class LoginScreen extends Activity{
 
     private Button loginBtn;
-    private LoginAndRegister loginAndRegister;
+    private Login login;
     private EditText emailEdtTxt;
     private EditText passwordEdtTxt;
     private TextView emailTxtView;
@@ -57,11 +54,9 @@ public class LoginScreen extends Activity{
 
             if(v.equals(loginBtn)){
 
-                loginAndRegister = new LoginAndRegister(getApplicationContext(), emailTxtView, passwordTxtView);
+                login = new Login(getApplicationContext(), emailTxtView, passwordTxtView);
 
-                boolean isLoginValid = false;
-
-                isLoginValid = loginAndRegister.validateLogin(emailEdtTxt, passwordEdtTxt);
+                boolean isLoginValid = login.validateLogin(emailEdtTxt, passwordEdtTxt);
 
                 if(isLoginValid){
                     Intent intent = new Intent(LoginScreen.this, MainActivity.class);

@@ -53,15 +53,15 @@ public class UsersDataSource {
         cursor.close();
     }
 
-    public User getUser(String email){
-        User user = null;
+    public User getUser(String loginName){
 
-
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_USER, allColumns, "emails = ?", new String[]{String.valueOf(email)}, null, null, null, null);
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_USER, allColumns, "emails = ? OR unames = ?", new String[]{String.valueOf(loginName), String.valueOf(loginName)}, null, null, null, null);
         if(cursor != null)
             cursor.moveToFirst();
-            user = cursorToUser(cursor);
-            return user;
+
+        User user = cursorToUser(cursor);
+
+        return user;
 
     }
 

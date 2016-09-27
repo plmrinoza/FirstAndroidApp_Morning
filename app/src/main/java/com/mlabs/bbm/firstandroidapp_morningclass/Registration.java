@@ -3,7 +3,6 @@ package com.mlabs.bbm.firstandroidapp_morningclass;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +13,6 @@ public class Registration extends AppCompatActivity {
 
     private EditText fnameEdit, lnameEdit, unameEdit, emailEdit, passwordEdit, cpasswordEdit;
     private Button regBtn;
-    private LoginAndRegister loginAndRegister;
     private TextView alertPassword;
 
     @Override
@@ -40,9 +38,9 @@ public class Registration extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                loginAndRegister = new LoginAndRegister(getApplicationContext(), fnameEdit, lnameEdit, unameEdit, emailEdit, passwordEdit, cpasswordEdit, alertPassword);
+                Register register = new Register(getApplicationContext(), fnameEdit, lnameEdit, unameEdit, emailEdit, passwordEdit, cpasswordEdit, alertPassword);
 
-                if(loginAndRegister.isRegistrationSuccessful()){
+                if(register.isRegistrationSuccessful()){
                     Intent intent = new Intent(Registration.this, LoginScreen.class);
                     startActivity(intent);
                     finish();
@@ -63,11 +61,11 @@ public class Registration extends AppCompatActivity {
                     lnameEdit.setText("");
             }
             if (v.equals(unameEdit)) {
-                if(unameEdit.getText().toString().equals("Please enter username"))
+                if(unameEdit.getText().toString().equals("Please enter username") || unameEdit.getText().toString().equals("Username not available") || unameEdit.getText().toString().equals("Username must be at least 8 characters"))
                     unameEdit.setText("");
             }
             if (v.equals(emailEdit)) {
-                if(emailEdit.getText().toString().equals("Please enter email address"))
+                if(emailEdit.getText().toString().equals("Please enter email address") || emailEdit.getText().toString().equals("Invalid email format"))
                     emailEdit.setText("");
             }
 

@@ -1,7 +1,6 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,18 +9,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Created by ChristianJohn on 8/4/2016.
+ * Created by Creepy Pasta on 9/27/2016.
  */
-public class LoginAndRegister {
+public class Register {
 
-    private TextView emailTxtView;
-    private TextView passwordTxtView;
-    private TextView alertPassword;
-    private Context context;
-    private UsersDataSource usersDataSource;
     private EditText fname, lname, username, email, password, cpassword;
+    private Context context;
+    private TextView alertPassword;
 
-    public LoginAndRegister(Context context, EditText fname, EditText lname, EditText username, EditText email, EditText password, EditText cpassword, TextView alertPassword){
+    public Register(Context context, EditText fname, EditText lname, EditText username, EditText email, EditText password, EditText cpassword, TextView alertPassword){
         this.context = context;
         this.fname = fname;
         this.lname = lname;
@@ -32,63 +28,9 @@ public class LoginAndRegister {
         this.alertPassword = alertPassword;
     }
 
-    public LoginAndRegister(Context context, TextView emailTxtView, TextView passwordTxtView){
-        this.context = context;
-        this.emailTxtView = emailTxtView;
-        this.passwordTxtView = passwordTxtView;
-    }
-
-    public boolean validateLogin(EditText emailEditTxt, EditText passwordEditTxt){
-        String email = emailEditTxt.getText().toString();
-        String password = passwordEditTxt.getText().toString();
-        boolean isEmailValid = false, isPasswordCorrect = false;
-        User user = null;
-        email = email.replace(" ","");
-        usersDataSource = new UsersDataSource(context);
-
-        usersDataSource.open();
-
-        user = usersDataSource.getUser(email);
-        try {
-            if (!user.equals(null)) {
-                if (!email.equals(user.getEmail())) {
-                    emailTxtView.setText(String.format("%s", "Email is not existing"));
-
-                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                        emailTxtView.setText(String.format("%s", "Invalid email format"));
-                    }
-                    isEmailValid = false;
-                } else {
-                    isEmailValid = true;
-                }
-            }
-        }catch(NullPointerException npe){
-            Toast.makeText(context, ""+String.format("%s","Not a member? Signup! :)"), Toast.LENGTH_SHORT).show();
-
-        }
-
-        usersDataSource.close();
-        Log.v("PASSWORD:",""+user.getPassword());
-
-        if(isEmailValid && password.equals(user.getPassword()))
-            isPasswordCorrect = true;
-        else if(password.length() == 0) {
-            passwordTxtView.setText(String.format("%s","Please enter password"));
-        }else if(!isEmailValid && password.length() < 8){
-            passwordTxtView.setText(String.format("%s","Password length must be more than 7"));
-        }else if(isEmailValid && !password.equals(user.getPassword())){
-            passwordTxtView.setText(String.format("%s", "Password is incorrect"));
-        }
-
-        if(isEmailValid && isPasswordCorrect)
-            return true;
-        else
-            return false;
-    }
-
     public boolean isRegistrationSuccessful(){
         User user = new User();
-        this.usersDataSource = new UsersDataSource(context);
+        UsersDataSource usersDataSource = new UsersDataSource(context);
         usersDataSource.open();
 
         if(fname.getText().toString().equals("")){
@@ -105,6 +47,8 @@ public class LoginAndRegister {
 
         if(username.getText().toString().equals("")){
             username.setText(String.format("%s","Please enter username"));
+        }else if(username.getText().toString().length() < 8){
+            username.setText(String.format("%s","Username must be at least 8 characters"));
         }else{
             if(usersDataSource.ifUsernameIsAvailable(username.getText().toString()))
                 user.setUname(username.getText().toString());
@@ -115,10 +59,15 @@ public class LoginAndRegister {
         if(email.getText().toString().equals("")){
             email.setText(String.format("%s","Please enter email address"));
         }else{
-            if(usersDataSource.ifEmailIsAvailable(email.getText().toString()))
-                user.setEmail(email.getText().toString());
-            else
-                email.setText(String.format("%s","Try another email"));
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+                email.setText(String.format("%s", "Invalid email format"));
+            }else{
+                if(usersDataSource.ifEmailIsAvailable(email.getText().toString()))
+                    user.setEmail(email.getText().toString());
+                else
+                    email.setText(String.format("%s","Try another email"));
+            }
+
         }
 
         if(password.getText().toString().equals("") && password.getText().toString().length() < 8){
