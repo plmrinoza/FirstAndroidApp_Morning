@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/ab"
+    tools:context=".DatabaseHelper">
+    <EditText
+        android:id="@+id/EmailReg"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:layout_above="@+id/PassReg"
+        android:layout_marginBottom="10dp"
+        android:textSize="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/UnameReg"
+        android:layout_alignEnd="@+id/UnameReg" />
+    <EditText
+        android:id="@+id/PassReg"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:textSize="15dp"
+        android:layout_above="@+id/ConfirmPass"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/EmailReg"
+        android:layout_alignEnd="@+id/EmailReg" />
+    <EditText
+        android:id="@+id/ConfirmPass"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+
+        android:inputType="textPassword"
+        android:hint="Confirm Password"
+        android:textSize="15dp"
+        android:layout_above="@+id/regibtn"
+        android:layout_alignLeft="@+id/PassReg"
+        android:layout_alignStart="@+id/PassReg"
+        android:layout_marginBottom="50dp"
+        android:layout_alignRight="@+id/PassReg"
+        android:layout_alignEnd="@+id/PassReg" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/sign_up_text"
+        android:layout_marginTop="28dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/regibtn"
+        android:background="@drawable/reg"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/ConfirmPass"
+        android:layout_alignEnd="@+id/ConfirmPass"
+        android:layout_alignParentBottom="true" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/FnameReg"
+        android:padding="10dp"
+
+        android:layout_above="@+id/LnameReg"
+        android:textSize="15dp"
+        android:layout_marginBottom="10dp"
+        android:hint="First Name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/LnameReg"
+        android:padding="10dp"
+
+        android:textSize="15dp"
+        android:hint="Last Name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/FnameReg"
+        android:layout_alignEnd="@+id/FnameReg"
+        android:layout_above="@+id/UnameReg" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/UnameReg"
+        android:padding="10dp"
+
+        android:textSize="15dp"
+        android:layout_above="@+id/EmailReg"
+        android:layout_marginBottom="10dp"
+        android:hint="Username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/LnameReg"
+        android:layout_alignEnd="@+id/LnameReg" />
+</RelativeLayout>
