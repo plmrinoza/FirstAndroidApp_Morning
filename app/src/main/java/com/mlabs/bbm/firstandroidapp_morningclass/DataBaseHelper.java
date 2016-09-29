@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -27,5 +28,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         _db.execSQL("DROP TABLE IF EXISTS " + "TEMPLATE");
 
         onCreate(_db);
+    }
+
+    public long insert (String email, ContentValues values) throws NotValidException {
+        validate(values);
+        return  getWritableDatabase().insert(email, null, values);
+    }
+
+    protected void validate(ContentValues values) throws NotValidException {
+        String email = null;
+        if (!values.containsKey(email) || values.getAsString(email) == null || values.getAsString(email).isEmpty()){
+            throw new NotValidException("Email must be set");
+        }
+    }
+    public static class NotValidException extends Throwable {
+        public NotValidException(String msg){
+            super(msg);
+        }
     }
 }

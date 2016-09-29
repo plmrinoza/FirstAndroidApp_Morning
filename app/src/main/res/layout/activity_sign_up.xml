@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/EmailReg"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff" />
@@ -43,7 +43,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Password:"
         android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/EmailReg"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff" />
 
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/PasswordReg"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff" />
@@ -63,7 +63,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Confirm Password:"
         android:id="@+id/textView3"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/PasswordReg"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff" />
 
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/PasswordConfirm"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff" />
@@ -81,9 +81,71 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Account"
-        android:id="@+id/button2"
+        android:id="@+id/Register"
         android:background="#443d44"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/PasswordConfirm"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="FirstName"
+        android:id="@+id/textView4"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/FirstName"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="LastName:"
+        android:id="@+id/textView5"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/FirstName"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/LastName"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Username:"
+        android:idr="@+id/FistName"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/LastName"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/UsernameReg"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/textView"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
 </RelativeLayout>
