@@ -3,14 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lipstick">
+    android:background="#feffcc">
 
-    <ImageView android:id="@+id/splash"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:src="@drawable/glamour"
-        android:scaleType="fitEnd"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
+    <ImageView
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:id="@+id/ikot"
+        android:layout_centerInParent="true"
+        android:background="@drawable/naruto"
+        android:layout_gravity="center_horizontal" />
 </RelativeLayout>
