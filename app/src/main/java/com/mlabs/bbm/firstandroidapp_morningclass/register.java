@@ -49,8 +49,6 @@ public class register extends AppCompatActivity {
                         if(email.trim().matches(emailPattern)){
                             if(pass.length()>8 && cpass.length()>8){
                                 if(user.length()>8){
-                                    String query = "Select Username from Register where Username="+user+"";
-                                    String query2= "Select Email from Register where Email="+email+"";
                                     Cursor cursor =myDB.query("Register",null,"Username=?",new String[]{user},null,null,null);
                                     if(cursor.getCount()<1){
                                         cursor.close();
@@ -64,6 +62,7 @@ public class register extends AppCompatActivity {
                                             newValues.put("Firstname",fname);
                                             newValues.put("Lastname",lname);
                                             myDB.insert("Register",null,newValues);
+                                            myDB.close();
                                             Toast.makeText(getBaseContext(), "Register Successful!", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(register.this,MainActivity.class );
                                             startActivity(intent);
