@@ -20,7 +20,7 @@ import android.text.Spanned;
  */
 public class register extends Activity {
     DatabaseHelper myDb;
-    EditText editEmail, editPassword, editCPassword, editFname, editLname, editUname;
+    EditText editEmail, editpassword, editcpassword, editfname, editlname, edituname;
     Button btnAddData;
     String email, password, cpassword;
 
@@ -30,16 +30,16 @@ public class register extends Activity {
         setContentView(R.layout.activity_main_reg);
         myDb = new DatabaseHelper(this);
 
-        editFname = (EditText)findViewById(R.id.FnameReg);
-        editLname = (EditText)findViewById(R.id.LnameReg);
-        editUname = (EditText)findViewById(R.id.UnameReg);
+        editfname = (EditText)findViewById(R.id.FnameReg);
+        editlname = (EditText)findViewById(R.id.LnameReg);
+        edituname = (EditText)findViewById(R.id.UnameReg);
         editEmail = (EditText)findViewById(R.id.EmailReg);
-        editPassword = (EditText)findViewById(R.id.PassReg);
-        editCPassword = (EditText)findViewById(R.id.ConfirmPass);
+        editpassword = (EditText)findViewById(R.id.PassReg);
+        editcpassword = (EditText)findViewById(R.id.ConfirmPass);
         btnAddData = (Button)findViewById(R.id.regibtn);
 
         //To restrict Fname and Lname edittext from accepting numbers as well as special characters
-        editFname.setFilters(new InputFilter[]{
+        editfname.setFilters(new InputFilter[]{
                 new InputFilter() {
                     @Override
                     public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
@@ -53,7 +53,7 @@ public class register extends Activity {
                     }
                 }
         });
-        editLname.setFilters(new InputFilter[]{
+        editlname.setFilters(new InputFilter[]{
                 new InputFilter() {
                     @Override
                     public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
@@ -75,13 +75,13 @@ public class register extends Activity {
                                           @Override
                                           public void onClick(View v) {
                                               email = editEmail.getText().toString();
-                                              password = editPassword.getText().toString();
-                                              cpassword = editCPassword.getText().toString();
+                                              password = editpassword.getText().toString();
+                                              cpassword = editcpassword.getText().toString();
                                               if (!isValidEmail(email)) {
                                                   editEmail.setError("Invalid Email");
                                               }
                                               if (!isValidPassword(password)) {
-                                                  editPassword.setError("Invalid Password");
+                                                  editpassword.setError("Invalid Password");
                                               }
 
                                               //Checks if passwords match after confirming the email and passwords meet the required format
@@ -89,14 +89,14 @@ public class register extends Activity {
                                               {
                                                   if(!(password.equals(cpassword))){
                                                       Toast.makeText(register.this, "Passwords do not match", Toast.LENGTH_LONG).show();
-                                                      editCPassword.requestFocus();
+                                                      editcpassword.requestFocus();
                                                   }
                                                   else
                                                   {
                                                       Date curDate = new Date();
                                                       SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
                                                       String DateToStr = format.format(curDate);
-                                                      boolean isInserted = myDb.insetData(editFname.getText().toString(), editLname.getText().toString(), editUname.getText().toString(),editEmail.getText().toString(), editPassword.getText().toString(), DateToStr);
+                                                      boolean isInserted = myDb.insetData(editfname.getText().toString(), editlname.getText().toString(), edituname.getText().toString(),editEmail.getText().toString(), editpassword.getText().toString(), DateToStr);
                                                       if(isInserted == true)
                                                       {
                                                           Toast.makeText(register.this, "Registration Successful", Toast.LENGTH_LONG).show();

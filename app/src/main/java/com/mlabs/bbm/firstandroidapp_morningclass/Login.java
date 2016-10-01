@@ -31,7 +31,9 @@ public class Login extends AppCompatActivity {
         showText = (TextView) findViewById(R.id.show);
         final Context CTX = this;
 
-        findViewById(R.id.button).setOnClickListener(new OnClickListener() { //Log in button
+
+
+        findViewById(R.id.imageView).setOnClickListener(new OnClickListener() { //Log in button
             @Override
             public void onClick(View arg0) {
                 String emailuname = emailEditText.getText().toString();

@@ -13,6 +13,7 @@ public class AL extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.avtivity_main_lo);
 
         findViewById(R.id.soBtn).setOnClickListener(new View.OnClickListener() {

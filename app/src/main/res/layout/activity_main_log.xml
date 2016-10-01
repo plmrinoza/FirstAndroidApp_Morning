@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/android_edittxt"
+
         android:inputType="textEmailAddress"
         android:hint="Email"
         android:layout_below="@+id/imageView"
@@ -22,7 +22,7 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/android_edittxt"
+
         android:inputType="textPassword"
         android:hint="Password"
         android:layout_below="@+id/Emailtxt"
