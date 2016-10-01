@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText emailAdd,passWord,Show;
         final Button  btnMenu = (Button) findViewById(R.id.button2);
         final Button btn3 = (Button) findViewById(R.id.button3);
-
+        final Database sqlDB = new Database(getApplicationContext());
         Show = (EditText)findViewById(R.id.show);
         emailAdd=(EditText)findViewById(R.id.editText);
         passWord=(EditText)findViewById(R.id.editText3);
@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(),"Email or Password field must not be empty",Toast.LENGTH_SHORT).show();
 
                     }
-                    if (Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$").matcher(emailAdd.getText()).matches()) {
+                    if (sqlDB.validateUserFromEmail(emailAdd.getText().toString(), passWord.getText().toString()) == true
+                            || sqlDB.validateUserFromUName(emailAdd.getText().toString(), passWord.getText().toString()) == true) {
 
-                        if (passWord.getText().length() >= 6) {
                             Intent intent = new Intent(MainActivity.this, Clrclass.class);
                             startActivity(intent);
                             Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_SHORT).show();
@@ -49,13 +49,8 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "invalid login details", Toast.LENGTH_SHORT).show();
 
                     }
-                    else
-                        Toast.makeText(getBaseContext(), "Invalid Email address!", Toast.LENGTH_SHORT).show();
-
-
-                }
             });
-
+git
 
             Show.setOnTouchListener(new View.OnTouchListener(){
               @Override
