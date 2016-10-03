@@ -79,7 +79,8 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
                 + KEY_PASSWORD + "TEXT,"
                 + KEY_CREATE_AT + " TEXT " + ")";
 
-        sqlDB.execSQL(CREATE_USER_TABLE);
+        sqlDB.execSQL("CREATE TABLE " + TABLE_USER + "(id INTEGER PRIMARY KEY, name    TEXT)" + "**name**    unique, " + "ON CONFLICT REPLACE");
+        //sqlDB.execSQL(CREATE_USER_TABLE);
         Log.d(TAG, "Database tables created");
     }
 
@@ -95,7 +96,7 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
     }
 
     //Creating new user/s:
-    public void registerUser(String firstname, String lastname, String username, String email, String password, String create_at){
+    public boolean registerUser(String firstname, String lastname, String username, String email, String password, String create_at){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -111,14 +112,31 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
         db.close(); //close database connection
 
         Log.d(TAG, "Successfully Added User " +id);
-
+        return  true;
     }
 
+    public boolean check(String username, String email){
+        String sqry = "SELECT * FROM " + TABLE_USER + "WHERE" +
+                KEY_EMAIL+ "=" + email +
+                KEY_USER_NAME+ "=" + username;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sqry,null);
+        cursor.moveToFirst();
+        if(cursor.getCount() !=0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
     //Pulling records from Database
-    public boolean validateUser(String userName, String password){
+    public boolean validateUser(/*String userName*/String email, String password){
         HashMap<String,String> user = new HashMap<String, String>();
         String selectQuery = "SELECT * FROM " + TABLE_USER + "WHERE" +
-                KEY_EMAIL+ "=" + userName;
+                KEY_EMAIL+ "=" + email +
+               KEY_PASSWORD+ "=" + password;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -149,7 +167,7 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
         }
     }
 
-    public long insertPlayer(String UsernameReg, String PasswordReg, String EmailReg)
+    public long insertData (String UsernameReg, String PasswordReg, String EmailReg)
     {
         ContentValues values = new ContentValues();
         values.put("USERNAME", UsernameReg);

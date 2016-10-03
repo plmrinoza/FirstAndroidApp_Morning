@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp_morningclass;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         final EditText Username = (EditText) findViewById(R.id.Email);
         final EditText Pw = (EditText) findViewById(R.id.Pw);
         final Button reg = (Button) findViewById(R.id.btnReg);
+
+        Context context = this;
+        final DataBaseAdapter db = new DataBaseAdapter(context);
 
         show.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -56,16 +60,28 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 if (!validateEmail(Email.getText().toString())) {
-                    Email.setError("Not a valid email address!");
-                }   else if (!validateUsername(Username.getText().toString())) {
-                    Username.setError("Not a valid user name!");
+                    Email.setError("Not a valid Username or Email!");
+                }
+                if(!validateUsername(Username.getText().toString())) {
+                        Username.setError("Not a valid Username or Email!");
                 }
                 if (!validatePassword(Pw.getText().toString())) {
                     Pw.setError("Not a valid password!");
-                } else {
-                    Email.setError(null);
-                    Pw.setError(null);
-                    doLogin();
+                }
+                else {
+
+                   //boolean check = db.validateUser(Email.getText().toString(),/*Username.getText().toString(),*/Pw.getText().toString());
+
+                   //if (check==true) {
+                    //   Toast.makeText(getApplicationContext(), "Invalid Username or Email", Toast.LENGTH_LONG).show();
+                      // return;
+
+                  // }
+                   // else {
+                       Email.setError(null);
+                       Pw.setError(null);
+                       doLogin();
+                   //}
                 }
             }
         });
