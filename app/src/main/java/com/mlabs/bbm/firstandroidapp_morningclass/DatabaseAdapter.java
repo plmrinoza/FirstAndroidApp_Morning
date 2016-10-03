@@ -31,10 +31,25 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
     static final String DATABASE_CREATE = "create table " + "LOGIN" + "( "
                        + "ID" + " integer primary key autoincrement,"
                       + "Email  text,Password text); ";
-
+    public SQLiteDatabase db;
+    private DatabaseHelper dbHelper;
 
     public DatabaseAdapter(Context context) {
         super(context, DATABASE_NAME,  null,    DATABASE_VERSION);
+    }
+
+
+    public DatabaseAdapter open() throws SQLException {
+        db = dbHelper.getWritableDatabase();
+        return this;
+    }
+
+    public void close() {
+        db.close();
+    }
+
+    public SQLiteDatabase getDb(){
+        return db;
     }
 
     @Override
@@ -71,8 +86,57 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
         db.close();
         Log.d(TAG, "User added successfully!");
     }
+    public boolean validateUser(/*String userName*/String email, String password){
+        HashMap<String,String> user = new HashMap<String, String>();
+        String selectQuery = "SELECT * FROM " + TABLE_USER + "WHERE" +
+                KEY_EMAIL+ "=" + email +
+                KEY_PASSWORD+ "=" + password;
 
-    public boolean checkExist(String username, String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0){
+            user.put("firstname", cursor.getString(1));
+            user.put("lastname", cursor.getString(2));
+            user.put("username", cursor.getString(3));
+            user.put("email", cursor.getString(4));
+            user.put("password", cursor.getString(5));
+            user.put("created_at", cursor.getString(6));
+        }
+        cursor.close();
+        db.close();
+
+        Log.d(TAG, "Fetching user from SQLite: " + user.toString());
+
+        if(password.equals(user.get(password))){
+
+            Log.d(TAG, "Password was validated ");
+            return true;
+        }
+        else {
+
+            Log.d(TAG, "Password Incorrect ");
+            return false;
+        }
+    }
+
+    public long insertData (String UsernameReg, String PasswordReg, String EmailReg)
+    {
+        ContentValues values = new ContentValues();
+        values.put("USERNAME", UsernameReg);
+        values.put("PASSWORD", PasswordReg);
+        values.put("EMAIL", EmailReg);
+
+        return db.insertWithOnConflict(DATABASE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+
+    }
+
+    public String getData() {
+        return null;
+    }
+
+       public boolean checkExist(String username, String email){
         String qry = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_EMAIL +" = '"+email+"' or "+ KEY_USER + " = '" + username +"'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(qry,null);
@@ -85,33 +149,6 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
         }
     }
 
-    public boolean validateUser(String userc, String password){
-        HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM "+TABLE_USER+" WHERE " +KEY_EMAIL+ "='" + userc+"' or " + KEY_USER + "= '"+userc+"'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery,null);
-
-        cursor.moveToFirst();
-        if (cursor.getCount()>0){
-            if (password.equals(cursor.getString(5))){
-                user.put("first",cursor.getString(1));
-                user.put("surname",cursor.getString(2));
-                user.put("username",cursor.getString(3));
-                user.put("email",cursor.getString(4));
-                user.put("password",cursor.getString(5));
-                user.put("created_at",cursor.getString(6));
-                Log.d(TAG,"Fetching user from Sqlite: "+user.toString());
-                cursor.close();
-                db.close();
-            }
-            return true;
-        }
-        else{
-            cursor.close();
-            db.close();
-            return false;
-        }
-    }
 
     public  void deleteUser() {
         SQLiteDatabase db = this.getWritableDatabase();
