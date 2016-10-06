@@ -14,29 +14,40 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button login;
-    EditText u, p;
-    TextView show;
+    Button signIn;
+    EditText ue, p;
+    TextView show,signUp;
+    DbHandler db = new DbHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        login = (Button) findViewById(R.id.button);
-        u = (EditText) findViewById(R.id.editText);
+        signIn = (Button) findViewById(R.id.button);
+        ue = (EditText) findViewById(R.id.editText);
         p = (EditText) findViewById(R.id.editText1);
         show = (TextView) findViewById(R.id.textView);
+        signUp = (TextView) findViewById(R.id.txtSignUp);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isValidEmail(u.getText().toString(),p.getText().toString())){
+                String credential = ue.getText().toString();
+                String pass = p.getText().toString();
+
+                if (db.loginCheck(credential, pass)){
                     Intent intent = new Intent(MainActivity.this,LoggedIn.class );
                     startActivity(intent);
+                    finish();
                 }
+//                if (isValidEmail(ue.getText().toString(),p.getText().toString())){
+//                    Intent intent = new Intent(MainActivity.this,LoggedIn.class );
+//                    startActivity(intent);
+//                    finish();
+//                }
                 else
-                    Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Login Credentials!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -56,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignUp.class);
+                startActivity(intent);
+            }
+        });
     }
 
     boolean isValidEmail(String x, String y) {
@@ -64,12 +83,5 @@ public class MainActivity extends AppCompatActivity {
         }
         else
             return false;
-
-    }
-
-    @Override
-    protected  void onPause(){
-        super.onPause();
-        finish();
     }
 }

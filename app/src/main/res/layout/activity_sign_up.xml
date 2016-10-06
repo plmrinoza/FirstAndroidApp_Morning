@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.mlabs.bbm.firstandroidapp_morningclass.SignUp"
+    android:background="@drawable/splash_image"
+    android:backgroundTintMode="screen"
+    android:backgroundTint="@android:color/darker_gray">
+
+    <TextView
+        android:text="Sign Up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textStyle="normal|bold"
+        android:textSize="36sp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="61dp"
+        android:id="@+id/fldUnam"
+        android:hint="username"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/fldMail"
+        android:hint="e-mail address"
+        android:layout_below="@+id/fldUnam"
+        android:layout_alignLeft="@+id/fldUnam"
+        android:layout_alignStart="@+id/fldUnam"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/fldPass"
+        android:hint="password"
+        android:layout_below="@+id/fldMail"
+        android:layout_alignLeft="@+id/fldMail"
+        android:layout_alignStart="@+id/fldMail"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/fldPass2"
+        android:hint="confirm password"
+        android:singleLine="true"
+        android:layout_below="@+id/fldPass"
+        android:layout_alignLeft="@+id/fldPass"
+        android:layout_alignStart="@+id/fldPass" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/fldFnam"
+        android:hint="first name"
+        android:layout_below="@+id/fldPass2"
+        android:layout_alignLeft="@+id/fldPass2"
+        android:layout_alignStart="@+id/fldPass2"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/fldLnam"
+        android:hint="last name"
+        android:layout_below="@+id/fldFnam"
+        android:layout_alignLeft="@+id/fldFnam"
+        android:layout_alignStart="@+id/fldFnam"
+        android:singleLine="true" />
+
+    <Button
+        android:text="Confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttConf"
+        android:layout_above="@+id/buttViewA"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:text="View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttViewA"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/buttConf"
+        android:layout_alignStart="@+id/buttConf" />
+
+</RelativeLayout>

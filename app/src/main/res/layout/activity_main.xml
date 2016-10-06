@@ -15,7 +15,6 @@
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1.00"
         android:background="@android:color/darker_gray"
         android:singleLine="true"
         android:hint="e-mail address"
@@ -42,7 +41,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Sign In"
         android:id="@+id/button"
         android:onClick="login"
         android:layout_centerVertical="true"
@@ -57,6 +56,18 @@
         android:layout_alignTop="@+id/editText1"
         android:layout_toRightOf="@+id/editText1"
         android:layout_toEndOf="@+id/editText1" />
+
+    <TextView
+        android:text="Sign Up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtSignUp"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textStyle="normal|bold" />
 
     <!--android:text="@string/Login"-->
 

@@ -10,13 +10,10 @@ import android.widget.Toast;
 
 public class OnTouch extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ontouch);
-
 
         final ImageView image = (ImageView)findViewById(R.id.ontouch_image);
 
