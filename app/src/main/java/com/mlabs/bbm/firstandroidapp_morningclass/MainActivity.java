@@ -106,7 +106,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent myIntent = new Intent(v.getContext(), AccountRegister.class);
                 startActivityForResult(myIntent, 0);
-                onPause();
+
+                //fix stacking of login screen when switching to register
+
+                finish();
             }
             });
 
@@ -164,11 +167,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     */
+
     @Override
     protected void onResume() {
         super.onResume();
 
     }
+
 }
 
 /*experiments*/
